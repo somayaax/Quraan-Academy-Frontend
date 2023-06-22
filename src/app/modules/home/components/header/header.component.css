@@ -1,0 +1,15 @@
+.header {
+    background-image: url(../../../../../assets/bg/bg.jpg);
+}
+
+.overlay {
+    height: 100%;
+    background-color: rgba(204, 192, 178, 0.5);
+}
+
+.carousel-item .desc{
+    background-color: #f4ede4;
+}
+.carousel-control-prev , .carousel-control-next{
+    width: 10%;
+}

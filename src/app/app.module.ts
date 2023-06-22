@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './shared/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     NavbarComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -19,6 +21,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
