@@ -8,8 +8,8 @@ import { NotfoundComponent } from './shared/notfound/notfound.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
-  { path: 'login/:role', component: LoginComponent },
   { path: 'register/teacher', canActivate: [AdminGuard], component: RegisterComponent },
+  { path: 'login/:role', component: LoginComponent },
   {
     path: 'student',
     loadChildren: () => import('./modules/course/course.module').then(m => m.CourseModule),

@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   role: string = '';
+  param: string = '';
   imgSrc: string = '';
   header: string = '';
   error: string = '';
@@ -28,29 +29,29 @@ export class LoginComponent implements OnInit {
     this._ActivatedRoute.params.subscribe((params) => {
       const newRole = params['role'];
 
-      if (!['admin', 'student', 'teacher'].includes(newRole)) {
+      if (!['admin', 'user'].includes(newRole)) {
         this._Router.navigate(['/notfound']);
       } else {
-        this.role = newRole;
+        this.param = newRole;
         this.setRoleProperties();
       }
     });
   }
 
   setRoleProperties() {
-    if (this.role === 'admin') {
+    if (this.param === 'admin') {
+      this.role = 'admin';
       this.imgSrc = 'assets/bg/admin.jpg';
       this.header = 'Admin Panel';
-    } else if (this.role === 'teacher') {
+    } else if (this.param === 'user') {
+      this.role = 'student';
       this.imgSrc = 'assets/bg/admin.jpg';
-      this.header = 'Teacher Login';
-    } else if (this.role === 'student') {
-      this.imgSrc = 'assets/bg/x.jpg';
-      this.header = 'Student Login';
+      this.header = 'Login';
     }
   }
 
   loginSubmit(login: FormGroup) {
+
     this._authService.login(login.value, this.role).subscribe({
       next: (res: any) => {
         console.log(res);

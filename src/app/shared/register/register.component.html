@@ -51,7 +51,7 @@
                     </div>
                     <div class="my-2">
                         <label for="Password">Password</label>
-                        <input type="text" formControlName="password" id="Password" class="form-control">
+                        <input type="password" formControlName="password" id="Password" class="form-control">
                         <div class="text-danger"
                             *ngIf="RegisterForm.get('password')?.errors != null && RegisterForm.get('password')?.touched">
                             <p *ngIf="RegisterForm.get('password')?.errors?.['required']">password required</p>

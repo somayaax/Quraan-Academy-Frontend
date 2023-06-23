@@ -7,8 +7,14 @@
             <div class="register mx-auto bg-white p-4">
                 <div class="alert alert-danger" *ngIf="error">{{error}}</div>
                 <h2 class="text-center">{{header}}</h2>
+                <div *ngIf="param!=='admin'" class="mt-4">
+                    <label for="">Login As</label>
+                    <select [(ngModel)]="role" class="form-select form-select w-25" aria-label=".form-select-sm example">
+                        <option  value="student" selected>Student</option>
+                        <option value="teacher">Teacher</option>
+                    </select>
+                </div>
                 <form [formGroup]="loginForm" (ngSubmit)="loginSubmit(loginForm)">
-
                     <div class="my-2">
                         <label for="Email">Email</label>
                         <input type="text" formControlName="email" id="Email" class="form-control">
@@ -20,7 +26,7 @@
                     </div>
                     <div class="my-2">
                         <label for="Password">Password</label>
-                        <input type="text" formControlName="password" id="Password" class="form-control">
+                        <input type="password" formControlName="password" id="Password" class="form-control">
                         <div class="text-danger"
                             *ngIf="loginForm.get('password')?.errors != null && loginForm.get('password')?.touched">
                             <p *ngIf="loginForm.get('password')?.errors?.['required']">password required</p>
@@ -28,8 +34,7 @@
                                 least 8 characters</p>
                         </div>
                     </div>
-                    <button type="submit" class="rounded py-2 w-100 my-2"
-                        [disabled]="loginForm.invalid">login</button>
+                    <button type="submit" class="rounded py-2 w-100 my-2" [disabled]="loginForm.invalid">login</button>
                 </form>
             </div>
         </div>
