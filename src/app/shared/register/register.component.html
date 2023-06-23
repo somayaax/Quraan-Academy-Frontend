@@ -5,37 +5,36 @@
         </div>
         <div class="col-md-7 px-0">
             <div class="register mx-auto bg-white p-4">
-                <div class="alert alert-danger" *ngIf="errors">{{errors}}</div>
-                <h2 class="text-center">Register</h2>
-                <form [formGroup]="RegisterForm">
-                    <!--(ngSubmit)="RegisterSubmit(RegisterForm)" -->
+                <div class="alert alert-danger" *ngIf="error">{{error}}</div>
+                <h2 class="text-center">{{register}}</h2>
+                <form [formGroup]="RegisterForm" (ngSubmit)="RegisterSubmit(RegisterForm)">
                     <div class="d-flex">
                         <div class="my-2 w-50 me-4">
                             <label for="firstName">First Name</label>
-                            <input type="text" formControlName="first_name" id="firstName" class="form-control">
+                            <input type="text" formControlName="firstName" id="firstName" class="form-control">
                             <div class="text-danger"
-                                *ngIf="RegisterForm.get('first_name')?.errors != null && RegisterForm.get('first_name')?.touched">
-                                <p *ngIf="RegisterForm.get('first_name')?.errors?.['required']">first name required
+                                *ngIf="RegisterForm.get('firstName')?.errors != null && RegisterForm.get('firstName')?.touched">
+                                <p *ngIf="RegisterForm.get('firstName')?.errors?.['required']">first name required
                                 </p>
-                                <p *ngIf="RegisterForm.get('first_name')?.errors?.['minlength']">first name min
+                                <p *ngIf="RegisterForm.get('firstName')?.errors?.['minlength']">first name min
                                     length 3
                                 </p>
-                                <p *ngIf="RegisterForm.get('first_name')?.errors?.['maxlength']">first name max
+                                <p *ngIf="RegisterForm.get('firstName')?.errors?.['maxlength']">first name max
                                     length
                                     12</p>
                             </div>
                         </div>
                         <div class="my-2 w-50">
                             <label for="LastName">Last Name</label>
-                            <input type="text" formControlName="last_name" id="LastName" class="form-control">
+                            <input type="text" formControlName="lastName" id="LastName" class="form-control">
                             <div class="text-danger"
-                                *ngIf="RegisterForm.get('last_name')?.errors != null && RegisterForm.get('last_name')?.touched">
-                                <p *ngIf="RegisterForm.get('last_name')?.errors?.['required']">last name required
+                                *ngIf="RegisterForm.get('lastName')?.errors != null && RegisterForm.get('lastName')?.touched">
+                                <p *ngIf="RegisterForm.get('lastName')?.errors?.['required']">last name required
                                 </p>
-                                <p *ngIf="RegisterForm.get('last_name')?.errors?.['minlength']">last name min length
+                                <p *ngIf="RegisterForm.get('lastName')?.errors?.['minlength']">last name min length
                                     3
                                 </p>
-                                <p *ngIf="RegisterForm.get('last_name')?.errors?.['maxlength']">last name max length
+                                <p *ngIf="RegisterForm.get('lastName')?.errors?.['maxlength']">last name max length
                                     12
                                 </p>
                             </div>
@@ -56,9 +55,8 @@
                         <div class="text-danger"
                             *ngIf="RegisterForm.get('password')?.errors != null && RegisterForm.get('password')?.touched">
                             <p *ngIf="RegisterForm.get('password')?.errors?.['required']">password required</p>
-                            <p *ngIf="RegisterForm.get('password')?.errors?.['pattern']">password must contain
-                                uppercase &
-                                lowercase </p>
+                            <p *ngIf="RegisterForm.get('password')?.errors?.['minlength']">password must contain at
+                                least 8 characters</p>
                         </div>
                     </div>
                     <div class="d-flex">
@@ -66,21 +64,21 @@
                             <label for="gender" class="d-block">Gender</label>
                             <div class="form-check form-check-inline">
                                 <input formControlName="gender" class="form-check-input" type="radio" name="gender"
-                                    id="inlineRadio1" value="male">
+                                    id="inlineRadio1" value="Male">
                                 <label class="form-check-label" for="inlineRadio1">Male</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input formControlName="gender" class="form-check-input" type="radio" name="gender"
-                                    id="inlineRadio2" value="female">
+                                    id="inlineRadio2" value="Female">
                                 <label class="form-check-label" for="inlineRadio2">Female</label>
                             </div>
                         </div>
                         <div class="my-2 w-50">
-                            <label for="dob">Birthdate</label>
+                            <label for="dob">Birthday</label>
                             <input type="date" formControlName="DOB" id="dob" class="form-control">
                             <div class="text-danger"
                                 *ngIf="RegisterForm.get('DOB')?.errors != null && RegisterForm.get('DOB')?.touched">
-                                <p *ngIf="RegisterForm.get('DOB')?.errors?.['required']">Birthdate required</p>
+                                <p *ngIf="RegisterForm.get('DOB')?.errors?.['required']">Birthday required</p>
                             </div>
                         </div>
                     </div>
