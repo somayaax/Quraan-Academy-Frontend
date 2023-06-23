@@ -1,0 +1,12 @@
+.alert p {
+    margin-bottom: 0;
+}
+
+button {
+    background-color: #c3a668;
+    border: #c3a668;
+}
+
+.text-danger p {
+    margin: 0;
+}
