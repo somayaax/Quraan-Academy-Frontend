@@ -1,0 +1,91 @@
+<div class="d-flex justify-content-between page">
+  <app-admin-sidebar></app-admin-sidebar>
+  <div class="table-area container-fluid">
+    <div class="d-flex justify-content-between m-1 filter-add mb-2">
+
+      <div class="d-flex flex-wrap">
+        <div class="form-group mr-2">
+          <label for="teacher-dropdown">Teacher</label>
+          <select class="form-control" id="teacher-dropdown" [(ngModel)]="selectedTeacher" (change)="getCourses()">
+            <option>None</option>
+            <option>507f191e810c19729de860ec</option>
+            <option>507f191e810c19729de860eD</option>
+            <option>507f191e810c19729de860eB</option>
+          </select>
+        </div>
+        <div class="form-group mx-2">
+          <label for="level-dropdown">Level</label>
+          <select class="form-control" id="level-dropdown" [(ngModel)]="selectedLevel" (change)="getCourses()">
+            <option>All</option>
+            <option>Beginner</option>
+            <option>Intermediate</option>
+            <option>Advanced</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="addCourse" (click)="openAddCourseModal()">
+        <span>Add new course</span>
+        <i class="fas fa-add"></i>
+      </div>
+    </div>
+
+    <ng-container>
+      <div class="row text-left">
+        <ng-container>
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-header">
+                <h1 class="card-title">Courses</h1>
+
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <table class="table table-responsive-md table-striped text-center">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Level</th>
+                        <th>Teacher</th>
+                        <th>Start date</th>
+                        <th>End date</th>
+                        <th>Start time</th>
+                        <th>End time</th>
+                        <th>Days of week</th>
+                        <th>Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container>
+                        <tr class="tr" *ngFor="let course of courses | paginate: { itemsPerPage:6, currentPage: page }">
+                          <td>{{course.id}}</td>
+                          <td>{{course.name}}</td>
+                          <td>{{course.level}}</td>
+                          <td>{{course.teacher}}</td>
+                          <td>{{course.startDate}}</td>
+                          <td>{{course.endDate}}</td>
+                          <td>{{course.startTime}}</td>
+                          <td>{{course.endTime}}</td>
+                          <td>{{course.daysOfWeek}}</td>
+                          <td>{{course.price}}</td>
+                          <td>
+                            <div class="action">
+                            </div>
+
+                          </td>
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </table>
+                </div>
+                <pagination-controls (pageChange)="page = $event"></pagination-controls>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+
+  </div>
+</div>

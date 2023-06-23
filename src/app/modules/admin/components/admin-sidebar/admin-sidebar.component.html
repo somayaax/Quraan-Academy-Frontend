@@ -1,0 +1,27 @@
+<nav class="admin-sidebar pt-lg-5">
+  <ul class="admin-sidebar-list">
+    <li class="admin-sidebar-item" routerLinkActive="active"><a [routerLink]="['/admin/courses/list']"><i
+          class="fas fa-tachometer-alt"></i>Courses</a></li>
+    <li class="admin-sidebar-item" routerLinkActive="active"><a [routerLink]="['/admin/students/list']"><i
+          class="fas fa-user-graduate"></i>Students</a></li>
+    <li class="admin-sidebar-item" routerLinkActive="active"><a [routerLink]="['/admin/teachers/list']"><i
+          class="fas fa-chalkboard-teacher"></i>Teachers</a></li>
+    <li class="admin-sidebar-item" routerLinkActive="active"><a [routerLink]="['/admin/sessions/list']"><i
+          class="fas fa-calendar-alt"></i>Sessions</a></li>
+    <div class="admin-sidebar-separator"></div>
+  </ul>
+  <ul class="admin-sidebar-list">
+    <li class="admin-sidebar-item" id="profile-link">
+      <a>
+        <i class="fas fa-user-circle"></i>
+        <span class="admin-sidebar-admin-name">Admin Name</span>
+      </a>
+    </li>
+    <li class="admin-sidebar-item">
+      <a>
+        <i class="fas fa-sign-out-alt"></i>
+        Logout
+      </a>
+    </li>
+  </ul>
+</nav>
