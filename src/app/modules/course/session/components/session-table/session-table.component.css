@@ -1,14 +1,9 @@
-table, caption {
-    background: #c3a668;
-    width: 800px;
-    margin: auto;
-    color: #f4ede4;
-    font-weight: 700;
-    font-size: 1.5rem;
-    border-radius: 1rem;
-  }
+.numbers{
+    background-image: url(../../../../../../assets/bg/bg.jpg);
+}
   
   table, tr, th, td {
+    margin: auto;
     border: 1px solid white;
     background: white;
     margin-top: 6rem;
