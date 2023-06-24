@@ -1,13 +1,20 @@
 .course-card {
-  background-color: #cae3d0;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 16px;
-  max-width: 400px;
+  background-color: #f1ecec;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  max-width: 450px;
+  margin-bottom: 24px;
+  font-family: "Open Sans", sans-serif;
+  transition: all 0.2s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .course-card-header {
-  display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
@@ -30,7 +37,7 @@
 
 .course-card-details p,
 .course-card-dates p {
-  margin: 8px 0;
+  margin: 12px 0;
 }
 
 .course-card-details p span,

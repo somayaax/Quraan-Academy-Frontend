@@ -4,6 +4,12 @@ import { CourseCardComponent } from './components/course-card/course-card.compon
 
 const routes: Routes = [
   { path: 'details', data: { title: 'Courses' }, component: CourseCardComponent },
+  
+  {
+    path: 'sessions',
+    loadChildren: () => import('./session/session.module').then(m => m.SessionModule),
+  },
+
 ];
 
 @NgModule({

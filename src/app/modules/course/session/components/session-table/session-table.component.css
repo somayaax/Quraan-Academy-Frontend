@@ -1,0 +1,55 @@
+table, caption {
+    background: #c3a668;
+    width: 800px;
+    margin: auto;
+    color: #f4ede4;
+    font-weight: 700;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+  }
+  
+  table, tr, th, td {
+    border: 1px solid white;
+    background: white;
+    margin-top: 6rem;
+    border-collapse: collapse;
+    padding: 15px;
+    text-align: center;
+    color: #c3a668;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  /* Media query for screens smaller than 768px */
+  @media screen and (max-width: 767px) {
+    table {
+      width: 100%;
+    }
+    
+    caption {
+      font-size: 1.2rem;
+    }
+    
+    th, td {
+      font-size: 0.8rem;
+      padding: 10px;
+    }
+  }
+  
+  /* Media query for screens larger than 768px */
+  @media screen and (min-width: 768px) {
+    table {
+      width: 80%;
+    }
+    
+    caption {
+      font-size: 1.5rem;
+      width: 1200px;
+      margin: auto;
+    }
+    
+    th, td {
+      font-size: 1rem;
+      padding: 15px;
+    }
+  }
