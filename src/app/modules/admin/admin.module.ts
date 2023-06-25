@@ -9,13 +9,15 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AddCourseModalComponent } from './components/add-course-modal/add-course-modal.component';
 import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.component';
 import { ListCoursesComponent } from './components/list-courses/list-courses.component';
+import { ListTeachersComponent } from './components/list-teachers/list-teachers.component';
 
 
 @NgModule({
   declarations: [
     AddCourseModalComponent,
     AdminSidebarComponent,
-    ListCoursesComponent
+    ListCoursesComponent,
+    ListTeachersComponent
   ],
   imports: [
     CommonModule,

@@ -3,40 +3,25 @@
   <div class="table-area container-fluid">
     <div class="d-flex justify-content-between m-1 filter-add mb-2">
       <div class="d-flex flex-wrap">
-        <div class="form-group mr-2">
-          <label for="teacher-dropdown">Teacher</label>
-          <select
-            class="form-control"
-            id="teacher-dropdown"
-            [(ngModel)]="selectedTeacher"
-            (change)="getCourses()"
-          >
-            <option>None</option>
-            <option>507f191e810c19729de860ec</option>
-            <option>507f191e810c19729de860eD</option>
-            <option>507f191e810c19729de860eB</option>
-          </select>
-        </div>
         <div class="form-group mx-2">
-          <label for="level-dropdown">Level</label>
+          <label for="level-dropdown">Gender</label>
           <select
             class="form-control"
-            id="level-dropdown"
-            [(ngModel)]="selectedLevel"
-            (change)="getCourses()"
+            id="gender-dropdown"
+            [(ngModel)]="selectedGender"
+            (change)="getTeachers()"
           >
             <option>All</option>
-            <option>Beginner</option>
-            <option>Intermediate</option>
-            <option>Advanced</option>
+            <option>Male</option>
+            <option>Female</option>
           </select>
         </div>
       </div>
 
-      <div class="addCourse" (click)="openAddCourseModal()">
+      <!-- <div class="addCourse" (click)="openAddCourseModal()">
         <span>Add new course</span>
         <i class="fas fa-add"></i>
-      </div>
+      </div> -->
     </div>
 
     <ng-container>
@@ -45,7 +30,7 @@
           <div class="col-sm-12">
             <div class="card">
               <div class="card-header">
-                <h1 class="card-title">Courses</h1>
+                <h1 class="card-title">Teachers</h1>
               </div>
               <div class="card-content">
                 <div class="card-body">
@@ -55,15 +40,10 @@
                     <thead>
                       <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Level</th>
-                        <th>Teacher</th>
-                        <th>Start date</th>
-                        <th>End date</th>
-                        <th>Start time</th>
-                        <th>End time</th>
-                        <th>Days of week</th>
-                        <th>Price</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Gender</th>
+                        <th>Email</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -71,21 +51,16 @@
                         <tr
                           class="tr"
                           *ngFor="
-                            let course of courses
+                            let teacher of teachers
                               | paginate
                                 : { itemsPerPage: 6, currentPage: page }
                           "
                         >
-                          <td>{{ course.id }}</td>
-                          <td>{{ course.name }}</td>
-                          <td>{{ course.level }}</td>
-                          <td>{{ course.teacher }}</td>
-                          <td>{{ course.startDate }}</td>
-                          <td>{{ course.endDate }}</td>
-                          <td>{{ course.startTime }}</td>
-                          <td>{{ course.endTime }}</td>
-                          <td>{{ course.daysOfWeek }}</td>
-                          <td>{{ course.price }}</td>
+                          <td>{{ teacher.id }}</td>
+                          <td>{{ teacher.firstName }}</td>
+                          <td>{{ teacher.lastName }}</td>
+                          <td>{{ teacher.gender }}</td>
+                          <td>{{ teacher.email }}</td>
                           <td>
                             <div class="action"></div>
                           </td>

@@ -5,14 +5,13 @@ import { Observable, catchError, throwError } from 'rxjs';
 import currentDomain from 'src/app/utils/domainUrls';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CourseService {
-
-   domain : string = currentDomain;
+  domain: string = currentDomain;
   constructor(private http: HttpClient) {}
 
-  handleError(error: HttpErrorResponse ) {
+  handleError(error: HttpErrorResponse) {
     return throwError(() => error);
   }
 
@@ -24,7 +23,6 @@ export class CourseService {
     if (params && params.level) {
       url += `&level=${params.level}`;
     }
-    return this.http.get(url).pipe(catchError((this.handleError)));
+    return this.http.get(url).pipe(catchError(this.handleError));
   }
-
 }
