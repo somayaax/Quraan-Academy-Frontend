@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 
@@ -9,7 +9,9 @@ import currentDomain from 'src/app/utils/domainUrls';
 })
 export class CourseService {
 
-   domain : string = currentDomain;
+  domain : string = currentDomain;
+  buttonClicked =new EventEmitter();
+
   constructor(private http: HttpClient) {}
 
   handleError(error: HttpErrorResponse ) {
@@ -25,6 +27,25 @@ export class CourseService {
       url += `&level=${params.level}`;
     }
     return this.http.get(url).pipe(catchError((this.handleError)));
+  }
+
+  addNewCourse(formValue: any) : Observable<any> {
+    
+    const formData = {
+      name: formValue['name'],
+      level: formValue['level'],
+      description: formValue['description'],
+      numberOfSessions: formValue['numberOfSessions'],
+      price: formValue['price'],
+      startDate: formValue['startDate'],
+      endDate: formValue['endDate'],
+      startTime: formValue['startTime'],
+      endTime: formValue['endTime'],
+      teacher: formValue['teacher'],
+      daysOfWeek: formValue['daysOfWeek']
+    };
+
+    return this.http.post(`${this.domain}/course/`, formData).pipe(catchError((this.handleError)));
   }
 
 }
