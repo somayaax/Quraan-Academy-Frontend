@@ -18,7 +18,7 @@ export class AddTeacherModalComponent {
     this.teacherForm = this.fb.group({
       firstName: ['', [Validators.required, this.trimValidator]],
       lastName: ['', [Validators.required, this.trimValidator]],
-      DOB: ['', [Validators.required, this.trimValidator]],
+      DOB: ['', [Validators.required]],
       gender: [
         '',
         [Validators.required, this.trimValidator, this.genderValidator],

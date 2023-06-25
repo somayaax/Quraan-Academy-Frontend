@@ -13,7 +13,9 @@ export class ListTeachersComponent implements OnInit {
   teachers: teacherElement[] = [];
 
   constructor(private teacher: TeacherService, public dialog: MatDialog) {
-    this.getTeachers();
+    this.teacher.buttonClicked.subscribe(() => {
+      this.getTeachers();
+    });
   }
 
   getTeachers(): void {
