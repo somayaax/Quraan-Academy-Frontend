@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
 import { CourseService } from '../../services/course.service';
+import { AddCourseModalComponent } from '../add-course-modal/add-course-modal.component';
 
 @Component({
   selector: 'app-list-courses',
@@ -12,8 +15,10 @@ export class ListCoursesComponent implements OnInit {
   selectedTeacher: string = 'None';
   selectedLevel: string = 'All';
   courses: courseElement[] = [];
-  constructor(private course: CourseService) {
-    this.getCourses();
+  constructor(private course: CourseService, public dialog: MatDialog) {
+    this.course.buttonClicked.subscribe(() => {
+      this.getCourses();
+    });
   }
 
   getCourses(): void {
@@ -35,7 +40,7 @@ export class ListCoursesComponent implements OnInit {
   }
 
   openAddCourseModal(): void {
-   
+    this.dialog.open(AddCourseModalComponent, { width: "800px"});
   }
 
   ngOnInit(): void {
