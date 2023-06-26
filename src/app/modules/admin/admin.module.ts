@@ -19,6 +19,7 @@ import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.
 import { ListCoursesComponent } from './components/list-courses/list-courses.component';
 import { ListTeachersComponent } from './components/list-teachers/list-teachers.component';
 import { EditCourseModalComponent } from './components/edit-course-modal/edit-course-modal.component';
+import { AddTeacherModalComponent } from './components/add-teacher-modal/add-teacher-modal.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { EditCourseModalComponent } from './components/edit-course-modal/edit-co
     AdminSidebarComponent,
     ListCoursesComponent,
     ListTeachersComponent,
-    EditCourseModalComponent
+    EditCourseModalComponent,
+    AddTeacherModalComponent
   ],
   imports: [
     CommonModule,
