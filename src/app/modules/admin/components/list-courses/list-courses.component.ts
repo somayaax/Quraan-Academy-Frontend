@@ -55,6 +55,10 @@ export class ListCoursesComponent implements OnInit {
       });
     }  
 
+    deleteCourse(id: any) {
+    
+  
+  }
     
 
   ngOnInit(): void {

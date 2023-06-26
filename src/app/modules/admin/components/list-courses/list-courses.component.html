@@ -89,8 +89,21 @@
                           <td>{{ course.price }}</td>
                           <td>
                             <div class="action">
-                              <!-- <i (click)="deleteCourse(course._id)" class="bi bi-trash"></i> -->
-                              <i (click)=" openEditCourseModal(course._id)" class="bi bi-pencil-fill">update</i>
+                              <button mat-icon-button  (click)=" openEditCourseModal(course._id)">
+                                <mat-icon
+                                  aria-label="Edit"
+                                  class="material-icons-outlined"
+                                  >edit</mat-icon
+                                >
+                              </button>
+                              <button mat-icon-button color="warn"
+                              (click)=" deleteCourse(course._id)">
+                                <mat-icon
+                                  aria-label="Delete"
+                                  class="material-icons-outlined"
+                                  >delete</mat-icon
+                                >
+                              </button>
                               </div>
                           </td>
                         </tr>
