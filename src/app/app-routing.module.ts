@@ -8,7 +8,6 @@ import { NotfoundComponent } from './shared/notfound/notfound.component';
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'register', component: RegisterComponent},
-  { path: 'register/teacher', canActivate: [AdminGuard], component: RegisterComponent },
   { path: 'login/:role', component: LoginComponent },
       {
         path: 'student',

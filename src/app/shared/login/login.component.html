@@ -1,4 +1,5 @@
-<div class="container py-5">
+<ng-container *ngIf='isLoading'> <app-spinner></app-spinner> </ng-container>
+<div class="container py-5" *ngIf="!isLoading">
     <div class="row my-4 rounded shadow bg-white align-items-center">
         <div class="col-md-5 px-0">
             <img [src]="imgSrc" width="100%" alt="">
@@ -9,8 +10,9 @@
                 <h2 class="text-center">{{header}}</h2>
                 <div *ngIf="param!=='admin'" class="mt-4">
                     <label for="">Login As</label>
-                    <select [(ngModel)]="role" class="form-select form-select w-25" aria-label=".form-select-sm example">
-                        <option  value="student" selected>Student</option>
+                    <select [(ngModel)]="role" class="form-select form-select w-25"
+                        aria-label=".form-select-sm example">
+                        <option value="student" selected>Student</option>
                         <option value="teacher">Teacher</option>
                     </select>
                 </div>
