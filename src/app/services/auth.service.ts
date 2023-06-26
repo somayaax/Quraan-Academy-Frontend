@@ -21,9 +21,6 @@ export class AuthService {
   registerStudent(data: any): Observable<any> {
     return this._httpClient.post(`${currentDomain}/signUp/student`, data, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
   }
-  registerTeacher(data: any): Observable<any> {
-    return this._httpClient.post(`${currentDomain}/signUp/teacher`, data, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
-  }
 
   getToken(): any {
     let token: string = localStorage.getItem('token') || "";
