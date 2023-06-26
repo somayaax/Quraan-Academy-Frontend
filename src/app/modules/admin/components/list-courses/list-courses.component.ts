@@ -55,10 +55,22 @@ export class ListCoursesComponent implements OnInit {
       });
     }  
 
-    deleteCourse(id: any) {
+    delCourse(id: any) {
+       
+          this.course.deleteCourse(id).subscribe({
+              next: (data) => {
+                this.course.buttonClicked.emit();
+             
+              },
+              error: (error) => {
+                let { error: { message } } = error;
+                if (!message) message = error.message;
+                console.log(`MESSAGE : ${message}`, 'Could not delete course data');
+              }
+            }
+          )
+        }
     
-  
-  }
     
 
   ngOnInit(): void {
