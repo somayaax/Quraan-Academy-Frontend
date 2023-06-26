@@ -1,0 +1,177 @@
+<h2 mat-dialog-title>Update course</h2>
+<mat-dialog-content class="mat-typography bg">
+  <div class="m-3 color">
+    <form class="form" [formGroup]="courseForm" (submit)="onUpdate()">
+      <div class="form-body">
+  
+        <div class="row">
+  
+          <br>
+          <div class="form-group col-md-12 mb-2">
+            <label for="name">Name</label>
+            <input formControlName="name" type="text" id="name" class="form-control border-primary"
+              placeholder="Name">
+              <p *ngIf="courseForm.controls['name'].touched && courseForm.get('name')?.hasError('required')" class="text-danger">Name is required</p>
+          </div>
+
+          <div class="col-md-6">
+            
+              <label>Level</label>
+              <select formControlName="level">
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+              </select>
+              <p *ngIf="courseForm.get('level')?.hasError('required') ">
+                Level is required.
+              </p>
+              <p *ngIf="courseForm.get('level')?.hasError('invalidLevel')">
+                Invalid level.
+              </p>
+          
+          </div>
+
+
+
+          <div class="form-group col-md-12 mb-2">
+            <label for="description">description</label>
+            <textarea formControlName="description" type="text" id="description" class="form-control border-primary"
+              placeholder="description"></textarea>
+              <p *ngIf="courseForm.controls['description'].touched && courseForm.get('description')?.hasError('required')">The description is Required</p>
+              <p *ngIf="courseForm.controls['description'].touched && courseForm.get('description')?.hasError('minlength')" class="text-danger">Minimun length for description is 6 characters</p>
+          </div>
+  
+          
+
+
+
+          <div class="col-md-12">
+         
+              <input matInput placeholder="Teacher" formControlName="teacher">
+              <p *ngIf="courseForm.get('teacher')?.hasError('required')">
+                Teacher is required.
+              </p>
+              <p
+                *ngIf="courseForm.controls['teacher'].touched && courseForm.get('teacher')?.hasError('whitespace')">
+                Teacher cannot be only whitespace characters.
+              </p>
+          
+          </div>
+  
+  
+          <div class="col-md-12">
+            
+              <label>Days of Week</label>
+              <select formControlName="daysOfWeek" multiple>
+                <option value="Sunday">Sunday</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+              </select>
+              <p *ngIf="courseForm.get('daysOfWeek')?.hasError('required')">
+                Days of week is required.
+              </p>
+              <p *ngIf="courseForm.get('daysOfWeek')?.hasError('invalidDayOfWeek')">
+                Invalid day of week.
+              </p>
+          
+          </div>
+  
+          <div class="col-md-6">
+            <mat-form-field class="custom-field">
+              <input matInput [matDatepicker]="startDatePicker" placeholder="Start Date" formControlName="startDate">
+              <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #startDatePicker></mat-datepicker>
+              <mat-error *ngIf="courseForm.get('startDate')?.hasError('required')">
+                Start date is required.
+              </mat-error>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-md-6">
+            <mat-form-field class="custom-field">
+              <input matInput [matDatepicker]="endDatePicker" placeholder="End Date" formControlName="endDate">
+              <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #endDatePicker></mat-datepicker>
+              <mat-error *ngIf="courseForm.get('endDate')?.hasError('required')">
+                End date is required.
+              </mat-error>
+            </mat-form-field>
+          </div>
+  
+  
+  
+          <div class="col-md-6">
+            
+              <input matInput placeholder="Start Time" formControlName="startTime">
+              <p *ngIf="courseForm.get('startTime')?.hasError('required')">
+                Start time is required.
+              </p>
+              <p
+                *ngIf="courseForm.controls['startTime'].touched && courseForm.get('startTime')?.hasError('whitespace')">
+                Start time cannot be only whitespace characters.
+              </p>
+           
+          </div>
+  
+          <div class="col-md-6">
+          
+              <input matInput placeholder="End Time" formControlName="endTime">
+              <p *ngIf="courseForm.get('endTime')?.hasError('required')">
+                End time is required.
+              </p>
+              <p
+                *ngIf="courseForm.controls['endTime'].touched && courseForm.get('endTime')?.hasError('whitespace')">
+                End time cannot be only whitespace characters.
+              </p>
+           
+          </div>
+  
+  
+  
+          <div class="col-md-6">
+           
+              <input matInput placeholder="Number of Sessions" formControlName="numberOfSessions" readonly="true">
+           
+          </div>
+  
+  
+          <div class="col-md-6">
+           
+              <input matInput placeholder="Price" formControlName="price">
+              <p *ngIf="courseForm.get('price')?.hasError('required')">
+                Price is required.
+              </p>
+              <p *ngIf="courseForm.get('price')?.hasError('notGreaterThanZero')">
+                Price must be greater than zero.
+              </p>
+              <p *ngIf="courseForm.controls['price'].touched && courseForm.get('price')?.hasError('whitespace')">
+                Price cannot be only whitespace characters.
+              </p>
+          
+          </div>
+  
+        </div>
+  
+        
+      
+    
+         
+  
+        </div>
+
+      
+      <div class="form-actions right d-flex justify-content-end">
+        <button [disabled]="courseForm.invalid" mat-dialog-close type="submit" class="btn btn-dark"><i class="bi bi-check-circle-fill"></i> Update</button>
+      </div>
+  
+    </form>
+  </div>
+  
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

@@ -64,6 +64,7 @@
                         <th>End time</th>
                         <th>Days of week</th>
                         <th>Price</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -87,7 +88,10 @@
                           <td>{{ course.daysOfWeek }}</td>
                           <td>{{ course.price }}</td>
                           <td>
-                            <div class="action"></div>
+                            <div class="action">
+                              <!-- <i (click)="deleteCourse(course._id)" class="bi bi-trash"></i> -->
+                              <i (click)=" openEditCourseModal(course._id)" class="bi bi-pencil-fill">update</i>
+                              </div>
                           </td>
                         </tr>
                       </ng-container>

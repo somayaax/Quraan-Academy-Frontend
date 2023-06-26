@@ -22,6 +22,21 @@
     transition: 0.25s;
 }
 
+.action{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.action i{
+  cursor: pointer;
+  transition: 0.25s;
+}
+.action i:hover{
+  cursor: pointer;
+  transform: scale(1.5);
+  transition: 0.25s;
+}
 .addCourse i {
     margin-left: 10px;
 }
