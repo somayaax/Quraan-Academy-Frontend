@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
   imgSrc: string = '';
   header: string = '';
   error: string = '';
+  isLoading: boolean = false;
+
   loginForm = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
@@ -51,6 +53,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginSubmit(login: FormGroup) {
+    this.isLoading = true;
 
     this._authService.login(login.value, this.role).subscribe({
       next: (res: any) => {
@@ -59,11 +62,15 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', res.token);
           this._authService.currentUser.next(this._authService.getDecodedToken());
           this._Router.navigate(['/home']);
+          this.isLoading = false;
+
         }
       },
       error: (err) => {
         console.log(err);
         this.error = err.error.error;
+        this.isLoading = false;
+
       }
     });
   }

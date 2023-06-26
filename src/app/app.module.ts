@@ -11,6 +11,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LoginComponent } from './shared/login/login.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { NotfoundComponent } from './shared/notfound/notfound.component';
     FooterComponent,
     LoginComponent,
     NotfoundComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserAnimationsModule,
