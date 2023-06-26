@@ -18,6 +18,7 @@ import { AddCourseModalComponent } from './components/add-course-modal/add-cours
 import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.component';
 import { ListCoursesComponent } from './components/list-courses/list-courses.component';
 import { ListTeachersComponent } from './components/list-teachers/list-teachers.component';
+import { EditCourseModalComponent } from './components/edit-course-modal/edit-course-modal.component';
 import { AddTeacherModalComponent } from './components/add-teacher-modal/add-teacher-modal.component';
 
 
@@ -27,6 +28,7 @@ import { AddTeacherModalComponent } from './components/add-teacher-modal/add-tea
     AdminSidebarComponent,
     ListCoursesComponent,
     ListTeachersComponent,
+    EditCourseModalComponent,
     AddTeacherModalComponent
   ],
   imports: [

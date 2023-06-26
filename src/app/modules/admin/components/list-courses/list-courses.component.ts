@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { CourseService } from '../../services/course.service';
 import { AddCourseModalComponent } from '../add-course-modal/add-course-modal.component';
+import { EditCourseModalComponent } from '../edit-course-modal/edit-course-modal.component';
 
 @Component({
   selector: 'app-list-courses',
@@ -15,6 +16,7 @@ export class ListCoursesComponent implements OnInit {
   selectedTeacher: string = 'None';
   selectedLevel: string = 'All';
   courses: courseElement[] = [];
+  dialogConfig = new MatDialogConfig();
   constructor(private course: CourseService, public dialog: MatDialog) {
     this.course.buttonClicked.subscribe(() => {
       this.getCourses();
@@ -42,6 +44,18 @@ export class ListCoursesComponent implements OnInit {
   openAddCourseModal(): void {
     this.dialog.open(AddCourseModalComponent, { width: "800px"});
   }
+
+  openEditCourseModal(id: any) {
+      this.dialogConfig.data = {
+        courseId: id
+      };
+      const dialogRef = this.dialog.open(EditCourseModalComponent, this.dialogConfig);
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    }  
+
+    
 
   ngOnInit(): void {
     this.getCourses();
