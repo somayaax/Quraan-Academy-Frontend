@@ -36,4 +36,9 @@ export class TeacherService {
       .post(`${this.domain}/signUp/Teacher`, formData)
       .pipe(catchError(this.handleError));
   }
+  deleteTeacher(id: string): Observable<any> {
+    return this.http
+      .delete(`${this.domain}/teacher/${id}`)
+      .pipe(catchError(this.handleError));
+  }
 }
