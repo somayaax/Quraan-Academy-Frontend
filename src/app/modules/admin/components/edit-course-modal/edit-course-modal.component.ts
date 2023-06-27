@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CourseService } from '../../services/course.service';
-
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class EditCourseModalComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-
+    private toastr: ToastrService,
     private course: CourseService,
     private dialogRef: MatDialogRef<EditCourseModalComponent>,
 
@@ -134,18 +134,24 @@ export class EditCourseModalComponent implements OnInit {
     this.course.updateCourse(this.courseId, this.courseForm.value).subscribe({
       next: () => {
         this.course.buttonClicked.emit();
+        this.toastr.success(`Course updated successfully`,'Success');
         this.dialogRef.close();
       },
       error: (error) => {
         let { error: { message } } = error;
         if (!message) message = error.message;
-        console.log(`MESSAGE : ${message}`, 'Could not add course data');
+  
+        if (error.status === 400  ) {
+          this.toastr.error('Can not update course is already started','Error');
+        } else {
+          console.log(`MESSAGE : ${message}`, 'Could not update course data');
+        }
       }
-    })
+    });
+  }
 
   }
 
 
 
 
-}

@@ -5,6 +5,7 @@ import { CourseService } from '../../services/course.service';
 import { AddCourseModalComponent } from '../add-course-modal/add-course-modal.component';
 import { EditCourseModalComponent } from '../edit-course-modal/edit-course-modal.component';
 
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-list-courses',
   templateUrl: './list-courses.component.html',
@@ -17,7 +18,7 @@ export class ListCoursesComponent implements OnInit {
   selectedLevel: string = 'All';
   courses: courseElement[] = [];
   dialogConfig = new MatDialogConfig();
-  constructor(private course: CourseService, public dialog: MatDialog) {
+  constructor(private course: CourseService,private toastr: ToastrService, public dialog: MatDialog) {
     this.course.buttonClicked.subscribe(() => {
       this.getCourses();
     });
@@ -60,19 +61,26 @@ export class ListCoursesComponent implements OnInit {
           this.course.deleteCourse(id).subscribe({
               next: (data) => {
                 this.course.buttonClicked.emit();
+                this.toastr.success(`Course deleted successfully`,'Success');
              
               },
               error: (error) => {
                 let { error: { message } } = error;
                 if (!message) message = error.message;
-                console.log(`MESSAGE : ${message}`, 'Could not delete course data');
-              }
-            }
-          )
+            
+          if (error.status === 400){
+            this.toastr.error('Can not delete course is already started','Error');
+          } else {
+            console.log(`MESSAGE : ${message}`, 'Could not delete course data');
+          }
         }
+          })
+        }
+        
     
-    
+ 
 
+  
   ngOnInit(): void {
     this.getCourses();
   }
