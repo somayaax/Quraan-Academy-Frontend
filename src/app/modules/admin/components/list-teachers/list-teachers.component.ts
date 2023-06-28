@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TeacherService } from '../../services/teacher.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddTeacherModalComponent } from '../add-teacher-modal/add-teacher-modal.component';
 import { ToastrService } from 'ngx-toastr';
+import { EditTeacherModalComponent } from '../edit-teacher-modal/edit-teacher-modal.component';
 @Component({
   selector: 'app-list-teachers',
   templateUrl: './list-teachers.component.html',
@@ -12,7 +13,7 @@ export class ListTeachersComponent implements OnInit {
   page: number = 1;
   selectedGender: string = 'All';
   teachers: teacherElement[] = [];
-
+  dialogConfig = new MatDialogConfig();
   constructor(
     private teacher: TeacherService,
     private toastr: ToastrService,
@@ -40,6 +41,20 @@ export class ListTeachersComponent implements OnInit {
 
   openAddTeacherModal(): void {
     this.dialog.open(AddTeacherModalComponent, { width: '800px' });
+  }
+
+  openEditTeacherModal(id: any) {
+    this.dialogConfig.data = {
+      teacherId: id,
+    };
+    this.dialogConfig.width = '800px';
+    const dialogRef = this.dialog.open(
+      EditTeacherModalComponent,
+      this.dialogConfig
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
   delTeacher(id: any) {
     this.teacher.deleteTeacher(id).subscribe({

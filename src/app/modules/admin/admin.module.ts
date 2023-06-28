@@ -20,6 +20,7 @@ import { ListCoursesComponent } from './components/list-courses/list-courses.com
 import { ListTeachersComponent } from './components/list-teachers/list-teachers.component';
 import { EditCourseModalComponent } from './components/edit-course-modal/edit-course-modal.component';
 import { AddTeacherModalComponent } from './components/add-teacher-modal/add-teacher-modal.component';
+import { EditTeacherModalComponent } from './components/edit-teacher-modal/edit-teacher-modal.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { AddTeacherModalComponent } from './components/add-teacher-modal/add-tea
     ListCoursesComponent,
     ListTeachersComponent,
     EditCourseModalComponent,
-    AddTeacherModalComponent
+    AddTeacherModalComponent,
+    EditTeacherModalComponent
   ],
   imports: [
     CommonModule,
