@@ -11,7 +11,7 @@ import { ChaptersService } from "../../services/chapters.service";
 })
 export class ListChaptersComponent implements OnInit {
     page: number = 1;
-    selectedRecordedCourse: string = "None";
+    selectedRecordedCourse: string = "";
     recordedCourses: recordedCourseElement[] = [];
     chapters: chapterElement[] = [];
 
@@ -20,6 +20,9 @@ export class ListChaptersComponent implements OnInit {
         private toastr: ToastrService,
         private chapter: ChaptersService
     ) {
+      this.chapter.buttonClicked.subscribe(() => {
+        this.getChaptersForRecordedCourses();
+      })
         this.getRecordedCourses();
     }
 
@@ -40,6 +43,10 @@ export class ListChaptersComponent implements OnInit {
     }
 
     getChaptersForRecordedCourses(): void {
+        if (!this.selectedRecordedCourse) {
+            this.chapters = [];
+            return;
+        }
         this.chapter
             .getChaptersForRecordedCourse(this.selectedRecordedCourse)
             .subscribe({
@@ -52,6 +59,23 @@ export class ListChaptersComponent implements OnInit {
                     );
                 },
             });
+    }
+
+    deleteChapter(id: any): void {
+        this.chapter.deleteChapter(id).subscribe({
+            next: () => {
+                this.chapter.buttonClicked.emit();
+                this.toastr.success(`Chapter deleted successfully`, "Success");
+            },
+            error: (error: any) => {
+                let {
+                    error: { message },
+                } = error;
+                if (!message) message = error.error.error;
+                console.log(message);
+                this.toastr.error(`${message}`, "Error");
+            },
+        });
     }
 
     ngOnInit(): void {}

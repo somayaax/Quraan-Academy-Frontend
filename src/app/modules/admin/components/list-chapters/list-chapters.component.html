@@ -6,7 +6,7 @@
         <div class="form-group mx-2">
           <label for="category-dropdown">Recorded courses</label>
           <select class="form-control" id="category-dropdown" [(ngModel)]="selectedRecordedCourse"
-            (change)="getRecordedCourses()">
+            (change)="getChaptersForRecordedCourses()">
             <option value="">None</option>
             <option *ngFor="let course of recordedCourses" [value]="course._id">{{ course.name }}</option>
           </select>
@@ -39,22 +39,16 @@
                       </thead>
                       <tbody>
                         <ng-container>
-                          <tr class="tr">
-                            <!-- <td>{{ course.id }}</td>
-                            <td>{{ course.name }}</td>
-                            <td>{{ course.level }}</td>
-                            <td>{{ course.teacher }}</td>
-                            <td>{{ course.startDate }}</td>
-                            <td>{{ course.endDate }}</td>
-                            <td>{{ course.startTime }}</td>
-                            <td>{{ course.endTime }}</td>
-                            <td>{{ course.daysOfWeek }}</td>
-                            <td>{{ course.price }}</td> -->
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                          <tr class="tr"  *ngFor="
+                          let chapter of chapters
+                            | paginate
+                              : { itemsPerPage: 6, currentPage: page }
+                        ">
+                            <td>{{chapter.id}}</td>
+                            <td>{{chapter.title}}</td>
+                            <td>{{chapter.description}}</td>
+                            <td>{{chapter.media}}</td>
+                            <td>{{chapter.recordedCourse.name}}</td>
                             <td>
                               <div class="action">
                                 <button mat-icon-button color="primary">
@@ -63,7 +57,7 @@
                               </div>
                             </td>
                             <td>
-                              <div class="action">
+                              <div class="action" (click)="deleteChapter(chapter._id)">
                                 <button mat-icon-button color="warn" >
                                   <mat-icon aria-label="Delete" class="material-icons-outlined">delete</mat-icon>
                                 </button>
