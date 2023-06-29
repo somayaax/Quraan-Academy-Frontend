@@ -24,6 +24,8 @@ import { AddRecordedCourseComponent } from './components/add-recorded-course/add
 import { ListRecordedCourseComponent } from './components/list-recorded-course/list-recorded-course.component';
 import { AddChaptersModalComponent } from './components/add-chapters-modal/add-chapters-modal.component';
 import { EditRecordedCourseModalComponent } from './components/edit-recorded-course-modal/edit-recorded-course-modal.component';
+import { EditTeacherModalComponent } from './components/edit-teacher-modal/edit-teacher-modal.component';
+import { ListSessionsComponent } from './components/list-sessions/list-sessions.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { EditRecordedCourseModalComponent } from './components/edit-recorded-cou
     AddRecordedCourseComponent,
     ListRecordedCourseComponent,
     AddChaptersModalComponent,
-    EditRecordedCourseModalComponent
+    EditRecordedCourseModalComponent,
+    EditTeacherModalComponent,
+    ListSessionsComponent
   ],
   imports: [
     CommonModule,

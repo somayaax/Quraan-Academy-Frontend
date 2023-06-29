@@ -44,8 +44,7 @@
                         <th>Last Name</th>
                         <th>Gender</th>
                         <th>Email</th>
-                        <th>Delete</th>
-                        <th>Update</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -64,26 +63,29 @@
                           <td>{{ teacher.gender }}</td>
                           <td>{{ teacher.email }}</td>
                           <td>
-                            <button mat-icon-button color="warn">
-                              <mat-icon
-                                aria-label="Delete"
-                                class="material-icons-outlined"
-                                >delete</mat-icon
+                            <div class="action">
+                              <button
+                                mat-icon-button
+                                (click)="openEditTeacherModal(teacher._id)"
                               >
-                            </button>
-                          </td>
-                          <td>
-                            <button mat-icon-button>
-                              <mat-icon
-                                aria-label="Edit"
-                                color="primary"
-                                class="material-icons-outlined"
-                                >edit</mat-icon
+                                <mat-icon
+                                  aria-label="Edit"
+                                  class="material-icons-outlined"
+                                  >edit</mat-icon
+                                >
+                              </button>
+                              <button
+                                mat-icon-button
+                                color="warn"
+                                (click)="delTeacher(teacher._id)"
                               >
-                            </button>
-                          </td>
-                          <td>
-                            <div class="action"></div>
+                                <mat-icon
+                                  aria-label="Delete"
+                                  class="material-icons-outlined"
+                                  >delete</mat-icon
+                                >
+                              </button>
+                            </div>
                           </td>
                         </tr>
                       </ng-container>

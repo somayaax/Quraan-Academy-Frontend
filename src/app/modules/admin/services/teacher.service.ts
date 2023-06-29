@@ -21,6 +21,11 @@ export class TeacherService {
     }
     return this.http.get(url).pipe(catchError(this.handleError));
   }
+  getTeacher(id: string): Observable<any> {
+    return this.http
+      .get(`${this.domain}/teacher/${id}`)
+      .pipe(catchError(this.handleError));
+  }
 
   addNewTeacher(formValue: any): Observable<any> {
     const formData = {
@@ -34,6 +39,25 @@ export class TeacherService {
 
     return this.http
       .post(`${this.domain}/signUp/Teacher`, formData)
+      .pipe(catchError(this.handleError));
+  }
+  deleteTeacher(id: string): Observable<any> {
+    return this.http
+      .delete(`${this.domain}/teacher/${id}`)
+      .pipe(catchError(this.handleError));
+  }
+  updateTeacher(id: string, formValue: any): Observable<any> {
+    const formData = {
+      firstName: formValue['firstName'],
+      lastName: formValue['lastName'],
+      email: formValue['email'],
+      password: formValue['password'],
+      DOB: formValue['DOB'],
+      gender: formValue['gender'],
+    };
+
+    return this.http
+      .patch(`${this.domain}/teacher/${id}`, formData)
       .pipe(catchError(this.handleError));
   }
 }
