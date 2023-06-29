@@ -22,4 +22,9 @@ export class ChaptersService {
       .post(`${this.domain}/admin/chapters/${recordedCourseId}`, chapters)
       .pipe(catchError(this.handleError));
   }
+
+  getChaptersForRecordedCourse(id: string): Observable<any> {
+    return this.http.get(`${this.domain}/admin/chapters/recordedCourse/${id}`).pipe(catchError(this.handleError));
+  }
+
 }

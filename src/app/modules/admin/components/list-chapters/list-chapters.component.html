@@ -1,0 +1,86 @@
+<div class="d-flex justify-content-between page">
+  <app-admin-sidebar></app-admin-sidebar>
+  <div class="table-area container-fluid">
+    <div class="d-flex justify-content-between m-1 filter-add mb-2">
+      <div class="d-flex flex-wrap">
+        <div class="form-group mx-2">
+          <label for="category-dropdown">Recorded courses</label>
+          <select class="form-control" id="category-dropdown" [(ngModel)]="selectedRecordedCourse"
+            (change)="getRecordedCourses()">
+            <option value="">None</option>
+            <option *ngFor="let course of recordedCourses" [value]="course._id">{{ course.name }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <ng-container>
+      <div class="row text-left">
+        <ng-container>
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-header">
+                <h1 class="card-title m-0">Chapters</h1>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="table-wrapper">
+                    <table class="table table-striped text-center">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Title</th>
+                          <th>Description</th>
+                          <th>Media</th>
+                          <th>Recorded course</th>
+                          <th>Update</th>
+                          <th>Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <ng-container>
+                          <tr class="tr">
+                            <!-- <td>{{ course.id }}</td>
+                            <td>{{ course.name }}</td>
+                            <td>{{ course.level }}</td>
+                            <td>{{ course.teacher }}</td>
+                            <td>{{ course.startDate }}</td>
+                            <td>{{ course.endDate }}</td>
+                            <td>{{ course.startTime }}</td>
+                            <td>{{ course.endTime }}</td>
+                            <td>{{ course.daysOfWeek }}</td>
+                            <td>{{ course.price }}</td> -->
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              <div class="action">
+                                <button mat-icon-button color="primary">
+                                  <mat-icon aria-label="Edit" class="material-icons-outlined">edit</mat-icon>
+                                </button>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="action">
+                                <button mat-icon-button color="warn" >
+                                  <mat-icon aria-label="Delete" class="material-icons-outlined">delete</mat-icon>
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </tbody>
+                    </table>
+                  </div>
+                  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</div>
