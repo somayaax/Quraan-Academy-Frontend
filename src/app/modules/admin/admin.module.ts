@@ -28,6 +28,7 @@ import { EditTeacherModalComponent } from './components/edit-teacher-modal/edit-
 import { ListSessionsComponent } from './components/list-sessions/list-sessions.component';
 import { ListChaptersComponent } from './components/list-chapters/list-chapters.component';
 import { EditChapterMOdalComponent } from './components/edit-chapter-modal/edit-chapter-modal.component';
+import { ListStudentsComponent } from './components/list-students/list-students.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { EditChapterMOdalComponent } from './components/edit-chapter-modal/edit-
     EditTeacherModalComponent,
     ListSessionsComponent,
     ListChaptersComponent,
-    EditChapterMOdalComponent
+    EditChapterMOdalComponent,
+    ListStudentsComponent
   ],
   imports: [
     CommonModule,
