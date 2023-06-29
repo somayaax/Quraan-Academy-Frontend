@@ -2,9 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { RecordedCoursesService } from "../../services/recorded-courses.service";
 import { recordedCourseElement } from "../list-recorded-course/list-recorded-course.component";
 import { ToastrService } from "ngx-toastr";
+import swal from "sweetalert2";
 import { ChaptersService } from "../../services/chapters.service";
 import { EditChapterMOdalComponent } from "../edit-chapter-modal/edit-chapter-modal.component";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import swalOptions from "src/app/utils/swalOptions";
 
 @Component({
     selector: "app-list-chapters",
@@ -66,20 +68,24 @@ export class ListChaptersComponent implements OnInit {
     }
 
     deleteChapter(id: any): void {
-        this.chapter.deleteChapter(id).subscribe({
+      swal.fire(swalOptions.deleteChapterOptions).then((result) => {
+        if (result.value) {
+          this.chapter.deleteChapter(id).subscribe({
             next: () => {
                 this.chapter.buttonClicked.emit();
                 this.toastr.success(`Chapter deleted successfully`, "Success");
             },
-            error: (error: any) => {
-                let {
-                    error: { message },
-                } = error;
-                if (!message) message = error.error.error;
-                console.log(message);
-                this.toastr.error(`${message}`, "Error");
-            },
-        });
+                error: (error: any) => {
+                    let {
+                        error: { message },
+                    } = error;
+                    if (!message) message = error.error.error;
+                    console.log(message);
+                    this.toastr.error(`${message}`, "Error");
+                },
+            });
+        }
+    });
     }
 
     openEditChapterModal(id: any): void {

@@ -67,6 +67,4 @@ export class AddRecordedCourseComponent implements OnInit{
       }
     })
   }
-
-  onSubmitForm(): void {}
 }

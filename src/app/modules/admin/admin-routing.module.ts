@@ -6,6 +6,7 @@ import { ListRecordedCourseComponent } from "./components/list-recorded-course/l
 import { ListSessionsComponent } from "./components/list-sessions/list-sessions.component";
 import { ListChaptersComponent } from "./components/list-chapters/list-chapters.component";
 import { ListStudentsComponent } from "./components/list-students/list-students.component";
+import { ListRecordedCourseCategoryComponent } from "./components/list-recorded-course-category/list-recorded-course-category.component";
 
 const routes: Routes = [
     { path: "courses/list", component: ListCoursesComponent },
@@ -14,6 +15,10 @@ const routes: Routes = [
     { path: "sessions/list", component: ListSessionsComponent },
     { path: "chapters/list", component: ListChaptersComponent },
     { path: "students/list", component: ListStudentsComponent },
+    {
+        path: "RecordedCourseCategories/list",
+        component: ListRecordedCourseCategoryComponent,
+    },
 ];
 
 @NgModule({

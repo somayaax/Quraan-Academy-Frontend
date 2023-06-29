@@ -2,19 +2,9 @@
   <app-admin-sidebar></app-admin-sidebar>
   <div class="table-area container-fluid">
     <div class="d-flex justify-content-between m-1 filter-add mb-2">
-      <div class="d-flex flex-wrap">
-        <div class="form-group mx-2">
-          <label for="level-dropdown">Gender</label>
-          <select class="form-control" id="gender-dropdown" [(ngModel)]="selectedGender" (change)="getTeachers()">
-            <option>All</option>
-            <option>Male</option>
-            <option>Female</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="addTeacher" (click)="openAddTeacherModal()">
-        <span>Add new teacher</span>
+      <div class="d-flex flex-wrap p-4"></div>
+      <div class="addCourse" (click)="openAddCategoryModal()">
+        <span>Add new category</span>
         <i class="fas fa-add"></i>
       </div>
     </div>
@@ -25,19 +15,16 @@
           <div class="col-sm-12">
             <div class="card">
               <div class="card-header">
-                <h1 class="card-title m-0">Teachers</h1>
+                <h1 class="card-title m-0">Categories</h1>
               </div>
               <div class="card-content">
                 <div class="card-body">
                   <div class="table-wrapper">
-                    <table class="table table-responsive-md table-striped text-center">
+                    <table class="table table-striped text-center">
                       <thead>
                         <tr>
                           <th>ID</th>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th>Gender</th>
-                          <th>Email</th>
+                          <th>Name</th>
                           <th>Update</th>
                           <th>Delete</th>
                         </tr>
@@ -45,25 +32,22 @@
                       <tbody>
                         <ng-container>
                           <tr class="tr" *ngFor="
-                            let teacher of teachers
-                              | paginate
-                                : { itemsPerPage: 6, currentPage: page }
-                          ">
-                            <td>{{ teacher.id }}</td>
-                            <td>{{ teacher.firstName }}</td>
-                            <td>{{ teacher.lastName }}</td>
-                            <td>{{ teacher.gender }}</td>
-                            <td>{{ teacher.email }}</td>
+                              let category of categories
+                                | paginate
+                                  : { itemsPerPage: 6, currentPage: page }
+                            ">
+                            <td>{{ category.id }}</td>
+                            <td>{{ category.name }}</td>
                             <td>
                               <div class="action">
-                                <button mat-icon-button color="primary" (click)="openEditTeacherModal(teacher._id)">
+                                <button mat-icon-button color="primary" (click)="openEditCategoryModal(category._id)">
                                   <mat-icon aria-label="Edit" class="material-icons-outlined">edit</mat-icon>
                                 </button>
                               </div>
                             </td>
                             <td>
                               <div class="action">
-                                <button mat-icon-button color="warn" (click)="delTeacher(teacher._id)">
+                                <button mat-icon-button color="warn" (click)="deleteCategory(category._id)">
                                   <mat-icon aria-label="Delete" class="material-icons-outlined">delete</mat-icon>
                                 </button>
                               </div>
@@ -73,8 +57,8 @@
                       </tbody>
                     </table>
                   </div>
+                  <pagination-controls (pageChange)="page = $event"></pagination-controls>
                 </div>
-                <pagination-controls (pageChange)="page = $event"></pagination-controls>
               </div>
             </div>
           </div>

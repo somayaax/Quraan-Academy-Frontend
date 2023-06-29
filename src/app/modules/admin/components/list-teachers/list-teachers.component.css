@@ -12,7 +12,7 @@
   overflow-x: auto;
 }
 
-.addCourse {
+.addTeacher {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,6 +45,12 @@
 .card-content {
   background-color: #f9f6ef;
 }
+
+table.table-striped th:nth-child(6),
+table.table-striped th:nth-child(7) {
+    width: 80px;
+}
+
 
 .table-striped > tbody > tr:nth-child(2n + 1) > td,
 .table-striped > tbody > tr:nth-child(2n + 1) > th {
