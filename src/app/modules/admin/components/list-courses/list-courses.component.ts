@@ -8,6 +8,8 @@ import { EditCourseModalComponent } from "../edit-course-modal/edit-course-modal
 import { ToastrService } from "ngx-toastr";
 import swal from "sweetalert2";
 import swalOptions from "src/app/utils/swalOptions";
+import { TeacherService } from "../../services/teacher.service";
+import { teacherElement } from "../list-teachers/list-teachers.component";
 @Component({
     selector: "app-list-courses",
     templateUrl: "./list-courses.component.html",
@@ -15,18 +17,22 @@ import swalOptions from "src/app/utils/swalOptions";
 })
 export class ListCoursesComponent implements OnInit {
     page: number = 1;
-    selectedTeacher: string = "None";
+    selectedTeacher: string = "";
     selectedLevel: string = "All";
     courses: courseElement[] = [];
+    teachers: teacherElement[] = [];
     dialogConfig = new MatDialogConfig();
+
     constructor(
         private course: CourseService,
         private toastr: ToastrService,
-        public dialog: MatDialog
+        public dialog: MatDialog,
+        private teacher: TeacherService
     ) {
         this.course.buttonClicked.subscribe(() => {
             this.getCourses();
         });
+        this.getTeachers();
     }
 
     getCourses(): void {
@@ -55,6 +61,22 @@ export class ListCoursesComponent implements OnInit {
                     error: { message },
                 } = error;
                 if (!message) message = error.error.error;
+                this.toastr.error(`${message}`, "Error");
+            },
+        });
+    }
+
+    getTeachers(): void {
+        this.teacher.getTeachersNotPaginated().subscribe({
+            next: (data) => {
+                this.teachers = data;
+            },
+            error: (error: any) => {
+                let {
+                    error: { message },
+                } = error;
+                if (!message) message = error.error.error;
+                console.log(message);
                 this.toastr.error(`${message}`, "Error");
             },
         });
@@ -118,5 +140,8 @@ export interface courseElement {
     endTime: string;
     daysOfWeek: string[];
     price: number;
-    teacher: string;
+    teacher: {
+      firstName: string,
+      lastName: string,
+    };
 }

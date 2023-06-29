@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CourseService } from "../../services/course.service";
 import { MatDialog } from "@angular/material/dialog";
 import { ToastrService } from "ngx-toastr";
+import { TeacherService } from "../../services/teacher.service";
+import { teacherElement } from "../list-teachers/list-teachers.component";
 
 @Component({
     selector: "app-add-course-modal",
@@ -11,12 +13,14 @@ import { ToastrService } from "ngx-toastr";
 })
 export class AddCourseModalComponent implements OnInit {
     courseForm: FormGroup;
+    teachers: teacherElement[] = [];
 
     constructor(
         private fb: FormBuilder,
         private course: CourseService,
         private dialog: MatDialog,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private teacher: TeacherService
     ) {
         this.courseForm = this.fb.group({
             name: ["", [Validators.required, this.trimValidator]],
@@ -55,6 +59,8 @@ export class AddCourseModalComponent implements OnInit {
         this.courseForm
             .get("daysOfWeek")
             ?.valueChanges.subscribe(() => this.calculateSessions());
+
+        this.getTeachers();
     }
 
     trimValidator(control: any) {
@@ -132,6 +138,22 @@ export class AddCourseModalComponent implements OnInit {
         );
 
         this.courseForm.patchValue({ numberOfSessions: numSessions });
+    }
+
+    getTeachers(): void {
+        this.teacher.getTeachersNotPaginated().subscribe({
+            next: (data) => {
+                this.teachers = data;
+            },
+            error: (error: any) => {
+                let {
+                    error: { message },
+                } = error;
+                if (!message) message = error.error.error;
+                console.log(message);
+                this.toastr.error(`${message}`, "Error");
+            },
+        });
     }
 
     onSubmit() {

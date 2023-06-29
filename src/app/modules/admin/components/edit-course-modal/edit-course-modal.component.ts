@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CourseService } from '../../services/course.service';
 import { ToastrService } from 'ngx-toastr';
+import { TeacherService } from '../../services/teacher.service';
+import { teacherElement } from '../list-teachers/list-teachers.component';
 
 @Component({
   selector: 'app-edit-course-modal',
@@ -13,11 +15,13 @@ export class EditCourseModalComponent implements OnInit {
   courseForm: FormGroup;
   courseId: string = '';
   courseInstance: any;
+  teachers: teacherElement[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private course: CourseService,
+    private teacher: TeacherService,
     private dialogRef: MatDialogRef<EditCourseModalComponent>,
 
     @Inject(MAT_DIALOG_DATA) public data: { courseId: string }
@@ -50,7 +54,25 @@ export class EditCourseModalComponent implements OnInit {
     this.courseForm
       .get('daysOfWeek')
       ?.valueChanges.subscribe(() => this.calculateSessions());
+      this.getTeachers();
   }
+
+
+  getTeachers(): void {
+    this.teacher.getTeachersNotPaginated().subscribe({
+        next: (data) => {
+            this.teachers = data;
+        },
+        error: (error: any) => {
+            let {
+                error: { message },
+            } = error;
+            if (!message) message = error.error.error;
+            console.log(message);
+            this.toastr.error(`${message}`, "Error");
+        },
+    });
+}
 
   levelValidator(control: any) {
     const validLevels = ['beginner', 'intermediate', 'advanced'];

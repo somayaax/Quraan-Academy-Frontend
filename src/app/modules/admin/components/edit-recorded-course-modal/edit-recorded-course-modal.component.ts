@@ -26,13 +26,13 @@ export class EditRecordedCourseModalComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) public data: { recordedCourseId: string }
     ) {
         this.recordedCourseId = this.data.recordedCourseId;
+       
         this.editForm = this.fb.group({
             name: ["", [Validators.required, this.trimValidator]],
             price: [
                 "",
                 [
                     Validators.required,
-                    this.trimValidator,
                     this.greaterThanZeroValidator,
                 ],
             ],
@@ -99,7 +99,7 @@ export class EditRecordedCourseModalComponent implements OnInit {
                     this.editForm.patchValue({
                         name: data.name,
                         price: data.price,
-                        category: data.category,
+                        category: data.category._id,
                     });
                 },
                 error: (error: any) => {

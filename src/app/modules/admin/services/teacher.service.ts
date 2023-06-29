@@ -21,6 +21,12 @@ export class TeacherService {
     }
     return this.http.get(url).pipe(catchError(this.handleError));
   }
+
+  getTeachersNotPaginated(): Observable<any>{
+    let url = `${this.domain}/teacher/allTeachers`;
+    return this.http.get(url).pipe(catchError(this.handleError));
+  }
+
   getTeacher(id: string): Observable<any> {
     return this.http
       .get(`${this.domain}/teacher/${id}`)
