@@ -3,6 +3,8 @@ import { RecordedCoursesService } from "../../services/recorded-courses.service"
 import { recordedCourseElement } from "../list-recorded-course/list-recorded-course.component";
 import { ToastrService } from "ngx-toastr";
 import { ChaptersService } from "../../services/chapters.service";
+import { EditChapterMOdalComponent } from "../edit-chapter-modal/edit-chapter-modal.component";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 
 @Component({
     selector: "app-list-chapters",
@@ -14,15 +16,17 @@ export class ListChaptersComponent implements OnInit {
     selectedRecordedCourse: string = "";
     recordedCourses: recordedCourseElement[] = [];
     chapters: chapterElement[] = [];
+    dialogConfig = new MatDialogConfig();
 
     constructor(
         private recordedCourse: RecordedCoursesService,
         private toastr: ToastrService,
-        private chapter: ChaptersService
+        private chapter: ChaptersService,
+        private dialog: MatDialog
     ) {
-      this.chapter.buttonClicked.subscribe(() => {
-        this.getChaptersForRecordedCourses();
-      })
+        this.chapter.buttonClicked.subscribe(() => {
+            this.getChaptersForRecordedCourses();
+        });
         this.getRecordedCourses();
     }
 
@@ -78,6 +82,12 @@ export class ListChaptersComponent implements OnInit {
         });
     }
 
+    openEditChapterModal(id: any): void {
+        this.dialogConfig.data = {
+            chapterId: id,
+        };
+        this.dialog.open(EditChapterMOdalComponent, this.dialogConfig);
+    }
     ngOnInit(): void {}
 }
 
@@ -85,7 +95,7 @@ export interface chapterElement {
     id?: number;
     _id?: string;
     title: string;
-    description: number;
-    media: number;
+    description: string;
+    media: string;
     recordedCourse: { name: string };
 }

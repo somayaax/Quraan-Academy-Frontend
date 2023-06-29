@@ -68,13 +68,26 @@ export class EditRecordedCourseModalComponent implements OnInit {
     }
 
     onSubmit(): void {
-      this.recordedCourse.updateRecordedCourse(this.recordedCourseId, this.editForm.value).subscribe({
-        next: () => {
-          this.recordedCourse.buttonClicked.emit();
-           this.toastr.success(`Recorded course updated successfully`,'Success')
-           this.dialog.closeAll();
-        }
-      })
+        this.recordedCourse
+            .updateRecordedCourse(this.recordedCourseId, this.editForm.value)
+            .subscribe({
+                next: () => {
+                    this.recordedCourse.buttonClicked.emit();
+                    this.toastr.success(
+                        `Recorded course updated successfully`,
+                        "Success"
+                    );
+                    this.dialog.closeAll();
+                },
+                error: (error: any) => {
+                    let {
+                        error: { message },
+                    } = error;
+                    if (!message) message = error.error.error;
+                    console.log(message);
+                    this.toastr.error(`${message}`, "Error");
+                },
+            });
     }
     ngOnInit(): void {
         this.recordedCourseId = this.data.recordedCourseId;

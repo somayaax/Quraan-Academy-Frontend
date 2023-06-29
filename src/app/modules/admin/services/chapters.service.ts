@@ -33,4 +33,16 @@ export class ChaptersService {
             .delete(`${this.domain}/admin/chapters/${id}`)
             .pipe(catchError(this.handleError));
     }
+
+    updateChapter(id: string, chapter: any): Observable<any> {
+        return this.http
+            .patch(`${this.domain}/admin/chapters/${id}`, chapter)
+            .pipe(catchError(this.handleError));
+    }
+
+    getChapterById(id: string): Observable<any> {
+        return this.http
+            .get(`${this.domain}/admin/chapters/${id}`)
+            .pipe(catchError(this.handleError));
+    }
 }

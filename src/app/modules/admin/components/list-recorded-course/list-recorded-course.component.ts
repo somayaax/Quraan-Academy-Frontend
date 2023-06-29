@@ -71,7 +71,6 @@ export class ListRecordedCourseComponent implements OnInit {
   }
 
   openAddChaptersModal(id: any) : void {
-    console.log(id);
     this.dialogConfig.data = {
       recordedCourseId: id
     };
@@ -79,7 +78,6 @@ export class ListRecordedCourseComponent implements OnInit {
   }
 
   openEditRecordedCourseModal(id: any) : void {
-    console.log(id);
     this.dialogConfig.data = {
       recordedCourseId: id
     };
