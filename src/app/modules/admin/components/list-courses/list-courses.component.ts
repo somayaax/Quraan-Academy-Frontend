@@ -38,12 +38,17 @@ export class ListCoursesComponent implements OnInit {
           endDate: course.endDate.split('T')[0],
           id: index + 1
         }));
+      },
+      error : (error : any) => {
+        let {error : {message}}  = error;
+        if(!message) message = error.error.error;
+        this.toastr.error(`${message}`,'Error');
       }
     });
   }
 
   openAddCourseModal(): void {
-    this.dialog.open(AddCourseModalComponent, { width: "800px"});
+    this.dialog.open(AddCourseModalComponent, { width: "100%"});
   }
 
   openEditCourseModal(id: any) {
@@ -54,20 +59,20 @@ export class ListCoursesComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result}`);
       });
-    }  
+    }
 
     delCourse(id: any) {
-       
+
           this.course.deleteCourse(id).subscribe({
               next: (data) => {
                 this.course.buttonClicked.emit();
                 this.toastr.success(`Course deleted successfully`,'Success');
-             
+
               },
               error: (error) => {
                 let { error: { message } } = error;
                 if (!message) message = error.message;
-            
+
           if (error.status === 400){
             this.toastr.error('Can not delete course is already started','Error');
           } else {
@@ -76,11 +81,11 @@ export class ListCoursesComponent implements OnInit {
         }
           })
         }
-        
-    
- 
 
-  
+
+
+
+
   ngOnInit(): void {
     this.getCourses();
   }

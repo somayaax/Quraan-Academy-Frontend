@@ -1,0 +1,54 @@
+<h2 mat-dialog-title>Add chapters</h2>
+<mat-dialog-content class="mat-typography bg">
+  <div class="m-3 color">
+    <form class="form" [formGroup]="chaptersForm" (submit)="onSubmit()">
+
+      <div class="col-md-12">
+        <mat-form-field>
+          <mat-label>Number of chapters</mat-label>
+          <input matInput type="number" formControlName="numberOfChapters" required min="1"
+            (ngModelChange)="setNumberOfChapters($event)">
+          <mat-error *ngIf="chaptersForm.get('numberOfChapters')?.invalid">
+            Number of chapters must be greater than 0.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div formArrayName="chapters">
+        <div *ngFor="let chapter of chapters.controls; let i = index">
+          <div [formGroupName]="i">
+            <h5>Chapter {{ i + 1 }}</h5>
+            <mat-form-field class="custom-field">
+              <mat-label>Title</mat-label>
+              <input matInput formControlName="title">
+              <mat-error *ngIf="chapters.controls[i].get('title')?.invalid">
+                Title is required and must be at least 3 characters long and not be only whiteSpaces.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="custom-field">
+              <mat-label>Description</mat-label>
+              <textarea matInput formControlName="description"></textarea>
+              <mat-error *ngIf="chapters.controls[i].get('description')?.invalid">
+                Description is required and must be at least 10 characters long and not be only whiteSpaces.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="custom-field">
+              <mat-label>Media</mat-label>
+              <input matInput formControlName="media">
+              <mat-error *ngIf="chapters.controls[i].get('media')?.invalid">
+                Media is required and not be only whiteSpaces.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-buttons mt-5">
+        <button mat-raised-button type="submit" [disabled]="chaptersForm.invalid" class="add-course-btn">
+          Add chapters
+        </button>
+        <button mat-raised-button mat-dialog-close class="mx-2">Cancel</button>
+      </div>
+    </form>
+  </div>
+</mat-dialog-content>

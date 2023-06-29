@@ -46,6 +46,12 @@
     background-color: #f9f6ef;
 }
 
+table.table-striped th:nth-child(6),
+table.table-striped th:nth-child(7),
+table.table-striped th:nth-child(8) {
+    width: 80px;
+}
+
 .table-striped > tbody > tr:nth-child(2n + 1) > td,
 .table-striped > tbody > tr:nth-child(2n + 1) > th {
     background-color: #f3ede0;

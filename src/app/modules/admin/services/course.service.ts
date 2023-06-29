@@ -1,7 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
-import {courseElement} from '../components/list-courses/list-courses.component'
 import currentDomain from 'src/app/utils/domainUrls';
 
 @Injectable({
@@ -70,7 +69,7 @@ export class CourseService {
       daysOfWeek: formValue['daysOfWeek'],
     };
 
-   
+
 
     return this.http.patch(`${this.domain}/course/${id}`,formData).pipe(catchError((this.handleError)));
   }

@@ -20,6 +20,10 @@ import { ListCoursesComponent } from './components/list-courses/list-courses.com
 import { ListTeachersComponent } from './components/list-teachers/list-teachers.component';
 import { EditCourseModalComponent } from './components/edit-course-modal/edit-course-modal.component';
 import { AddTeacherModalComponent } from './components/add-teacher-modal/add-teacher-modal.component';
+import { AddRecordedCourseComponent } from './components/add-recorded-course/add-recorded-course.component';
+import { ListRecordedCourseComponent } from './components/list-recorded-course/list-recorded-course.component';
+import { AddChaptersModalComponent } from './components/add-chapters-modal/add-chapters-modal.component';
+import { EditRecordedCourseModalComponent } from './components/edit-recorded-course-modal/edit-recorded-course-modal.component';
 
 
 @NgModule({
@@ -29,7 +33,11 @@ import { AddTeacherModalComponent } from './components/add-teacher-modal/add-tea
     ListCoursesComponent,
     ListTeachersComponent,
     EditCourseModalComponent,
-    AddTeacherModalComponent
+    AddTeacherModalComponent,
+    AddRecordedCourseComponent,
+    ListRecordedCourseComponent,
+    AddChaptersModalComponent,
+    EditRecordedCourseModalComponent
   ],
   imports: [
     CommonModule,

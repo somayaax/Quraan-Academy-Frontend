@@ -3,39 +3,28 @@
   <div class="table-area container-fluid">
     <div class="d-flex justify-content-between m-1 filter-add mb-2">
       <div class="d-flex flex-wrap">
-        <div class="form-group mr-2">
-          <label for="teacher-dropdown">Teacher</label>
-          <select class="form-control" id="teacher-dropdown" [(ngModel)]="selectedTeacher" (change)="getCourses()">
-            <option>None</option>
-            <option>507f191e810c19729de860ec</option>
-            <option>507f191e810c19729de860eD</option>
-            <option>507f191e810c19729de860eB</option>
-          </select>
-        </div>
         <div class="form-group mx-2">
-          <label for="level-dropdown">Level</label>
-          <select class="form-control" id="level-dropdown" [(ngModel)]="selectedLevel" (change)="getCourses()">
-            <option>All</option>
-            <option>Beginner</option>
-            <option>Intermediate</option>
-            <option>Advanced</option>
+          <label for="category-dropdown">Category</label>
+          <select class="form-control" id="category-dropdown" [(ngModel)]="selectedCategory"
+            (change)="getRecordedCourses()">
+            <option value="">None</option>
+            <option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</option>
           </select>
         </div>
       </div>
 
       <div class="addCourse" (click)="openAddCourseModal()">
-        <span>Add new course</span>
+        <span>Add recorded course</span>
         <i class="fas fa-add"></i>
       </div>
     </div>
-
     <ng-container>
       <div class="row text-left">
         <ng-container>
           <div class="col-sm-12">
             <div class="card">
               <div class="card-header">
-                <h1 class="card-title m-0">Courses</h1>
+                <h1 class="card-title m-0">Recorded courses</h1>
               </div>
               <div class="card-content">
                 <div class="card-body">
@@ -45,45 +34,43 @@
                         <tr>
                           <th>ID</th>
                           <th>Name</th>
-                          <th>Level</th>
-                          <th>Teacher</th>
-                          <th>Start date</th>
-                          <th>End date</th>
-                          <th>Start time</th>
-                          <th>End time</th>
-                          <th>Days of week</th>
+                          <th>Number of chapters</th>
+                          <th>Category</th>
                           <th>Price</th>
-                          <th>Update</th>
-                          <th>Delete</th>
+                          <th class="text-center">Add chapters</th>
+                          <th class="text-center">Update</th>
+                          <th class="text-center">Delete</th>
                         </tr>
                       </thead>
                       <tbody>
                         <ng-container>
                           <tr class="tr" *ngFor="
-                              let course of courses
-                                | paginate
-                                  : { itemsPerPage: 6, currentPage: page }
-                            ">
+                          let course of recordedCourses
+                            | paginate
+                              : { itemsPerPage: 6, currentPage: page }
+                        ">
                             <td>{{ course.id }}</td>
                             <td>{{ course.name }}</td>
-                            <td>{{ course.level }}</td>
-                            <td>{{ course.teacher }}</td>
-                            <td>{{ course.startDate }}</td>
-                            <td>{{ course.endDate }}</td>
-                            <td>{{ course.startTime }}</td>
-                            <td>{{ course.endTime }}</td>
-                            <td>{{ course.daysOfWeek }}</td>
+                            <td>{{ course.numberOfChapters }}</td>
+                            <td>{{ course.category.name }}</td>
                             <td>{{ course.price }}</td>
                             <td>
-                              <div class="action">
-                                <button mat-icon-button color="primary" (click)="openEditCourseModal(course._id)">
+                              <div class="action" (click)="openAddChaptersModal(course._id)">
+                                <button mat-icon-button color="accent">
+                                  <mat-icon aria-label="Add" class="material-icons-outlined">add</mat-icon>
+                                </button>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="action" (click)="openEditRecordedCourseModal(course._id)">
+                                <button mat-icon-button color="primary">
                                   <mat-icon aria-label="Edit" class="material-icons-outlined">edit</mat-icon>
                                 </button>
                               </div>
                             </td>
                             <td>
-                              <div class="action">
-                                <button mat-icon-button color="warn" (click)="delCourse(course._id)">
+                              <div class="action" (click)="deleteRecordedCourse(course._id)">
+                                <button mat-icon-button color="warn">
                                   <mat-icon aria-label="Delete" class="material-icons-outlined">delete</mat-icon>
                                 </button>
                               </div>
