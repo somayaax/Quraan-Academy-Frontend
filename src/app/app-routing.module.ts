@@ -6,26 +6,34 @@ import { LoginComponent } from './shared/login/login.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'register', component: RegisterComponent},
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'register', component: RegisterComponent },
   { path: 'login/:role', component: LoginComponent },
-      {
-        path: 'student',
-        loadChildren: () => import('./modules/course/course.module').then(m => m.CourseModule),
-      },
-      {
-        path: 'home',
-        loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule),
-      },
-      {path: 'admin',
-        loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule)
-      },
-      { path: '**', component: NotfoundComponent },
+  {
+    path: 'student',
+    loadChildren: () =>
+      import('./modules/course/course.module').then((m) => m.CourseModule),
+  },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./modules/home/home.module').then((m) => m.HomeModule),
+  },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+  },
+  {
+    path: 'teacher',
+    loadChildren: () =>
+      import('./modules/teacher/teacher.module').then((m) => m.TeacherModule),
+  },
+  { path: '**', component: NotfoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

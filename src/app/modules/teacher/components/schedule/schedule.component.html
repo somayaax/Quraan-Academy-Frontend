@@ -1,0 +1,98 @@
+<div class="d-flex justify-content-between page">
+  <div class="table-area container-fluid">
+    <div class="d-flex justify-content-between m-1 filter-add mb-2">
+      <div class="divHeading">
+        <h1 class="display-4">My Schedule</h1>
+      </div>
+
+      <div class="d-flex flex-wrap">
+        <div class="form-group mr-2">
+          <label for="teacher-dropdown">Month</label>
+          <select
+            class="form-control"
+            id="teacher-dropdown"
+            [(ngModel)]="selectedMonth"
+            (change)="getSessions()"
+          >
+            <option *ngFor="let month of months" [value]="month">
+              {{ getMonthName(month - 1) }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group mx-2">
+          <label for="level-dropdown">Year</label>
+
+          <select
+            class="form-control"
+            id="level-dropdown"
+            [(ngModel)]="selectedYear"
+            (change)="getSessions()"
+          >
+            <option *ngFor="let year of years" [value]="year">
+              {{ year }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <ng-container>
+      <div class="row text-left">
+        <ng-container>
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-header">
+                <h1 class="card-title m-0">
+                  My Sessions of {{ getMonthName(selectedMonth - 1) }}
+                </h1>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="table-wrapper">
+                    <table
+                      class="table table-responsive-md table-striped text-center"
+                    >
+                      <thead>
+                        <tr>
+                          <th>Day Of week</th>
+                          <th>Date</th>
+                          <th>Sessions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <ng-container *ngFor="let day of days">
+                          <tr class="tr h-3">
+                            <td>{{ daysOfWeek[(firstDay + day - 1) % 7] }}</td>
+                            <!-- <td>{{ firstDay }}</td> -->
+                            <td>{{ day }}</td>
+                            <td>
+                              <ng-container *ngFor="let session of sessions">
+                                <div class="sessionDiv">
+                                  <ng-container
+                                    *ngIf="session.date.getDate() === day"
+                                    class="sessionDiv"
+                                  >
+                                    {{ session.courseID.name }}
+
+                                    {{ session.startTime }}
+                                    {{ session.endTime }}
+
+                                    {{ session.progressComment }}
+                                  </ng-container>
+                                </div>
+                              </ng-container>
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</div>
