@@ -61,7 +61,11 @@ export class LoginComponent implements OnInit {
         if (res.token) {
           localStorage.setItem('token', res.token);
           this._authService.currentUser.next(this._authService.getDecodedToken());
-          this._Router.navigate(['/home']);
+          if(this.role === 'admin') {
+            this._Router.navigate(['/admin/courses/list']);
+          }else{
+            this._Router.navigate(['/home']);
+          }
           this.isLoading = false;
 
         }

@@ -13,6 +13,9 @@ import { LoginComponent } from './shared/login/login.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { ToastrModule } from 'ngx-toastr';
+import { QuestionsComponent } from './shared/questions/questions.component';
+import { QuestionComponent } from './shared/question/question.component';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +26,9 @@ import { ToastrModule } from 'ngx-toastr';
     LoginComponent,
     NotfoundComponent,
     SpinnerComponent,
+    QuestionsComponent,
+    QuestionComponent,
+
   ],
   imports: [
     BrowserAnimationsModule,
