@@ -7,31 +7,61 @@
     width: 90%;
     margin: 1vw;
   }
-  
+
   .table-wrapper {
     overflow-x: auto;
   }
 
-  
+
   .table tbody td {
     text-align: center;
     vertical-align: middle;
   }
-  
+
   .card-content {
     background-color: #f9f6ef;
   }
-  
+
   .table-striped > tbody > tr:nth-child(2n + 1) > td,
   .table-striped > tbody > tr:nth-child(2n + 1) > th {
     background-color: #f3ede0;
   }
-  
+
   .card-header {
     background-color: #d5c095;
     color: #fff;
   }
-  
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .pagination button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #333;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  .pagination button:hover {
+    background-color: #f4f4f4;
+  }
+
+  .pagination button:disabled {
+    background-color: #eee;
+    border-color: #eee;
+    color: #999;
+    cursor: default;
+  }
+
+  .pagination i {
+    margin-right: 5px;
+  }
+
   @media (max-width: 992px) {
     .page {
         flex-direction: column !important;
@@ -51,36 +81,35 @@
         margin: 3vw;
     }
   }
-  
+
   @media (max-width: 575.98px) {
     .table-responsive-md {
         overflow-x: scroll;
     }
   }
-  
+
   @media (min-width: 576px) {
     .table-responsive-md {
         overflow-x: auto;
     }
   }
-  
+
   @media (min-width: 1200px) {
     .table-responsive-md {
         overflow-x: auto;
     }
   }
-  
+
   @media (max-width: 767px) {
     .table-responsive-md .table tr td,
     .table-responsive-md .table tr th {
         font-size: 12px;
     }
   }
-  
+
   @media (min-width: 768px) {
     .table-responsive-md .table td,
     .table-responsive-md .table th {
         font-size: 14px;
     }
   }
-  

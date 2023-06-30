@@ -60,8 +60,6 @@
                         <ng-container>
                           <tr class="tr" *ngFor="
                               let course of courses
-                                | paginate
-                                  : { itemsPerPage: 6, currentPage: page }
                             ">
                             <td>{{ course.id }}</td>
                             <td>{{ course.name }}</td>
@@ -92,7 +90,11 @@
                       </tbody>
                     </table>
                   </div>
-                  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+                  <div class="pagination">
+                    <button id="prev-btn" (click)="prevPage()" [disabled]="page === 1"><i
+                        class="fas fa-chevron-left"></i> Previous</button>
+                    <button id="next-btn" (click)="nextPage()">Next <i class="fas fa-chevron-right"></i></button>
+                  </div>
                 </div>
               </div>
             </div>

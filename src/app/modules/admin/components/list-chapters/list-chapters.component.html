@@ -41,8 +41,6 @@
                         <ng-container>
                           <tr class="tr"  *ngFor="
                           let chapter of chapters
-                            | paginate
-                              : { itemsPerPage: 6, currentPage: page }
                         ">
                             <td>{{chapter.id}}</td>
                             <td>{{chapter.title}}</td>
@@ -68,7 +66,6 @@
                       </tbody>
                     </table>
                   </div>
-                  <pagination-controls (pageChange)="page = $event"></pagination-controls>
                 </div>
               </div>
             </div>

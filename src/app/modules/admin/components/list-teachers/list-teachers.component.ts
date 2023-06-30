@@ -41,6 +41,18 @@ export class ListTeachersComponent implements OnInit {
         });
     }
 
+    prevPage() {
+        if (this.page > 1) {
+            this.page--;
+            this.getTeachers();
+        }
+    }
+
+    nextPage() {
+        this.page++;
+        this.getTeachers();
+    }
+
     openAddTeacherModal(): void {
         this.dialog.open(AddTeacherModalComponent, { width: "800px" });
     }

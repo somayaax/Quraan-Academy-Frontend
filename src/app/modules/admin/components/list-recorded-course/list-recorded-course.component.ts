@@ -63,6 +63,17 @@ export class ListRecordedCourseComponent implements OnInit {
         });
     }
 
+    prevPage() {
+      if (this.page > 1) {
+          this.page--;
+          this.getRecordedCourses();
+      }
+  }
+
+  nextPage() {
+      this.page++;
+      this.getRecordedCourses();
+  }
     getCategories(): void {
         this.category.getRecordedCourseCategoriesNotPaginated().subscribe({
             next: (data) => {

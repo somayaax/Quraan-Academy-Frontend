@@ -66,6 +66,18 @@ export class ListCoursesComponent implements OnInit {
         });
     }
 
+    prevPage() {
+        if (this.page > 1) {
+            this.page--;
+            this.getCourses();
+        }
+    }
+
+    nextPage() {
+        this.page++;
+        this.getCourses();
+    }
+
     getTeachers(): void {
         this.teacher.getTeachersNotPaginated().subscribe({
             next: (data) => {
@@ -141,7 +153,7 @@ export interface courseElement {
     daysOfWeek: string[];
     price: number;
     teacher: {
-      firstName: string,
-      lastName: string,
+        firstName: string;
+        lastName: string;
     };
 }

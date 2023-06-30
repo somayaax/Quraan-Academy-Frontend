@@ -51,6 +51,18 @@ export class ListRecordedCourseCategoryComponent implements OnInit {
             },
         });
     }
+
+    prevPage() {
+        if (this.page > 1) {
+            this.page--;
+            this.getCategories();
+        }
+    }
+
+    nextPage() {
+        this.page++;
+        this.getCategories();
+    }
     openAddCategoryModal(): void {
         this.dialog.open(AddRecordedCourseCategoryModalComponent, {
             width: "800px",

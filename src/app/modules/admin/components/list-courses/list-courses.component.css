@@ -56,6 +56,36 @@
     color: #fff;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #333;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+}
+
+.pagination button:hover {
+    background-color: #f4f4f4;
+}
+
+.pagination button:disabled {
+    background-color: #eee;
+    border-color: #eee;
+    color: #999;
+    cursor: default;
+}
+
+.pagination i {
+    margin-right: 5px;
+}
+
 @media (max-width: 992px) {
     .page {
         flex-direction: column !important;
