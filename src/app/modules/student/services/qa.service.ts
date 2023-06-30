@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import currentDomain from 'src/app/utils/domainUrls';
@@ -8,6 +8,8 @@ import currentDomain from 'src/app/utils/domainUrls';
   providedIn: 'root'
 })
 export class QAService {
+
+  buttonClicked = new EventEmitter();
 
   constructor(private _httpClient: HttpClient, private _Router: Router) { }
   getStudentQuestions(page: number, limit: number, categoryID: string, teacherID: string): Observable<any> {
@@ -25,7 +27,7 @@ export class QAService {
       `${currentDomain}/question/${id}`
     )
   }
-  editQuestion(id: any, data: FormData): Observable<any> {
+  editQuestion(id: any, data: any): Observable<any> {
     return this._httpClient.patch(
       `${currentDomain}/question/${id}`, data,
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }

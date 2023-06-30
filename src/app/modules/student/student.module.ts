@@ -10,6 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { EditQuestionModalComponent } from './components/edit-question-modal/edit-question-modal.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatDialogModule,
     MatIconModule,
     MatButtonModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
   ]
 })
 export class StudentModule { }

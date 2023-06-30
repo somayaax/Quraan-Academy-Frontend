@@ -33,7 +33,7 @@
                     <app-question
                      [question]="question"
                      (deleteQuestionEvent)="deleteQuestion(question?._id)"
-                     (editQuestionEvent)="openEditQuestionModal(question?._id)"
+                     (editQuestionEvent)="openEditQuestionModal(question)"
                     ></app-question>
                 </div>
                 <nav aria-label="Page navigation example" *ngIf="questions.length">
