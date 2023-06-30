@@ -1,0 +1,30 @@
+<div class="question-container py-4">
+    <div class="d-flex justify-content-between">
+        <div>
+            <h3>{{question.question}}</h3>
+        </div>
+        <div class=" d-flex" *ngIf="!question.answer">
+            <div class="action">
+                <button mat-icon-button color="primary" title="edit" (click)="editQuestion()">
+                    <mat-icon aria-label="Edit" class="material-icons-outlined">edit</mat-icon>
+                </button>
+            </div>
+            <div class="action">
+                <button mat-icon-button color="warn" title="delete" (click)="deleteQuestion()">
+                    <mat-icon aria-label="Delete" class="material-icons-outlined">delete</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="question.answer" class="shadow border p-4 bg-light">
+        <!--teacherProfile-->
+        <h4><a class="teacher" routerLink="home">
+                {{question.teacherID.firstName}} {{question.teacherID.lastName}}
+            </a>
+        </h4>
+        <p>{{question.answer}}</p>
+    </div>
+    <div *ngIf="!question.answer" class="shadow border p-4 bg-light">
+        <h4>Not answered yet!</h4>
+    </div>
+</div>

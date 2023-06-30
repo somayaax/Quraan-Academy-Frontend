@@ -1,0 +1,14 @@
+<div class="question-container py-4">
+    <h3>{{question.question}}</h3>
+    <div *ngIf="question.answer" class="shadow border p-4 bg-light">
+        <!--teacherProfile-->
+        <h4><a class="teacher" routerLink="home">
+                {{question.teacherID.firstName}} {{question.teacherID.lastName}}
+            </a>
+        </h4>
+        <p>{{question.answer}}</p>
+    </div>
+    <div *ngIf="!question.answer" class="shadow border p-4 bg-light">
+        <h4>Not answered yet!</h4>
+    </div>
+</div>

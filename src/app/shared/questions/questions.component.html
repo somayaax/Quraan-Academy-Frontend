@@ -1,0 +1,49 @@
+<section class="mt-3">
+    <div class="container">
+        <div class="row">
+            <!-- <div class="ask">
+                <span>Ask A Question</span>
+              </div> -->
+            <div class="col-3 mt-5">
+                <div>
+                    <label for="">Category</label>
+                    <select class="form-select w-75" aria-label="Default select example" [(ngModel)]="categoryID"
+                        (change)="changeCategory()">
+                        <option value="">All</option>
+                        <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
+                    </select>
+                </div>
+                <!-- <div class="mt-3">
+                    <label for="">Teacher</label>
+                    <select class="form-select w-50" aria-label="Default select example">
+                        <option selected>All</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div> -->
+            </div>
+            <div class="col-9">
+                <div *ngIf="!questions.length" class="p-5" style="height: 80vh;">
+                    <h2>
+                        NO QUESTIONS YET
+                    </h2>
+                </div>
+                <div *ngFor="let question of questions">
+                    <app-question [question]="question"></app-question>
+                </div>
+                <nav aria-label="Page navigation example" *ngIf="questions.length">
+                    <ul class="pagination justify-content-center mt-4">
+                        <li class="page-item">
+                            <a class="page-link" (click)="prevPage()">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link">{{currentPage}}</a></li>
+                        <li class="page-item">
+                            <a class="page-link" (click)="nextPage()">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
