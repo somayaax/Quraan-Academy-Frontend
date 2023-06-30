@@ -15,6 +15,7 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { ToastrModule } from 'ngx-toastr';
 import { QuestionsComponent } from './shared/questions/questions.component';
 import { QuestionComponent } from './shared/question/question.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { QuestionComponent } from './shared/question/question.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatIconModule,
     ToastrModule.forRoot(),
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],

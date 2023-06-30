@@ -33,4 +33,10 @@ export class QAService {
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     )
   }
+  askQuestion(data: any): Observable<any> {
+    return this._httpClient.post(
+      `${currentDomain}/question/ask`, data,
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    )
+  }
 }

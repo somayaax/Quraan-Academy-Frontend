@@ -12,13 +12,15 @@ import { EditQuestionModalComponent } from './components/edit-question-modal/edi
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { AskQuestionModalComponent } from './components/ask-question-modal/ask-question-modal.component';
 
 
 @NgModule({
   declarations: [
     QuestionsComponent,
     QuestionComponent,
-    EditQuestionModalComponent
+    EditQuestionModalComponent,
+    AskQuestionModalComponent
   ],
   imports: [
     CommonModule,

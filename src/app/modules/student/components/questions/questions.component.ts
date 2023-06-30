@@ -5,6 +5,7 @@ import swal from "sweetalert2";
 import swalOptions from "src/app/utils/swalOptions";
 import { ToastrService } from "ngx-toastr";
 import { EditQuestionModalComponent } from '../edit-question-modal/edit-question-modal.component';
+import { AskQuestionModalComponent } from '../ask-question-modal/ask-question-modal.component';
 
 @Component({
   selector: 'app-questions',
@@ -21,10 +22,10 @@ export class QuestionsComponent implements OnInit {
   currentPage: number = 1;
   dialogConfig = new MatDialogConfig();
 
-  constructor(private _QAService: QAService, private toastr: ToastrService, private dialog: MatDialog) { 
+  constructor(private _QAService: QAService, private toastr: ToastrService, private dialog: MatDialog) {
     this._QAService.buttonClicked.subscribe(() => {
       this.getQuestions();
-  });
+    });
   }
 
   ngOnInit() {
@@ -85,7 +86,7 @@ export class QuestionsComponent implements OnInit {
             this.getQuestions()
           },
           error: (error: any) => {
-            
+
             this.toastr.error("Error deleting question");
           },
         });
@@ -95,11 +96,17 @@ export class QuestionsComponent implements OnInit {
 
   openEditQuestionModal(question: any): void {
     this.dialogConfig.data = {
-        categoryID: question.categoryID,
-        question: question.question,
-        questionID: question._id,
-        categories: this.categories,
+      categoryID: question.categoryID,
+      question: question.question,
+      questionID: question._id,
+      categories: this.categories,
     };
     this.dialog.open(EditQuestionModalComponent, this.dialogConfig);
-}
+  }
+  openAskQuestionModal(): void {
+    this.dialogConfig.data = {
+      categories: this.categories,
+    };
+    this.dialog.open(AskQuestionModalComponent, this.dialogConfig);
+  }
 }
