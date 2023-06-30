@@ -10,10 +10,11 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
   { path: 'login/:role', component: LoginComponent },
+  { path: 'questions', component: QuestionsComponent },
   {
     path: 'student',
     loadChildren: () =>
-      import('./modules/course/course.module').then((m) => m.CourseModule),
+      import('./modules/student/student.module').then((m) => m.StudentModule),
   },
   {
     path: 'home',
@@ -31,30 +32,7 @@ const routes: Routes = [
       import('./modules/teacher/teacher.module').then((m) => m.TeacherModule),
   },
   { path: '**', component: NotfoundComponent },
-  { path: 'questions', component: QuestionsComponent },
-  {
-    path: 'course',
-    loadChildren: () =>
-      import('./modules/course/course.module').then((m) => m.CourseModule),
-  },
-  {
-    path: 'student',
-    loadChildren: () =>
-      import('./modules/student/student.module').then((m) => m.StudentModule),
-  },
-  {
-    path: 'home',
-    loadChildren: () =>
-      import('./modules/home/home.module').then((m) => m.HomeModule),
-  },
-  {
-    path: 'admin',
-    // canActivate: [AdminGuard],
-    loadChildren: () =>
-      import('./modules/admin/admin.module').then((m) => m.AdminModule),
-  },
-  { path: '**', component: NotfoundComponent },
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
