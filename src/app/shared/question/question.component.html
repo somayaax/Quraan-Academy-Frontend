@@ -13,6 +13,15 @@
             </p>
         </div>
         <div *ngIf="!question.answer" class="shadow border p-4 bg-light">
-            <h4>Not answered yet!</h4>
+            <ng-container *ngIf="loggedIn && role === 'teacher'">
+                <label for="exampleFormControlInput1" class="form-label fw-bold">Answer</label>
+                <div class="mb-3 input-group">
+                    <input type="text" [(ngModel)]="answer" class="form-control" id="exampleFormControlInput1"
+                        placeholder="Type your answer here">
+                        <button [disabled]="answer.length<5" class="btn btn-answer"
+                        (click)="answerSubmit()">Submit</button>
+                </div>
+            </ng-container>
+            <h4 *ngIf="role !== 'teacher'">Not answered yet!</h4>
         </div>
     </div>

@@ -15,7 +15,11 @@ export class QuestionsComponent implements OnInit {
   teacherID = '';
   currentPage: number = 1;
 
-  constructor(private _QAService: QAService) { }
+  constructor(private _QAService: QAService) {
+    this._QAService.buttonClicked.subscribe(() => {
+      this.getQuestions();
+    });
+  }
 
   ngOnInit() {
     this.getQuestions()

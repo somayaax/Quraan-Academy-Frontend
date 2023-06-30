@@ -37,7 +37,7 @@ export class AskQuestionModalComponent {
           this.toastr.error(error.error.error)
         }
         else {
-          this.toastr.error('cannot update question!')
+          this.toastr.error('cannot add question!')
         }
       },
     });
