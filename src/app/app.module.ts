@@ -17,8 +17,12 @@ import { QuestionsComponent } from './shared/questions/questions.component';
 import { QuestionComponent } from './shared/question/question.component';
 import { MatIconModule } from '@angular/material/icon';
 import { CourseComponent } from './shared/course/course.component';
-
-
+import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCardModule } from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +35,6 @@ import { CourseComponent } from './shared/course/course.component';
     QuestionsComponent,
     QuestionComponent,
     CourseComponent,
-
   ],
   imports: [
     BrowserAnimationsModule,
@@ -43,8 +46,16 @@ import { CourseComponent } from './shared/course/course.component';
     HttpClientModule,
     MatIconModule,
     ToastrModule.forRoot(),
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatCardModule,
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

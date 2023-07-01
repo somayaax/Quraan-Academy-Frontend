@@ -1,1 +1,105 @@
-<p>course works!</p>
+<div class="container">
+  <div class="m-2">
+    <div class="divHeading">
+      <h1 class="display-4">Our Courses</h1>
+    </div>
+    <div class="d-flex flex-wrap">
+      <div class="form-group mr-2">
+        <label for="teacher-dropdown">Teacher</label>
+        <select
+          class="form-control"
+          id="teacher-dropdown"
+          [(ngModel)]="selectedTeacher"
+          (change)="getCourses()"
+        >
+          <option>All</option>
+          <option *ngFor="let teacher of teachers" [value]="teacher._id">
+            {{ teacher.firstName + " " + teacher.lastName }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group mx-2">
+        <label for="level-dropdown">Level</label>
+
+        <select
+          class="form-control"
+          id="level-dropdown"
+          [(ngModel)]="selectedLevel"
+          (change)="getCourses()"
+        >
+          <option>All</option>
+          <option value="beginner">beginner</option>
+          <option value="intermediate">intermediate</option>
+          <option value="advanced">advanced</option>
+          // TODO => Add kids
+        </select>
+      </div>
+    </div>
+    <!-- <table mat-table [dataSource]="courses" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let course">{{ course.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="level">
+      <th mat-header-cell *matHeaderCellDef>Level</th>
+      <td mat-cell *matCellDef="let course">{{ course.level }}</td>
+    </ng-container>
+    <ng-container matColumnDef="teacher">
+      <th mat-header-cell *matHeaderCellDef>Teacher</th>
+      <td mat-cell *matCellDef="let course">
+        {{ course.teacher.firstName }} {{ course.teacher.lastName }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>Price</th>
+      <td mat-cell *matCellDef="let course">{{ course.price }}</td>
+    </ng-container>
+    <tr
+      mat-header-row
+      *matHeaderRowDef="['name', 'level', 'teacher', 'price']"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let course; columns: ['name', 'level', 'teacher', 'price']"
+    ></tr>
+  </table> -->
+    <!-- <mat-paginator
+    [length]="courses.length"
+    [pageSize]="pageSize"
+    [pageIndex]="currentPage - 1"
+    (page)="onPageChanged($event)"
+  ></mat-paginator> -->
+    <ng-container>
+      <div class="card-container d-flex flex-wrap">
+        <div *ngFor="let course of courses" class="card">
+          <mat-card>
+            <mat-card-header class="card-header">
+              <mat-card-title class="course-name">{{
+                course.name
+              }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="card-content">
+              <p class="course-description">{{ course.description }}</p>
+              <p><strong>Price:</strong> {{ course.price }}</p>
+              <p>
+                <strong>Level:</strong>
+                {{ course.level }}
+              </p>
+              <p>
+                <strong>Teacher:</strong>
+                {{ course.teacher.firstName + " " + course.teacher.lastName }}
+              </p>
+              <p>
+                <strong>Days:</strong>
+                {{ course.daysOfWeek }}
+              </p>
+            </mat-card-content>
+          </mat-card>
+          <mat-card-actions>
+            <button mat-raised-button>Enroll Now</button>
+          </mat-card-actions>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
