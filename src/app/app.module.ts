@@ -16,6 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { QuestionsComponent } from './shared/questions/questions.component';
 import { QuestionComponent } from './shared/question/question.component';
 import { MatIconModule } from '@angular/material/icon';
+import { CourseComponent } from './shared/course/course.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { MatIconModule } from '@angular/material/icon';
     SpinnerComponent,
     QuestionsComponent,
     QuestionComponent,
+    CourseComponent,
 
   ],
   imports: [

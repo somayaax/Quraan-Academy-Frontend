@@ -5,12 +5,14 @@ import { AdminGuard } from './guard/adminAuth/admin.guard';
 import { LoginComponent } from './shared/login/login.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { QuestionsComponent } from './shared/questions/questions.component';
+import { CourseComponent } from './shared/course/course.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
   { path: 'login/:role', component: LoginComponent },
   { path: 'questions', component: QuestionsComponent },
+  { path: 'courses', component: CourseComponent },
   {
     path: 'student',
     loadChildren: () =>
@@ -32,7 +34,7 @@ const routes: Routes = [
       import('./modules/teacher/teacher.module').then((m) => m.TeacherModule),
   },
   { path: '**', component: NotfoundComponent },
-]
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
