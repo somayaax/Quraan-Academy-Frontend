@@ -5,34 +5,28 @@
             <div class="row">
                 <div class="col-md-12">
                     <mat-form-field class="custom-field">
-                        <input matInput placeholder="Question" formControlName="question" />
-                        <mat-error *ngIf="
-                questionForm.controls['question'].touched &&
-                questionForm.get('question')?.hasError('whitespace')
-              ">
-                            Question cannot be only whitespace characters.
+                        <input class="form-control" matInput placeholder="Question" formControlName="question" />
+                        <mat-error *ngIf="questionForm.get('question')?.errors != null &&
+                         questionForm.get('question')?.touched">
+                            Question cannot be empty.
                         </mat-error>
                     </mat-form-field>
                 </div>
-
-
-
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <mat-form-field class="custom-field">
-                        <label for="">Category</label>
-                        <select class="form-select w-75" aria-label="Default select example"
-                            formControlName="categoryID">
-                            <option value="">All</option>
-                            <!-- <option *ngFor="let category of categories" [value]="category._id">{{category.name}} -->
-                            <!-- </option> -->
-                        </select>
+                        <mat-label>Category</mat-label>
+                        <mat-select formControlName="categoryID">
+                            <mat-option *ngFor="let cat of data.categories" [value]="cat._id">{{cat.name}}</mat-option>
+                        </mat-select>
                     </mat-form-field>
                 </div>
             </div>
 
             <div class="modal-buttons mt-3">
-                <button mat-raised-button type="submit" [disabled]="questionForm.invalid" class="add-course-btn">
-                    Update Teacher
+                <button mat-raised-button type="submit" [disabled]="questionForm.invalid"
+                 class="add-course-btn"
+                 (click)="editQuestion()">
+                    Update
                 </button>
                 <button mat-raised-button mat-dialog-close class="mx-2">Cancel</button>
             </div>

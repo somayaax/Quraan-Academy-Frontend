@@ -1,14 +1,27 @@
 <div class="question-container py-4">
-    <h3>{{question.question}}</h3>
-    <div *ngIf="question.answer" class="shadow border p-4 bg-light">
-        <!--teacherProfile-->
-        <h4><a class="teacher" routerLink="home">
-                {{question.teacherID.firstName}} {{question.teacherID.lastName}}
-            </a>
-        </h4>
-        <p>{{question.answer}}</p>
+    <div class="shadow">
+        <div class="">
+            <div class="category p-1 mb-2 rounded">{{question.categoryID?.name}}</div>
+            <h3 class="p-3"><span class="fs-2 fw-bold me-2 ">Q</span> {{question.question}}</h3>
+        </div>
+        <div *ngIf="question.answer" class="shadow border p-4 bg-light">
+            <!--teacherProfile-->
+            <h4>{{question.answer}}</h4>
+            <p style="font-size: 14px;">Answered By <a class="teacher" routerLink="home">
+                    {{question.teacherID.firstName}} {{question.teacherID.lastName}}
+                </a>
+            </p>
+        </div>
+        <div *ngIf="!question.answer" class="shadow border p-4 bg-light">
+            <ng-container *ngIf="loggedIn && role === 'teacher'">
+                <label for="exampleFormControlInput1" class="form-label fw-bold">Answer</label>
+                <div class="mb-3 input-group">
+                    <input type="text" [(ngModel)]="answer" class="form-control" id="exampleFormControlInput1"
+                        placeholder="Type your answer here">
+                        <button [disabled]="answer.length<5" class="btn btn-answer"
+                        (click)="answerSubmit()">Submit</button>
+                </div>
+            </ng-container>
+            <h4 *ngIf="role !== 'teacher'">Not answered yet!</h4>
+        </div>
     </div>
-    <div *ngIf="!question.answer" class="shadow border p-4 bg-light">
-        <h4>Not answered yet!</h4>
-    </div>
-</div>

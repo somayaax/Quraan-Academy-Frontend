@@ -5,35 +5,42 @@ import { AdminGuard } from './guard/adminAuth/admin.guard';
 import { LoginComponent } from './shared/login/login.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { QuestionsComponent } from './shared/questions/questions.component';
+import { RecordedCoursesComponent } from './shared/recorded-courses/recorded-courses.component';
+import { CourseComponent } from './shared/course/course.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
   { path: 'login/:role', component: LoginComponent },
   { path: 'questions', component: QuestionsComponent },
-  {
-    path: 'course',
-    loadChildren: () => import('./modules/course/course.module').then(m => m.CourseModule),
-  },
+  { path: 'recordedCourses', component: RecordedCoursesComponent },
+  { path: 'courses', component: CourseComponent },
+
   {
     path: 'student',
-    loadChildren: () => import('./modules/student/student.module').then(m => m.StudentModule),
+    loadChildren: () =>
+      import('./modules/student/student.module').then((m) => m.StudentModule),
   },
   {
     path: 'home',
-    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule),
+    loadChildren: () =>
+      import('./modules/home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'admin',
-    // canActivate: [AdminGuard],
-    loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule)
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+  },
+  {
+    path: 'teacher',
+    loadChildren: () =>
+      import('./modules/teacher/teacher.module').then((m) => m.TeacherModule),
   },
   { path: '**', component: NotfoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

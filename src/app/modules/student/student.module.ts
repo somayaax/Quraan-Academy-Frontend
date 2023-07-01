@@ -12,6 +12,9 @@ import { EditQuestionModalComponent } from './components/edit-question-modal/edi
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { RecourdedCourseComponent } from './components/recourded-course/recourded-course.component';
 import { RecourdedCoursesComponent } from './components/recourded-courses/recourded-courses.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { AskQuestionModalComponent } from './components/ask-question-modal/ask-question-modal.component';
 
 
 @NgModule({
@@ -20,7 +23,8 @@ import { RecourdedCoursesComponent } from './components/recourded-courses/recour
     QuestionComponent,
     EditQuestionModalComponent,
     RecourdedCourseComponent,
-    RecourdedCoursesComponent
+    RecourdedCoursesComponent,
+    AskQuestionModalComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +34,9 @@ import { RecourdedCoursesComponent } from './components/recourded-courses/recour
     MatDialogModule,
     MatIconModule,
     MatButtonModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
   ]
 })
 export class StudentModule { }
