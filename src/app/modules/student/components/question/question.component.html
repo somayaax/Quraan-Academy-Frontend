@@ -19,11 +19,11 @@
     </div>
     <div *ngIf="question.answer" class="shadow border p-4 bg-light">
         <!--teacherProfile-->
-        <h4><a class="teacher" routerLink="home">
+        <h4>{{question.answer}}</h4>
+        <p style="font-size: 14px;">Answered By <a class="teacher" routerLink="home">
                 {{question.teacherID.firstName}} {{question.teacherID.lastName}}
             </a>
-        </h4>
-        <p>{{question.answer}}</p>
+        </p>
     </div>
     <div *ngIf="!question.answer" class="shadow border p-4 bg-light">
         <h4>Not answered yet!</h4>

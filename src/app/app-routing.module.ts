@@ -5,6 +5,7 @@ import { AdminGuard } from './guard/adminAuth/admin.guard';
 import { LoginComponent } from './shared/login/login.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { QuestionsComponent } from './shared/questions/questions.component';
+import { RecordedCoursesComponent } from './shared/recorded-courses/recorded-courses.component';
 import { CourseComponent } from './shared/course/course.component';
 
 const routes: Routes = [
@@ -12,7 +13,9 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login/:role', component: LoginComponent },
   { path: 'questions', component: QuestionsComponent },
+  { path: 'recordedCourses', component: RecordedCoursesComponent },
   { path: 'courses', component: CourseComponent },
+
   {
     path: 'student',
     loadChildren: () =>

@@ -1,0 +1,45 @@
+<section class="pt-3">
+    <div class="d-flex align-items-center justify-content-center">
+        <mat-icon class="overflow-visible fs-3 me-3">question_answer</mat-icon>
+        <h3 class="text-center fs-3 pt-3"> My Answers
+        </h3>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-3 mt-5">
+                <div>
+                    <label for="">Category</label>
+                    <select class="form-select w-75" aria-label="Default select example" [(ngModel)]="categoryID"
+                        (change)="changeCategory()">
+                        <option value="">All</option>
+                        <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-9">
+                <div *ngIf="!questions.length" class="p-5" style="height: 80vh;">
+                    <h2>
+                        NO ANSWERS YET
+                    </h2>
+                </div>
+                <div *ngFor="let question of questions">
+                    <app-question [question]="question"
+                    (editAnswerEvent)="openEditAnswerModal(question)"
+                    (deleteAnswerEvent)="deleteAnswer(question._id)"
+                    ></app-question>
+                </div>
+                <nav aria-label="Page navigation example" *ngIf="questions.length">
+                    <ul class="pagination justify-content-center mt-4">
+                        <li class="page-item">
+                            <a class="page-link" (click)="prevPage()">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link">{{currentPage}}</a></li>
+                        <li class="page-item">
+                            <a class="page-link" (click)="nextPage()">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>

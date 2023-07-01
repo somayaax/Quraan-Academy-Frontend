@@ -15,6 +15,7 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { ToastrModule } from 'ngx-toastr';
 import { QuestionsComponent } from './shared/questions/questions.component';
 import { QuestionComponent } from './shared/question/question.component';
+import { RecordedCoursesComponent } from './shared/recorded-courses/recorded-courses.component';
 import { MatIconModule } from '@angular/material/icon';
 import { CourseComponent } from './shared/course/course.component';
 import { MatButton, MatButtonModule } from '@angular/material/button';
@@ -34,6 +35,7 @@ import { MatCardModule } from '@angular/material/card';
     SpinnerComponent,
     QuestionsComponent,
     QuestionComponent,
+    RecordedCoursesComponent,
     CourseComponent,
   ],
   imports: [

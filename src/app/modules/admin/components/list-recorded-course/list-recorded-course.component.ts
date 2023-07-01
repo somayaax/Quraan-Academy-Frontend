@@ -45,7 +45,7 @@ export class ListRecordedCourseComponent implements OnInit {
         };
         this.recordedCourse.getRecordeCourses(params).subscribe({
             next: (data) => {
-                this.recordedCourses = data.map(
+                this.recordedCourses = data.docs.map(
                     (course: recordedCourseElement, index: number) => ({
                         ...course,
                         id: index + 1,
