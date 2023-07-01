@@ -7,6 +7,7 @@ import { ListSessionsComponent } from "./components/list-sessions/list-sessions.
 import { ListChaptersComponent } from "./components/list-chapters/list-chapters.component";
 import { ListStudentsComponent } from "./components/list-students/list-students.component";
 import { ListRecordedCourseCategoryComponent } from "./components/list-recorded-course-category/list-recorded-course-category.component";
+import { ListQuestionsComponent } from "./components/list-questions/list-questions.component";
 
 const routes: Routes = [
     { path: "courses/list", component: ListCoursesComponent },
@@ -15,6 +16,8 @@ const routes: Routes = [
     { path: "sessions/list", component: ListSessionsComponent },
     { path: "chapters/list", component: ListChaptersComponent },
     { path: "students/list", component: ListStudentsComponent },
+    { path: "questions/list", component: ListQuestionsComponent },
+    { path: "questions/categories/list", component: ListQuestionsComponent },
     {
         path: "RecordedCourseCategories/list",
         component: ListRecordedCourseCategoryComponent,

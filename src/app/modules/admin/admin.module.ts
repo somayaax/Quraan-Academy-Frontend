@@ -32,6 +32,7 @@ import { ListStudentsComponent } from "./components/list-students/list-students.
 import { ListRecordedCourseCategoryComponent } from "./components/list-recorded-course-category/list-recorded-course-category.component";
 import { AddRecordedCourseCategoryModalComponent } from "./components/add-recorded-course-category-modal/add-recorded-course-category-modal.component";
 import { EditRecordedCourseCategoryModalComponent } from "./components/edit-recorded-course-category-modal/edit-recorded-course-category-modal.component";
+import { ListQuestionsComponent } from './components/list-questions/list-questions.component';
 
 @NgModule({
     declarations: [
@@ -53,6 +54,7 @@ import { EditRecordedCourseCategoryModalComponent } from "./components/edit-reco
         ListRecordedCourseCategoryComponent,
         AddRecordedCourseCategoryModalComponent,
         EditRecordedCourseCategoryModalComponent,
+        ListQuestionsComponent,
     ],
     imports: [
         CommonModule,
