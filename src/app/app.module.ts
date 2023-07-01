@@ -24,6 +24,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
+import { RecordedDeatailsComponent } from './shared/recorded-deatails/recorded-deatails.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { MatCardModule } from '@angular/material/card';
     QuestionComponent,
     RecordedCoursesComponent,
     CourseComponent,
+    RecordedDeatailsComponent,
   ],
   imports: [
     BrowserAnimationsModule,

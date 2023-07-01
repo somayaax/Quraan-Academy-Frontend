@@ -7,6 +7,7 @@ import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { QuestionsComponent } from './shared/questions/questions.component';
 import { RecordedCoursesComponent } from './shared/recorded-courses/recorded-courses.component';
 import { CourseComponent } from './shared/course/course.component';
+import { RecordedDeatailsComponent } from './shared/recorded-deatails/recorded-deatails.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'login/:role', component: LoginComponent },
   { path: 'questions', component: QuestionsComponent },
   { path: 'recordedCourses', component: RecordedCoursesComponent },
+  { path: 'recordedCourses/:id', component:RecordedDeatailsComponent },
   { path: 'courses', component: CourseComponent },
 
   {
