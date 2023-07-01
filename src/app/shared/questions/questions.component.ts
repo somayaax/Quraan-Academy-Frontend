@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { QAService } from 'src/app/services/qa.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class QuestionsComponent implements OnInit {
   teacherID = '';
   currentPage: number = 1;
 
-  constructor(private _QAService: QAService) {
+  constructor(private _QAService: QAService , private toastr: ToastrService) {
     this._QAService.buttonClicked.subscribe(() => {
       this.getQuestions();
     });
@@ -23,16 +24,25 @@ export class QuestionsComponent implements OnInit {
 
   ngOnInit() {
     this.getQuestions()
-    this._QAService.getCategories().subscribe({
-      next: (res: any) => {
-        if (res.message === 'success') {
-          this.categories = res.data;
-        }
+    this.getCategories();
+  }
+  getCategories(): void {
+    let params = {
+      type: 'question'
+    }
+    this._QAService.getCategoriesNotPaginated(params).subscribe({
+      next: (data) => {
+        this.categories = data;
       },
-      error: (err) => {
-        console.log(err);
-      }
-    })
+      error: (error: any) => {
+        let {
+          error: { message },
+        } = error;
+        if (!message) message = error.error.error;
+        console.log(message);
+        this.toastr.error(`${message}`, "Error");
+      },
+    });
   }
 
   getQuestions(): void {

@@ -16,10 +16,10 @@ export class QAService {
       `${currentDomain}/question?page=${page}&limit=${limit}&categoryID=${categoryID}&teacherID=${teacherID}`
     )
   }
-  getCategories(): Observable<any> {
-    return this._httpClient.get(
-      `${currentDomain}/question/category`
-    )
+  getCategoriesNotPaginated(params?: any): Observable<any> {
+    params.type = params.type || ""
+    let url = `${currentDomain}/admin/category/allCategories?type=${params.type}`;
+    return this._httpClient.get(url);
   }
   answerQuestion(id: string, data: any): Observable<any> {
     return this._httpClient.patch(
