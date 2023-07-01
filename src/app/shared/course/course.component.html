@@ -79,25 +79,34 @@
               }}</mat-card-title>
             </mat-card-header>
             <mat-card-content class="card-content">
-              <p class="course-description">{{ course.description }}</p>
-              <p><strong>Price:</strong> {{ course.price }}</p>
+              <p class="course-description">
+                {{ course.description.split(" ").slice(0, 4).join(" ") + "..."
+                }}<a class="read-more" (click)="showBubble(course)">See more</a>
+              </p>
+
+              <div class="bubble" *ngIf="course.showBubble">
+                <p class="description-full">{{ course.description }}</p>
+              </div>
               <p>
                 <strong>Level:</strong>
                 {{ course.level }}
               </p>
               <p>
-                <strong>Teacher:</strong>
-                {{ course.teacher.firstName + " " + course.teacher.lastName }}
-              </p>
-              <p>
                 <strong>Days:</strong>
                 {{ course.daysOfWeek }}
               </p>
+              <p>
+                <strong>Teacher:</strong>
+                {{ course.teacher.firstName + " " + course.teacher.lastName }}
+              </p>
+
+              <hr />
+              <mat-card-actions class="card-actions">
+                <p class="price">{{ course.price + " " + "LE" }}</p>
+                <button class="enrollBtn btn">Enroll Now</button>
+              </mat-card-actions>
             </mat-card-content>
           </mat-card>
-          <mat-card-actions>
-            <button mat-raised-button>Enroll Now</button>
-          </mat-card-actions>
         </div>
       </div>
     </ng-container>
