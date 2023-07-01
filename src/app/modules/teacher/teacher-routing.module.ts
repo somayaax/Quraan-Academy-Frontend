@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { QuestionsComponent } from './components/questions/questions.component';
-import { MyCoursesComponent } from './my-courses/my-courses.component';
+import { MyCoursesComponent } from './components/my-courses/my-courses.component';
 
 const routes: Routes = [
   { path: 'schedule', component: ScheduleComponent },
