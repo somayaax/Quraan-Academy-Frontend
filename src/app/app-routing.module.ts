@@ -5,6 +5,7 @@ import { AdminGuard } from './guard/adminAuth/admin.guard';
 import { LoginComponent } from './shared/login/login.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { QuestionsComponent } from './shared/questions/questions.component';
+import { RecordedCoursesComponent } from './shared/recorded-courses/recorded-courses.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -30,8 +31,9 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/teacher/teacher.module').then((m) => m.TeacherModule),
   },
-  { path: '**', component: NotfoundComponent },
   { path: 'questions', component: QuestionsComponent },
+  { path: 'recordedCourses', component: RecordedCoursesComponent },
+
   {
     path: 'course',
     loadChildren: () =>

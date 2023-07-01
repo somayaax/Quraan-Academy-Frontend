@@ -15,6 +15,7 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { ToastrModule } from 'ngx-toastr';
 import { QuestionsComponent } from './shared/questions/questions.component';
 import { QuestionComponent } from './shared/question/question.component';
+import { RecordedCoursesComponent } from './shared/recorded-courses/recorded-courses.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { QuestionComponent } from './shared/question/question.component';
     SpinnerComponent,
     QuestionsComponent,
     QuestionComponent,
+    RecordedCoursesComponent,
 
   ],
   imports: [
