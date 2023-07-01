@@ -25,6 +25,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { RecordedDeatailsComponent } from './shared/recorded-deatails/recorded-deatails.component';
+import { SessionsComponent } from './shared/sessions/sessions.component';
+import { SessionDetailsComponent } from './shared/session-details/session-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +41,8 @@ import { RecordedDeatailsComponent } from './shared/recorded-deatails/recorded-d
     RecordedCoursesComponent,
     CourseComponent,
     RecordedDeatailsComponent,
+    SessionsComponent,
+    SessionDetailsComponent,
   ],
   imports: [
     BrowserAnimationsModule,

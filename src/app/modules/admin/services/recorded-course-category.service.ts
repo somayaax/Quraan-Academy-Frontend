@@ -17,7 +17,7 @@ export class RecordedCourseCategoryService {
 
     getRecordedCourseCategoriesPaginated(params?: any): Observable<any> {
         params.type = params.type || ""
-        let url = `${this.domain}/admin/category/all?page=${params.page}&type=${params.type}`;
+        let url = `${this.domain}/admin/category/all?page=${params.page}&type=${params.type}&limit=${params.limit}`;
         return this.http.get(url).pipe(catchError(this.handleError));
     }
     getRecordedCourseCategoriesNotPaginated(params?: any): Observable<any> {

@@ -13,15 +13,36 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { EditAnswerModalComponent } from './components/edit-answer-modal/edit-answer-modal.component';
-
+import { MyCoursesComponent } from './components/my-courses/my-courses.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCardModule } from '@angular/material/card';
 @NgModule({
-  declarations: [ScheduleComponent, TeacherCardComponent, QuestionsComponent, QuestionComponent, EditAnswerModalComponent],
-  imports: [CommonModule, TeacherRoutingModule, FormsModule, MatIconModule,
+  declarations: [
+    ScheduleComponent,
+    TeacherCardComponent,
+    QuestionsComponent,
+    QuestionComponent,
+    EditAnswerModalComponent,
+    MyCoursesComponent,
+  ],
+  imports: [
+    CommonModule,
+    TeacherRoutingModule,
+    FormsModule,
+    MatIconModule,
     MatDialogModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatCardModule,
   ],
 })
-export class TeacherModule { }
+export class TeacherModule {}

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RecordedDetailsService } from 'src/app/services/recorded-details.service';
+import { RecordedCoursesService } from 'src/app/services/recorded-courses.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,8 +9,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RecordedDeatailsComponent {
 
+  chapters= [];
   courseId:string='';
-  constructor(private _recordedDetalis:RecordedDetailsService, private route: ActivatedRoute){}
+  constructor(private _recordedDetalis:RecordedCoursesService, private route: ActivatedRoute){}
 
   ngOnInit(){
     this.courseId =  this.route.snapshot.paramMap.get('id') ?? '';
@@ -21,9 +22,9 @@ export class RecordedDeatailsComponent {
     this._recordedDetalis.getChaptersOfRecordedCourse(this.courseId).subscribe({
       next: (res: any) => {
         if (res.status === 200) {
-          // this.recordedCourses = res.body.docs;
-          // this.hasNextPage = res.body.hasNextPage;
-          // this.hasPrevPage = res.body.hasPrevPage;
+          this.chapters = res.body;
+          console.log(this.chapters);
+          
         }
       },
       error: (err) => {
