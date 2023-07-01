@@ -1,46 +1,159 @@
-.custom-card {
-  width: 300px;
-  margin: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #f5f5f5;
+.divHeading h1 {
+  font-size: 35px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-shadow: #c3a668;
+  line-height: 1.5em;
+  padding-bottom: 15px;
+  position: relative;
+  color: #c3a668;
+}
+.divHeading h1:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 5px;
+  width: 55px;
+  background-color: #5b2d1e;
+}
+.divHeading h1:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  height: 1px;
+  width: 95%;
+  max-width: 255px;
+  background-color: #5b2d1e;
+}
+.page {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+.table-area {
+  width: 90%;
+  margin: 1vw;
 }
 
-.custom-card .card-title {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #333;
+.card-container {
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  margin-top: 10px;
+  padding: 10px;
+  gap: 4rem;
+  justify-content: center;
 }
 
-.custom-card .card-text {
-  font-size: 16px;
-  margin-bottom: 5px;
-  color: #666;
-}
+.card {
+  margin: 5px;
+  /* flex-basis: 33.33%; */
+  padding: 15px;
+  /* width: 300px; */
+  background-image: url("https://t4.ftcdn.net/jpg/02/35/67/09/360_F_235670941_gXsJag1A6IKWnMaFvqIfH8pPnee1mQNI.jpg");
 
-.custom-card .card-key {
-  color: #1e1b1a;
-  font-weight: bold;
-}
-
-.custom-card .card-value {
-  color: #419ae3; 
-}
-
-.custom-card .btn {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 10px;
+  /* height: 320px; */
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 10px;
+  position: relative;
+  background-size: cover;
+  z-index: 0;
+  transition: all .5s ease-in-out;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  perspective: 500px;
 }
 
-.custom-card .btn:hover {
-  background-color: #45a049;
+
+.card:hover {
+  box-shadow: #b5b3b3 0px 10px 20px;
+  transition: all .5s ease-in-out;
+  transform: translateZ(200px);
+}
+
+.card::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.041);
+}
+.price {
+  color: #5b2d1e;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 5px;
+}
+hr {
+  border-color: gray;
+  border-width: 1px;
+  height: 1px;
+}
+.card-actions {
+  padding: 1px;
+}
+.enrollBtn {
+  background-color: #c3a668;
+  color: #5b2d1e;
+  margin-left: 75px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  transition: all .5s ease-in-out;
+}
+
+.enrollBtn:hover {
+  text-shadow: 1px 1px 1px  #675838;
+  transition: all .5s ease-in-out;
+}
+.card-content {
+  width: 280px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /* height: 230px; */
+  padding: 15px;
+}
+.card-header {
+  padding: 6px;
+  margin-bottom: 12px;
+  height: 50px;
+  background-color: #c0ad84;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+
+.course-name {
+  font-size: 27px;
+  color: #f4ede4;
+  text-align: center;
+}
+.course-description {
+  margin-top: 2px;
+}
+strong {
+  color: #5b2d1e;
+  font-size: 15px;
+}
+.read-more {
+  cursor: pointer;
+}
+.bubble {
+  position: absolute;
+  top: 5;
+  left: 2%;
+  border-radius: 10px;
+  width: 250px;
+  padding: 20px;
+  background-color: #f4ede4;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.description-full {
+  margin: 0;
 }
 
 .page-link {
@@ -50,11 +163,11 @@
 }
 
 .page-link:hover {
-  color: #fff; 
-  background-color: #000; 
+  color: #fff; /* Change the text color on hover */
+  background-color: #000; /* Change the background color on hover */
 }
 
 .page-link:active {
-  color: #ff0000; 
-  background-color: #999999; 
+  color: #ff0000; /* Change the text color when clicked */
+  background-color: #999999; /* Change the background color when clicked */
 }
