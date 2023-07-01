@@ -1,7 +1,15 @@
 <div class="d-flex justify-content-between page">
     <app-admin-sidebar></app-admin-sidebar>
     <div class="table-area container-fluid">
-
+        <div class="d-flex flex-wrap">
+            <div class="form-group m-2">
+                <label for="level-dropdown">Category</label>
+                <select class="form-control" id="level-dropdown" [(ngModel)]="categoryID" (change)="getQuestions()">
+                    <option value="">All</option>
+                    <option *ngFor="let cat of categories" [value]="cat._id">{{cat.name}}</option>                 
+                </select>
+            </div>
+          </div>
         <ng-container>
         <div class="row text-left">
           <ng-container>

@@ -21,16 +21,16 @@ export class ListQuestionsComponent implements OnInit {
 
   ngOnInit() {
     this.getQuestions()
-    // this._QAService.getCategories().subscribe({
-    //   next: (res: any) => {
-    //     if (res.message === 'success') {
-    //       this.categories = res.data;
-    //     }
-    //   },
-    //   error: (err) => {
-    //     console.log(err);
-    //   }
-    // })
+    this._QAService.getCategories().subscribe({
+      next: (res: any) => {
+        if (res.message === 'success') {
+          this.categories = res.data;
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
   getQuestions(): void {

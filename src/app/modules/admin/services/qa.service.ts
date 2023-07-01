@@ -23,4 +23,9 @@ export class QAService {
       `${currentDomain}/admin/question/${id}/remove/answer`,{}
     )
   }
+  getCategories(): Observable<any> {
+    return this._httpClient.get(
+      `${currentDomain}/question/category`
+    )
+  }
 }
