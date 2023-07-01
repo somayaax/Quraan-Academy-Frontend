@@ -39,4 +39,9 @@ export class QAService {
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     )
   }
+  getCategoriesNotPaginated(params?: any): Observable<any> {
+    params.type = params.type || ""
+    let url = `${currentDomain}/admin/category/allCategories?type=${params.type}`;
+    return this._httpClient.get(url);
+}
 }
