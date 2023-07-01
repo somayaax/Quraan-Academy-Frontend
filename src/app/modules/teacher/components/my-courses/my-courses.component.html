@@ -99,6 +99,30 @@
           </mat-card>
         </div>
       </div>
+      <nav aria-label="Page navigation example" *ngIf="courses.length">
+        <ul class="pagination justify-content-center mt-4">
+          <li class="page-item">
+            <a
+              class="page-link"
+              (click)="prevPage()"
+              [ngClass]="{ disabled: !hasPrevPage }"
+            >
+              Previous</a
+            >
+          </li>
+          <li class="page-item">
+            <a class="page-link">{{ currentPage }}</a>
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              (click)="nextPage()"
+              [ngClass]="{ disabled: !hasNextPage }"
+              >Next</a
+            >
+          </li>
+        </ul>
+      </nav>
     </ng-container>
   </div>
 </div>

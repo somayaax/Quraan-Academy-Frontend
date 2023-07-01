@@ -31,8 +31,6 @@ export class TeacherService {
     let url = `${this.domain}/course/?page=${params.page}`;
 
     params.teacher = this.auth.getDecodedToken().id;
-    console.log(params.teacher);
-    console.log('HEllo' + this.auth.getDecodedToken());
     url += `&teacher=${params.teacher}`;
     if (params && params.level) {
       url += `&level=${params.level}`;
