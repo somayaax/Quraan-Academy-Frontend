@@ -21,16 +21,7 @@ export class ListQuestionsComponent implements OnInit {
 
   ngOnInit() {
     this.getQuestions()
-    this._QAService.getCategories().subscribe({
-      next: (res: any) => {
-        if (res.message === 'success') {
-          this.categories = res.data;
-        }
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    })
+    this.getCategories()
   }
 
   getQuestions(): void {
@@ -49,6 +40,26 @@ export class ListQuestionsComponent implements OnInit {
       }
     });
   }
+
+  getCategories(): void {
+    let params = {
+      type: 'question'
+    }
+    this._QAService.getCategoriesNotPaginated(params).subscribe({
+      next: (data) => {
+        this.categories = data;
+      },
+      error: (error: any) => {
+        let {
+          error: { message },
+        } = error;
+        if (!message) message = error.error.error;
+        console.log(message);
+        this.toastr.error(`${message}`, "Error");
+      },
+    });
+  }
+
   nextPage() {
     if (this.pageInfo.hasNextPage) {
       this.currentPage++;
@@ -62,55 +73,55 @@ export class ListQuestionsComponent implements OnInit {
     }
   }
 
-  
+
   delQuestion(id: any) {
     swal.fire(swalOptions.deleteQuestionOptions).then((result) => {
-        if (result.value) {
-            this._QAService.deleteQuestion(id).subscribe({
-                next: (data) => {
-                    this.getQuestions();
-                    this.toastr.success(
-                        `Question deleted successfully`,
-                        "Success"
-                    );
-                },
-                error: (error: any) => {
-                  console.log(error);
-                  
-                  let {
-                        error: { message },
-                    } = error;
-                    if (!message) message = error.error.error;
-                    console.log(message);
-                    this.toastr.error(`${message}`, "Error");
-                },
-            });
-        }
+      if (result.value) {
+        this._QAService.deleteQuestion(id).subscribe({
+          next: (data) => {
+            this.getQuestions();
+            this.toastr.success(
+              `Question deleted successfully`,
+              "Success"
+            );
+          },
+          error: (error: any) => {
+            console.log(error);
+
+            let {
+              error: { message },
+            } = error;
+            if (!message) message = error.error.error;
+            console.log(message);
+            this.toastr.error(`${message}`, "Error");
+          },
+        });
+      }
     });
-}
+  }
   delAnswer(id: any) {
     swal.fire(swalOptions.deleteAnswerOptions).then((result) => {
-        if (result.value) {
-            this._QAService.deleteAnswer(id).subscribe({
-                next: (data) => {
-                    this.getQuestions();
-                    this.toastr.success(
-                        `Answer deleted successfully`,
-                        "Success"
-                    );
-                },
-                error: (error: any) => {
-                  console.log(error);
-                  
-                  let {
-                        error: { message },
-                    } = error;
-                    if (!message) message = error.error.error;
-                    console.log(message);
-                    this.toastr.error(`${message}`, "Error");
-                },
-            });
-        }
+      if (result.value) {
+        this._QAService.deleteAnswer(id).subscribe({
+          next: (data) => {
+            this.getQuestions();
+            this.toastr.success(
+              `Answer deleted successfully`,
+              "Success"
+            );
+          },
+          error: (error: any) => {
+            console.log(error);
+
+            let {
+              error: { message },
+            } = error;
+            if (!message) message = error.error.error;
+            console.log(message);
+            this.toastr.error(`${message}`, "Error");
+          },
+        });
+      }
     });
-}
+  }
 }

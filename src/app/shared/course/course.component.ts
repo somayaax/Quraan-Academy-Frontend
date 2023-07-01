@@ -54,6 +54,7 @@ export class CourseComponent implements OnInit {
         this.teachers = data.map((teacher: any, index: number) => ({
           ...teacher,
           id: index + 1,
+          showBubble: false,
         }));
       },
     });
@@ -63,6 +64,9 @@ export class CourseComponent implements OnInit {
     this.currentPage = event.pageIndex + 1;
     this.pageSize = event.pageSize;
     this.getCourses();
+  }
+  showBubble(course: courseElement) {
+    course.showBubble = !course.showBubble;
   }
 }
 
@@ -82,4 +86,5 @@ export interface courseElement {
     firstName: string;
     lastName: string;
   };
+  showBubble: boolean;
 }
