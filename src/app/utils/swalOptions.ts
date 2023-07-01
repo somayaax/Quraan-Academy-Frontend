@@ -64,6 +64,15 @@ const deleteQuestionOptions: SweetAlertOptions = {
   },
   confirmButtonText: "Yes, delete it",
 };
+const deleteAnswerOptions: SweetAlertOptions = {
+  title: "Are you sure you want to delete this answer?",
+  showCancelButton: true,
+  icon: "warning",
+  customClass: {
+      confirmButton: "bg-danger",
+  },
+  confirmButtonText: "Yes, delete it",
+};
 export default {
     deleteCourseOptions,
     deleteRecordedCourseOptions,
@@ -71,5 +80,6 @@ export default {
     deleteCategoryOptions,
     deleteChapterOptions,
     deleteStudentOptions,
-    deleteQuestionOptions
+    deleteQuestionOptions,
+    deleteAnswerOptions
 };

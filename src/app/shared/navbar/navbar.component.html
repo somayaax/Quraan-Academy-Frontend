@@ -36,6 +36,16 @@
             <a
               class="nav-link"
               aria-current="page"
+              routerLink="courses"
+              routerLinkActive="active"
+            >
+              Courses</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              aria-current="page"
               routerLink="register"
               routerLinkActive="active"
               >Register</a
@@ -63,15 +73,24 @@
               >Home</a
             >
           </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              aria-current="page"
+              routerLink="courses"
+              routerLinkActive="active"
+            >
+              Courses</a
+            >
+          </li>
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
-              href="#"
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              Teacher
+              Questions
             </a>
             <ul class="dropdown-menu">
               <li>
@@ -90,7 +109,77 @@
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
-          <li class="nav-item" *ngIf="loggedIn">
+          <!-- <li class="nav-item">
+            <a class="nav-link" aria-current="page" routerLink="student/questions"
+              routerLinkActive="active">Questions</a>
+          </li> -->
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              aria-current="page"
+              routerLink="home"
+              (click)="logOut()"
+              >Logout</a
+            >
+          </li>
+        </ul>
+      </ng-container>
+      <ng-container *ngIf="loggedIn && role === 'teacher'">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              aria-current="page"
+              routerLink="home"
+              routerLinkActive="active"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              aria-current="page"
+              routerLink="courses"
+              routerLinkActive="active"
+              >Courses</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              aria-current="page"
+              routerLink="/teacher/schedule"
+              routerLinkActive="active"
+              >My Schedule
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Questions
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" routerLink="questions"
+                  >All Questions</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="teacher/questions"
+                  >My Answers</a
+                >
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
             <a
               class="nav-link"
               aria-current="page"

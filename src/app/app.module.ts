@@ -16,6 +16,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { QuestionsComponent } from './shared/questions/questions.component';
 import { QuestionComponent } from './shared/question/question.component';
 import { RecordedCoursesComponent } from './shared/recorded-courses/recorded-courses.component';
+import { MatIconModule } from '@angular/material/icon';
+import { CourseComponent } from './shared/course/course.component';
 
 
 @NgModule({
@@ -30,6 +32,7 @@ import { RecordedCoursesComponent } from './shared/recorded-courses/recorded-cou
     QuestionsComponent,
     QuestionComponent,
     RecordedCoursesComponent,
+    CourseComponent,
 
   ],
   imports: [
@@ -40,6 +43,7 @@ import { RecordedCoursesComponent } from './shared/recorded-courses/recorded-cou
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatIconModule,
     ToastrModule.forRoot(),
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],

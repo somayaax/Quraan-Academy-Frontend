@@ -4,7 +4,7 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #93938b;
+  background-color: #f5f5f5;
 }
 
 .custom-card .card-title {
@@ -25,7 +25,7 @@
 }
 
 .custom-card .card-value {
-  color: #e35f41; 
+  color: #419ae3; 
 }
 
 .custom-card .btn {

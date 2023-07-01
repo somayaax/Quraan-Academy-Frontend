@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Edit Question</h2>
+<mat-dialog-content class="mat-typography bg">
+    <div class="m-3 color">
+        <form class="form" [formGroup]="answerForm">
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field class="custom-field">
+                        <input class="form-control" matInput placeholder="answer" formControlName="answer" />
+                        <mat-error *ngIf="answerForm.get('answer')?.errors != null &&
+                         answerForm.get('answer')?.touched">
+                            Answer cannot be empty.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="modal-buttons mt-3">
+                <button mat-raised-button type="submit" [disabled]="answerForm.invalid" class="add-course-btn"
+                    (click)="editAnswer()">
+                    Update
+                </button>
+                <button mat-raised-button mat-dialog-close class="mx-2">Cancel</button>
+            </div>
+        </form>
+    </div>
+</mat-dialog-content>
