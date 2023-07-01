@@ -49,12 +49,7 @@
       *matRowDef="let course; columns: ['name', 'level', 'teacher', 'price']"
     ></tr>
   </table> -->
-    <!-- <mat-paginator
-    [length]="courses.length"
-    [pageSize]="pageSize"
-    [pageIndex]="currentPage - 1"
-    (page)="onPageChanged($event)"
-  ></mat-paginator> -->
+
     <ng-container>
       <div class="card-container d-flex flex-wrap">
         <div *ngFor="let course of courses" class="card">
