@@ -75,7 +75,10 @@ export class ListRecordedCourseComponent implements OnInit {
       this.getRecordedCourses();
   }
     getCategories(): void {
-        this.category.getRecordedCourseCategoriesNotPaginated().subscribe({
+        let params = {
+            type: 'recordedCourse'
+        }
+        this.category.getRecordedCourseCategoriesNotPaginated(params).subscribe({
             next: (data) => {
                 this.categories = data;
             },
@@ -145,4 +148,5 @@ export interface categoryElement {
     id?: number;
     _id?: string;
     name: string;
+    type?: string;
 }

@@ -39,7 +39,12 @@ export class AddRecordedCourseComponent implements OnInit{
   }
 
   getCategories(): void {
-    this.category.getRecordedCourseCategoriesNotPaginated().subscribe({
+    let params = {
+      type: 'recordedCourse'
+    }
+    console.log(params);
+    this.category.getRecordedCourseCategoriesNotPaginated(params).subscribe({
+      
       next: (data) => {
         this.categories = data;
       },

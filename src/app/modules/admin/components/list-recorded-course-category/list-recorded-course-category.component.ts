@@ -17,7 +17,7 @@ export class ListRecordedCourseCategoryComponent implements OnInit {
     page: number = 1;
     categories: categoryElement[] = [];
     dialogConfig = new MatDialogConfig();
-
+    type: string = '';
     constructor(
         private category: RecordedCourseCategoryService,
         private toastr: ToastrService,
@@ -31,10 +31,11 @@ export class ListRecordedCourseCategoryComponent implements OnInit {
     getCategories(): void {
         const params = {
             page: this.page,
+            type: this.type
         };
         this.category.getRecordedCourseCategoriesPaginated(params).subscribe({
             next: (data) => {
-                this.categories = data.map(
+                this.categories = data.docs.map(
                     (category: categoryElement, index: number) => ({
                         ...category,
                         id: index + 1,

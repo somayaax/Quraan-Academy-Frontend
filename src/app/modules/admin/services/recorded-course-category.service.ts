@@ -16,20 +16,23 @@ export class RecordedCourseCategoryService {
     }
 
     getRecordedCourseCategoriesPaginated(params?: any): Observable<any> {
-        let url = `${this.domain}/admin/recordedCourseCategory/getAllRecordedCourseCategory?page=${params.page}`;
+        params.type = params.type || ""
+        let url = `${this.domain}/admin/category/all?page=${params.page}&type=${params.type}`;
         return this.http.get(url).pipe(catchError(this.handleError));
     }
-    getRecordedCourseCategoriesNotPaginated(): Observable<any> {
-        let url = `${this.domain}/admin/recordedCourseCategory/allCategories`;
+    getRecordedCourseCategoriesNotPaginated(params?: any): Observable<any> {
+        params.type = params.type || ""
+        let url = `${this.domain}/admin/category/allCategories?type=${params.type}`;
         return this.http.get(url).pipe(catchError(this.handleError));
     }
 
     addRecordedCourseCategory(category: any): Observable<any> {
         const formData = {
             name: category["name"],
+            type: category["type"],
         };
         return this.http
-            .post(`${this.domain}/admin/recordedCourseCategory/add`, formData)
+            .post(`${this.domain}/admin/category/add`, formData)
             .pipe(catchError(this.handleError));
     }
 
@@ -39,20 +42,20 @@ export class RecordedCourseCategoryService {
         };
         return this.http
             .patch(
-                `${this.domain}/admin/recordedCourseCategory/${id}`,
+                `${this.domain}/admin/category/${id}`,
                 formData
             )
             .pipe(catchError(this.handleError));
     }
     getCategoryById(id: string): Observable<any> {
         return this.http
-            .get(`${this.domain}/admin/recordedCourseCategory/${id}/details`)
+            .get(`${this.domain}/admin/category/${id}/details`)
             .pipe(catchError(this.handleError));
     }
 
     deleteCategory(id: string): Observable<any> {
         return this.http
-            .delete(`${this.domain}/admin/recordedCourseCategory/${id}`)
+            .delete(`${this.domain}/admin/category/${id}`)
             .pipe(catchError(this.handleError));
     }
 }
