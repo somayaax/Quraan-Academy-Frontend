@@ -10,13 +10,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { EditQuestionModalComponent } from './components/edit-question-modal/edit-question-modal.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { RecourdedCourseComponent } from './components/recourded-course/recourded-course.component';
+import { RecourdedCoursesComponent } from './components/recourded-courses/recourded-courses.component';
 
 
 @NgModule({
   declarations: [
     QuestionsComponent,
     QuestionComponent,
-    EditQuestionModalComponent
+    EditQuestionModalComponent,
+    RecourdedCourseComponent,
+    RecourdedCoursesComponent
   ],
   imports: [
     CommonModule,

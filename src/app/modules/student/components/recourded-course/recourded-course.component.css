@@ -1,0 +1,19 @@
+.course-container {
+    width: 50%;
+}
+
+.course {
+    color: #af9068;
+    text-decoration: none;
+}
+
+.card {
+    width: 100%;
+    background-image: url("../../../../../assets/bg/quraanCard.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.card-body {
+    width: 100%;
+    background-color: transparent;
+}
