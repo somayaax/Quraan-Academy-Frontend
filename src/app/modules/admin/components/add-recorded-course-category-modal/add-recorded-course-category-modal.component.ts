@@ -19,6 +19,7 @@ export class AddRecordedCourseCategoryModalComponent implements OnInit {
     ) {
         this.categoryForm = this.fb.group({
             name: ["", [Validators.required, , this.trimValidator]],
+            type: ["", [Validators.required, , this.trimValidator]],
         });
     }
     trimValidator(control: any) {
