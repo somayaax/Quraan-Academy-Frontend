@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CourseService } from 'src/app/services/course.service';
+import { TeacherService } from '../../services/teacher.service';
 
 @Component({
   selector: 'app-my-courses',
@@ -11,8 +11,8 @@ export class MyCoursesComponent {
   currentPage: number = 1;
   pageSize: number = 6;
   selectedLevel: string = 'All';
-  constructor(private course: CourseService) {
-    this.course.buttonClicked.subscribe(() => {
+  constructor(private teacher: TeacherService) {
+    this.teacher.buttonClicked.subscribe(() => {
       this.getCourses();
     });
   }
@@ -27,7 +27,7 @@ export class MyCoursesComponent {
           ? this.selectedLevel.toLocaleLowerCase()
           : null,
     };
-    this.course.getCourses(params).subscribe({
+    this.teacher.getTeacherCourses(params).subscribe({
       next: (data: any) => {
         this.courses = data.map((course: any, index: number) => ({
           ...course,
