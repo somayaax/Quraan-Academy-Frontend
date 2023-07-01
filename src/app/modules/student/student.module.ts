@@ -15,6 +15,8 @@ import { RecourdedCoursesComponent } from './components/recourded-courses/recour
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { AskQuestionModalComponent } from './components/ask-question-modal/ask-question-modal.component';
+import { ChapterComponent } from './components/chapter/chapter.component';
+import { ChaptersComponent } from './components/chapters/chapters.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { AskQuestionModalComponent } from './components/ask-question-modal/ask-q
     EditQuestionModalComponent,
     RecourdedCourseComponent,
     RecourdedCoursesComponent,
-    AskQuestionModalComponent
+    AskQuestionModalComponent,
+    ChapterComponent,
+    ChaptersComponent
   ],
   imports: [
     CommonModule,
