@@ -38,44 +38,61 @@
 
     <ng-container>
       <div class="card-container d-flex flex-wrap">
-        <div *ngFor="let course of courses" class="card">
-          <mat-card>
-            <mat-card-header class="card-header">
-              <mat-card-title class="course-name">{{
-                course.name
-              }}</mat-card-title>
-            </mat-card-header>
-            <mat-card-content class="card-content">
-              <p class="course-description">
-                {{ course.description.split(" ").slice(0, 4).join(" ") + "..."
-                }}<a class="read-more" (click)="showBubble(course)">See more</a>
-              </p>
+        <div *ngFor="let course of courses">
+          <div class="card">
+            <mat-card>
+              <mat-card-header class="card-header">
+                <mat-card-title class="course-name">{{
+                  course.name
+                }}</mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="card-content">
+                <p class="course-description">
+                  {{
+                    course.description.split(" ").slice(0, 4).join(" ") + "..."
+                  }}<a class="read-more" (click)="showBubble(course)"
+                    >See more</a
+                  >
+                </p>
 
-              <div class="bubble" *ngIf="course.showBubble">
-                <p class="description-full">{{ course.description }}</p>
-              </div>
-              <p>
-                <strong>Level:</strong>
-                {{ course.level }}
-              </p>
-              <p>
-                <strong>Days:</strong>
-                {{ course.daysOfWeek }}
-              </p>
-              <p>
-                <strong>Teacher:</strong>
-                {{ course.teacher.firstName + " " + course.teacher.lastName }}
-              </p>
+                <div class="bubble" *ngIf="course.showBubble">
+                  <p class="description-full">{{ course.description }}</p>
+                </div>
+                <p>
+                  <strong>Level:</strong>
+                  {{ course.level }}
+                </p>
+                <p>
+                  <strong>Days:</strong>
+                  {{ course.daysOfWeek }}
+                </p>
+                <p>
+                  <strong>Teacher:</strong>
+                  {{ course.teacher.firstName + " " + course.teacher.lastName }}
+                </p>
+                <p>
+                  <strong>Start Date :</strong>
+                  {{ getDate(course.startDate) }}
+                </p>
+                <p>
+                  <strong>End Date :</strong>
+                  {{ getDate(course.endDate) }}
+                </p>
 
-              <hr />
-              <mat-card-actions class="card-actions">
-                <p class="price">{{ course.price + " " + "LE" }}</p>
-                <button *ngIf="role != 'teacher'" class="enrollBtn btn" (click)="enrollCourse(course._id,role)" >
-                  Enroll Now
-                </button>
-              </mat-card-actions>
-            </mat-card-content>
-          </mat-card>
+                <hr />
+                <mat-card-actions class="card-actions">
+                  <p class="price">{{ course.price + " " + "LE" }}</p>
+                  <button
+                    *ngIf="role != 'teacher'"
+                    class="enrollBtn btn"
+                    (click)="enrollCourse(course._id, role)"
+                  >
+                    Enroll Now
+                  </button>
+                </mat-card-actions>
+              </mat-card-content>
+            </mat-card>
+          </div>
         </div>
       </div>
       <nav aria-label="Page navigation example" *ngIf="courses.length">

@@ -17,7 +17,7 @@ export class CourseService {
   }
 
   getCourses(params?: any): Observable<any> {
-    let url = `${this.domain}/course/?page=${params.page}`;
+    let url = `${this.domain}/course/?page=${params.page}&filter=upcoming`;
     if (params && params.teacher) {
       url += `&teacher=${params.teacher}`;
     }
