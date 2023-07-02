@@ -70,7 +70,7 @@
               <hr />
               <mat-card-actions class="card-actions">
                 <p class="price">{{ course.price + " " + "LE" }}</p>
-                <button *ngIf="role != 'teacher'" class="enrollBtn btn">
+                <button *ngIf="role != 'teacher'" class="enrollBtn btn" (click)="enrollCourse(course._id,role)" >
                   Enroll Now
                 </button>
               </mat-card-actions>

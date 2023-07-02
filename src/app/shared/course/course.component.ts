@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { CourseService } from 'src/app/services/course.service';
+import { RecordedCoursesService } from 'src/app/services/recorded-courses.service';
+import { ToastrService } from "ngx-toastr";
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.css'],
 })
+
 export class CourseComponent implements OnInit {
   courses: courseElement[] = [];
   teachers: any[] = [];
@@ -19,7 +24,7 @@ export class CourseComponent implements OnInit {
   // role = none -> Navigate to login
   // role = student -> Navigate to payment
   // role = teacher -> No button
-  constructor(private course: CourseService, auth: AuthService) {
+  constructor(private course: CourseService, auth: AuthService, private _RecordedCoursesService: RecordedCoursesService, private toastr: ToastrService, private router: Router) {
     this.course.buttonClicked.subscribe(() => {
       this.getCourses();
     });
@@ -89,10 +94,31 @@ export class CourseComponent implements OnInit {
       this.getCourses();
     }
   }
+
+  enrollCourse(id: string, role: string) {
+    if (role != 'student') {
+      this.router.navigate(['/login/user']);
+    }
+    else {
+      this._RecordedCoursesService.enrollCourse(id).subscribe({
+        next: (res: any) => {
+          if (res.status === 200) {
+            console.log(res);
+            window.location.href = res.body;
+
+          }
+        },
+        error: (err) => {
+          this.toastr.error(`${err.error.error}`);
+        }
+      });
+    }
+
+  }
 }
 export interface courseElement {
   id?: number;
-  _id?: string;
+  _id: string;
   name: string;
   level: string;
   description: string;
