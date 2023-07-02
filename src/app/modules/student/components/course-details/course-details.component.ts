@@ -33,7 +33,7 @@ export class CourseDetailsComponent implements OnInit {
         this.course = data;
         this.isLoading = false;
       },
-      error: (error: any) => {        
+      error: (error: any) => {
         if (error.status === 404) {
           this.toastr.error(`${error.error.error}`, "Error");
           this._Router.navigate(['/teacher/courses'])
@@ -45,12 +45,21 @@ export class CourseDetailsComponent implements OnInit {
       },
     })
   }
-  formatDate(dateStr:string){
-    const date = new Date(dateStr);    
+  formatDate(dateStr: string) {
+    const date = new Date(dateStr);
     // const formattedDate = new Intl.DateTimeFormat("ar-EG").format(date);
     const formattedDate = new Intl.DateTimeFormat("en-GB").format(date);
     return formattedDate;
-    
+
+  }
+  hasSessionEnded(session: any): boolean {
+    const sessionDate = new Date(session.date);
+    const sessionTime = session.startTime;
+    sessionDate.setHours(Number(sessionTime.split(':')[0]));
+    sessionDate.setMinutes(Number(sessionTime.split(':')[1]));
+    const today = new Date()
+
+    return (today > sessionDate);
   }
 }
 

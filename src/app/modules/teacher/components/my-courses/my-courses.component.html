@@ -14,10 +14,10 @@
           (change)="getCourses()"
         >
           <option>All</option>
-          <option value="beginner">beginner</option>
-          <option value="intermediate">intermediate</option>
-          <option value="advanced">advanced</option>
-          // TODO => Add kids
+          <option value="kids">Kids</option>
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
         </select>
       </div>
     </div>
@@ -63,7 +63,12 @@
                         : course.countOfStudents + " " + "Enrolled Students"
                     }}
                   </p>
-                  <button class="enrollBtn btn" [routerLink]="'/teacher/course/' + course._id">View Course</button>
+                  <button
+                    class="enrollBtn btn"
+                    [routerLink]="'/teacher/course/' + course._id"
+                  >
+                    View Course
+                  </button>
                 </mat-card-actions>
               </div>
             </mat-card-content>
