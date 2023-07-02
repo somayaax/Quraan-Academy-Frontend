@@ -17,6 +17,7 @@ export class ChapterComponent implements OnInit {
   @Input() selectedChapter: any;
   @Input() recordedCourseId: any;
   @Input() chapters: any[] = [];
+  @Input() progress: any[] = [];
   @Output() selectedChapterChange = new EventEmitter<any>();
   safeMediaUrl: SafeResourceUrl = "";
 
@@ -30,29 +31,9 @@ export class ChapterComponent implements OnInit {
   }
 
   getNextChapter(): void {
-    console.log(this.recordedCourseId);
     this.chapter.finishChapter(this.recordedCourseId, this.selectedChapter._id).subscribe({
       next: (data) => {
         this.recordedCourse.buttonClicked.emit();
-        const currentIndex = this.chapters.indexOf(this.selectedChapter);
-        const nextIndex = currentIndex + 1;
-        if (nextIndex < this.chapters.length) {
-          const nextChapter = this.chapters[nextIndex];
-          this.selectedChapter = nextChapter;
-          this.selectedChapterChange.emit(nextChapter);
-        } else {
-          Swal.fire({
-            icon: 'success',
-            title: 'Congratulations!',
-            text: 'You have successfully completed the course.',
-            confirmButtonText: 'OK',
-            confirmButtonColor: '#c3a668',
-          }).then((result) => {
-            if (result.isConfirmed) {
-              this.router.navigate(['/student/recordedCourses']);
-            }
-          });
-        }
       },
       error: (error: any) => {
         let {
@@ -61,7 +42,35 @@ export class ChapterComponent implements OnInit {
         if (!message) message = error.error.error;
         this.toastr.error(`${message}`, "Error");
       },
-    })
+    });
+
+    const currentIndex = this.chapters.indexOf(this.selectedChapter);
+    const nextIndex = currentIndex + 1;
+    if (nextIndex < this.chapters.length) {
+      // Select the next chapter in the array
+      const nextChapter = this.chapters[nextIndex];
+      this.selectedChapter = nextChapter;
+      this.selectedChapterChange.emit(nextChapter);
+    } else {
+      // Select the first chapter not in progress
+      const allChaptersSeen = this.chapters.every(chapter => this.progress.includes(chapter._id));
+      if (allChaptersSeen) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Congratulations!',
+          text: 'You have successfully completed the course.',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#c3a668',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/student/recordedCourses']);
+          }
+        });
+      }
+      const firstChapterNotInProgess = this.chapters.find(chapter => !this.progress.includes(chapter._id));
+      this.selectedChapter = firstChapterNotInProgess;
+      this.selectedChapterChange.emit(firstChapterNotInProgess);
+    }
   }
 
   isLastChapter(): boolean {

@@ -17,6 +17,7 @@
 
   <div class="table-area container-fluid">
     <app-chapter [selectedChapter]="selectedChapter" [recordedCourseId]="recordedCourseId" [chapters]="chapters"
-      (selectedChapterChange)="onSelectedChapterChange($event)" *ngIf="selectedChapter"></app-chapter>
+      [progress]="progress" (selectedChapterChange)="onSelectedChapterChange($event)"
+      *ngIf="selectedChapter"></app-chapter>
   </div>
 </div>
