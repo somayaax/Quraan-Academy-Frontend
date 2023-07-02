@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import currentDomain from 'src/app/utils/domainUrls';
+import { AuthService } from 'src/app/services/auth.service';
 import { CourseService } from 'src/app/services/course.service';
 @Component({
   selector: 'app-course',
@@ -16,11 +15,16 @@ export class CourseComponent implements OnInit {
   pageSize: number = 6;
   hasPrevPage: boolean = false;
   hasNextPage: boolean = false;
-
-  constructor(private course: CourseService) {
+  role: string = 'none';
+  // role = none -> Navigate to login
+  // role = student -> Navigate to payment
+  // role = teacher -> No button
+  constructor(private course: CourseService, auth: AuthService) {
     this.course.buttonClicked.subscribe(() => {
       this.getCourses();
     });
+    this.role = auth.getRole();
+    console.log(this.role);
   }
 
   ngOnInit(): void {

@@ -25,6 +25,8 @@ import { MatNativeDateModule } from "@angular/material/core";
 import { MyCoursesComponent } from './components/my-courses/my-courses.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { SessionDetailsComponent } from './components/session-details/session-details.component';
+import { CourseDetailsComponent } from './components/course-details/course-details.component';
 @NgModule({
   declarations: [
     QuestionsComponent,
@@ -38,6 +40,8 @@ import { MatCardModule } from '@angular/material/card';
     ProfileComponent,
     MyCoursesComponent,
     MyCoursesComponent,
+    SessionDetailsComponent,
+    CourseDetailsComponent,
   ],
   imports: [
     CommonModule,

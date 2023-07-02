@@ -5,6 +5,8 @@ import { RecourdedCoursesComponent } from './components/recourded-courses/recour
 import { MyCoursesComponent } from './components/my-courses/my-courses.component';
 import { ChaptersComponent } from "./components/chapters/chapters.component";
 import { ProfileComponent } from "./components/profile/profile.component";
+import { CourseDetailsComponent } from './components/course-details/course-details.component';
+import { SessionDetailsComponent } from './components/session-details/session-details.component';
 
 const routes: Routes = [
   { path: 'questions', component: QuestionsComponent },
@@ -12,6 +14,8 @@ const routes: Routes = [
   { path: "chapters/:recordedCourseId", component: ChaptersComponent },
   { path: 'courses', component: MyCoursesComponent },
   { path: 'profile', component: ProfileComponent},
+  { path: 'course/:id', component: CourseDetailsComponent},
+  { path: 'session/:id', component: SessionDetailsComponent},
 ];
 
 @NgModule({
