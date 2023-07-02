@@ -10,7 +10,7 @@ export class TeacherService {
   domain: string = currentDomain;
   buttonClicked = new EventEmitter();
 
-  constructor(private http: HttpClient, private auth: AuthService) {}
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
   handleError(error: HttpErrorResponse) {
     return throwError(() => error);
@@ -37,4 +37,18 @@ export class TeacherService {
     }
     return this.http.get(url).pipe(catchError(this.handleError));
   }
+  getCourseDetails(id: string): Observable<any> {
+    let url = `${this.domain}/teacher/course/${id}`;
+    return this.http.get(url).pipe(catchError(this.handleError));
+  }
+  getSessionDetails(id: string): Observable<any> {
+    let url = `${this.domain}/teacher/session/${id}`;
+    return this.http.get(url).pipe(catchError(this.handleError));
+  }
+  createMeeting(id: string): Observable<any> {
+    let url = `${this.domain}/session/create-meeting/${id}`;
+    return this.http.get(url).pipe(catchError(this.handleError));
+  }
+
+
 }

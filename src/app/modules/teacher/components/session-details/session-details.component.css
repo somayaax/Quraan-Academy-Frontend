@@ -1,0 +1,16 @@
+h1{
+    color: #5b2d1e;
+}
+.course{
+    background-image: url(../../../../../assets/bg/bg.jpg);
+}
+.course h2{
+    color: #c3a668;
+    text-shadow: #c3a668;
+
+}
+
+.meeting-btn{
+    color: #fff;
+    background-color: #5b2d1e;
+}

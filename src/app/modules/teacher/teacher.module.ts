@@ -17,6 +17,8 @@ import { MyCoursesComponent } from './components/my-courses/my-courses.component
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { CourseDetailsComponent } from './components/course-details/course-details.component';
+import { SessionDetailsComponent } from './components/session-details/session-details.component';
 @NgModule({
   declarations: [
     ScheduleComponent,
@@ -25,6 +27,8 @@ import { MatCardModule } from '@angular/material/card';
     QuestionComponent,
     EditAnswerModalComponent,
     MyCoursesComponent,
+    CourseDetailsComponent,
+    SessionDetailsComponent,
   ],
   imports: [
     CommonModule,
