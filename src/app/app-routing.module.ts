@@ -16,9 +16,7 @@ const routes: Routes = [
   { path: 'questions', component: QuestionsComponent },
   { path: 'recordedCourses', component: RecordedCoursesComponent },
   { path: 'recordedCourses/:id', component:RecordedDeatailsComponent },
-  { path: 'courses', component: CourseComponent },
-  { path: 'course/:id/sessions', component: SessionsComponent },
-  
+  { path: 'courses', component: CourseComponent },  
 
   {
     path: 'student',

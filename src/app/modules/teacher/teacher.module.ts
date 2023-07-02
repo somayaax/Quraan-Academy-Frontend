@@ -47,8 +47,9 @@ import { MatNativeDateModule } from "@angular/material/core";
     MatInputModule,
     ReactiveFormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
 
+    MatCardModule
   ],
 })
 export class TeacherModule { }

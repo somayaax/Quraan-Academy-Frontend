@@ -63,4 +63,21 @@ export class RecordedCoursesComponent {
       this.getRecordedCourses()
     }
   }
+
+  enrollCourse(event: Event,id:string) {
+    event.stopPropagation();
+    this._RecordedCoursesService.enrollCourse(id,'true').subscribe({
+      next: (res: any) => {
+        if (res.status === 200) {
+          console.log(res);
+          window.location.href = res.body;
+          
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
 }
+

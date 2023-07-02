@@ -12,6 +12,7 @@ export class RecordedDeatailsComponent {
   chapters= [];
   courseId:string='';
   course: {
+    _id: string;
     name: string;
     category: {
       name: string;
@@ -19,6 +20,7 @@ export class RecordedDeatailsComponent {
     numberOfChapters: number;
     price: number;
   } = {
+    _id: '',
     name: '',
     category: {
       name: ''
@@ -63,5 +65,19 @@ export class RecordedDeatailsComponent {
       }
     });
   }
+    enrollCourse(id:string) {
+      this._recordedDetalis.enrollCourse(id,'true').subscribe({
+        next: (res: any) => {
+          if (res.status === 200) {
+            console.log(res);
+            window.location.href = res.body;
+            
+          }
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+    }
+  }
 
-}
