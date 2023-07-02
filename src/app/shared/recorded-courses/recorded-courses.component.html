@@ -1,51 +1,68 @@
-<section class="mt-3">
-  <div class="d-flex align-items-center justify-content-center">
-    <mat-icon class="overflow-visible fs-3 me-3">book</mat-icon>
-    <h3 class="text-center fs-3 pt-3"> Recorded Courses
-    </h3>
-</div>
-  <div class="container">
-    <div class="row">
-      <div class="col-3 mt-5">
-        <div>
-          <label for="">Category</label>
-          <select class="form-select w-75" aria-label="Default select example" [(ngModel)]="category" (change)="changeCategory()">
-            <option value="">All</option>
-            <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
-          </select>
-        </div>
-      </div>
-      <div class="col-9">
-        <div class="row">
-          <div class="col-4 mt-2" *ngFor="let course of recordedCourses">
-            <div class="card custom-card">
-              <div class="card-body">
-                <h5 class="card-title">{{ course['name'] }}</h5>
-                <p class="card-text"><span class="card-key">Price: </span> <span class="card-value">{{ course['price'] }}</span></p>
-                <p class="card-text"><span class="card-key">Number Of Chapter: </span> <span class="card-value">{{ course['numberOfChapters'] }}</span></p>
-                <p class="card-text"><span class="card-key">Category: </span> <span class="card-value">{{ course['category']['name'] }}</span></p>
-                <button class="btn">Enroll Now</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div *ngIf="!recordedCourses.length" class="p-5" style="height: 80vh;">
-          <h2>
-              NO Courses YET
-          </h2>
-      </div>
-        <nav aria-label="Page navigation example" *ngIf="recordedCourses.length">
-            <ul class="pagination justify-content-center mt-4">
-                <li class="page-item">
-                    <a class="page-link" (click)="prevPage()" [ngClass]="{'disabled': !hasPrevPage}">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link"  [ngClass]="{'disabled': true}">{{currentPage}}</a></li>
-                <li class="page-item">
-                    <a class="page-link" (click)="nextPage()" [ngClass]="{'disabled': !hasNextPage}">Next</a>
-                </li>
-            </ul>
-        </nav>
+<div class="container" >
+  <div class="m-2">
+
+    <div class="divHeading">
+      <h1 class="display-4">Recorded Courses</h1>
+    </div>
+
+    <div class="d-flex flex-wrap">
+      <div class="form-group mr-2">
+        <label for="teacher-dropdown">Category</label>
+        <select
+          class="form-control"
+          id="teacher-dropdown"
+          [(ngModel)]="category"
+          (change)="changeCategory()"
+        >
+          <option [defaultSelected] value="">All</option>
+          <option *ngFor="let category of categories" [value]="category._id">
+            {{ category.name }}
+          </option>
+        </select>
       </div>
     </div>
+
+    <ng-container>
+      <div class="card-container d-flex flex-wrap">
+        <div *ngFor="let course of recordedCourses" class="card" [routerLink]="course['_id']">
+          <mat-card class="card-width">
+            <mat-card-header class="card-header">
+              <mat-card-title class="course-name">{{
+                course['name']
+              }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="card-content">
+              <p>
+                <strong>Number Of Chapters:</strong>
+                {{ course['numberOfChapters'] }}
+              </p>
+              <p>
+                <strong>Category:</strong>
+                {{ course['category']['name'] }}
+              </p>
+              <hr />
+              <mat-card-actions class="card-actions">
+                <p class="price">{{ course['price'] + " " + "LE" }}</p>
+                <button [routerLink]="['/dddddddddddd']" class="enrollBtn btn">Enroll Now</button>
+              </mat-card-actions>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </ng-container>
+
+    <nav aria-label="Page navigation example" *ngIf="recordedCourses.length">
+      <ul class="pagination justify-content-center mt-4">
+          <li class="page-item">
+              <a class="page-link" (click)="prevPage()" [ngClass]="{'disabled': !hasPrevPage}">Previous</a>
+          </li>
+          <li class="page-item"><a class="page-link"  [ngClass]="{'disabled': true}">{{currentPage}}</a></li>
+          <li class="page-item">
+              <a class="page-link" (click)="nextPage()" [ngClass]="{'disabled': !hasNextPage}">Next</a>
+          </li>
+      </ul>
+    </nav>
+
   </div>
-</section>
+</div >
+

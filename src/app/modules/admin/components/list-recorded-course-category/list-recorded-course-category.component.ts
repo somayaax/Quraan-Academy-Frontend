@@ -15,6 +15,7 @@ import swalOptions from "src/app/utils/swalOptions";
 })
 export class ListRecordedCourseCategoryComponent implements OnInit {
     page: number = 1;
+    pageInfo: any;
     categories: categoryElement[] = [];
     dialogConfig = new MatDialogConfig();
     type: string = '';
@@ -31,10 +32,12 @@ export class ListRecordedCourseCategoryComponent implements OnInit {
     getCategories(): void {
         const params = {
             page: this.page,
+            limit: 6,
             type: this.type
         };
         this.category.getRecordedCourseCategoriesPaginated(params).subscribe({
             next: (data) => {
+                this.pageInfo = data;
                 this.categories = data.docs.map(
                     (category: categoryElement, index: number) => ({
                         ...category,
@@ -53,17 +56,19 @@ export class ListRecordedCourseCategoryComponent implements OnInit {
         });
     }
 
-    prevPage() {
-        if (this.page > 1) {
-            this.page--;
-            this.getCategories();
-        }
-    }
-
+ 
     nextPage() {
-        this.page++;
-        this.getCategories();
-    }
+        if (this.pageInfo.hasNextPage) {
+          this.page++;
+          this.getCategories()
+        }
+      }
+      prevPage() {
+        if (this.pageInfo.hasPrevPage) {
+          this.page--;
+          this.getCategories()
+        }
+      }
     openAddCategoryModal(): void {
         this.dialog.open(AddRecordedCourseCategoryModalComponent, {
             width: "800px",

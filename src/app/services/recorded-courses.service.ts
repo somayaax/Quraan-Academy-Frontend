@@ -22,8 +22,19 @@ export class RecordedCoursesService {
 
   getAllRecordedCourseCategory(): Observable<any> {
     return this._httpClient.get(
-      `${currentDomain}/admin/recordedCourseCategory/allCategories`,
+      `${currentDomain}/category/all`,
       this.requestOptions)
   }
 
+  getChaptersOfRecordedCourse(courseId: string): Observable<any> {
+    return this._httpClient.get(
+      `${currentDomain}/chapters/recordedCourse/${courseId}`,
+      this.requestOptions)
+  }
+
+  getCourseById(id:string){
+    return this._httpClient.get(
+      `${currentDomain}/recordedCourses/${id}/details`,
+      this.requestOptions)
+  }
 }
