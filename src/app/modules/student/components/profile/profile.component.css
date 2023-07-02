@@ -1,0 +1,66 @@
+
+
+
+p {
+  margin-bottom: 0.5rem;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+ 
+}
+
+input[type="text"],
+input[type="email"],
+select,
+input[type="date"],
+button[type="submit"] {
+  width: 100%;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+select {
+  height: 38px;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+button[type="submit"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group hr {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: none;
+  border-bottom: 1px solid #eee;
+}
+
+.form-group form input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.form-group form input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+.form-group form input[type="date"]::-webkit-clear-button {
+  display: none;
+}

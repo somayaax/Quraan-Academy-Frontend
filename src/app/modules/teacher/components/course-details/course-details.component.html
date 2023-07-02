@@ -1,0 +1,47 @@
+<ng-container *ngIf="isLoading">
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="spinner-border" style="width: 6rem; height: 6rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="!isLoading">
+    <div class="container-card">
+        <div class="person" style="--data-color: #c3a668">
+            <h3 class="header">{{ course.name }}</h3>
+            <dl class="attributes">
+                <dt>Description</dt>
+                <dd>{{ course.description }}</dd>
+                <dt>Number Of Sessions</dt>
+                <dd>{{ course.numberOfSessions }}</dd>
+                <dt>Level</dt>
+                <dd>{{ course.level }}</dd>
+                <dt>Days</dt>
+                <dd>{{ course.daysOfWeek }}</dd>
+            </dl>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <h3 class="header">Course Sessions</h3>
+        <div class="row">
+            <div class="col-md-4 my-2 " *ngFor="let session of course.sessions; let i=index">
+                <div class="session p-4 shadow" [routerLink]="'/teacher/session/' + session._id"
+                    [queryParams]="{ sessionNum: i+1 }">
+                    <h2 class="text-center fs-3">
+                        Session {{i+1}}
+                    </h2>
+
+                    <h3 class="fw-bold">Starts At <br>
+                        {{session.startTime}} {{formatDate(session.date)}}</h3>
+                    <p *ngIf="session.progressComment" class="">Comment: {{session.progressComment}}</p>
+                    <div class="d-flex justify-content-end">
+                        <button class="custom-button border border-1">View Details</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

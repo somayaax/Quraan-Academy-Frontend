@@ -17,6 +17,9 @@ import { MatInputModule } from '@angular/material/input';
 import { AskQuestionModalComponent } from './components/ask-question-modal/ask-question-modal.component';
 import { ChapterComponent } from './components/chapter/chapter.component';
 import { ChaptersComponent } from './components/chapters/chapters.component';
+import { ProfileComponent } from './components/profile/profile.component';
+
+
 import { MyCoursesComponent } from './components/my-courses/my-courses.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
@@ -30,6 +33,7 @@ import { MatCardModule } from '@angular/material/card';
     AskQuestionModalComponent,
     ChapterComponent,
     ChaptersComponent,
+    ProfileComponent,
     MyCoursesComponent,
     MyCoursesComponent,
   ],

@@ -8,7 +8,6 @@ import { QuestionsComponent } from './shared/questions/questions.component';
 import { RecordedCoursesComponent } from './shared/recorded-courses/recorded-courses.component';
 import { CourseComponent } from './shared/course/course.component';
 import { RecordedDeatailsComponent } from './shared/recorded-deatails/recorded-deatails.component';
-import { SessionsComponent } from './shared/sessions/sessions.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -19,6 +18,7 @@ const routes: Routes = [
   { path: 'recordedCourses/:id', component:RecordedDeatailsComponent },
   { path: 'courses', component: CourseComponent },
   { path: 'course/:id/sessions', component: SessionsComponent },
+  
 
   {
     path: 'student',

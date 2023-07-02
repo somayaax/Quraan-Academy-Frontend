@@ -10,7 +10,7 @@ export class TeacherService {
   domain: string = currentDomain;
   buttonClicked = new EventEmitter();
 
-  constructor(private http: HttpClient, private auth: AuthService) {}
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
   handleError(error: HttpErrorResponse) {
     return throwError(() => error);
@@ -26,7 +26,14 @@ export class TeacherService {
 
     return this.http.get(url).pipe(catchError(this.handleError));
   }
+  updateTeacherProfile(newData: any): Observable<any> {
+    const { _id, createdAt,updatedAt,__v, ...updatedData } = newData;
+    return this.http.patch(`${this.domain}/teacher/updateprofile`,updatedData);
+  }
 
+  getTeacherProfile(): Observable<any> {
+    return this.http.get(`${this.domain}/teacher/profile`).pipe(catchError(this.handleError));}
+    
   getTeacherCourses(params?: any): Observable<any> {
     let url = `${this.domain}/course/?page=${params.page}`;
 
@@ -37,4 +44,18 @@ export class TeacherService {
     }
     return this.http.get(url).pipe(catchError(this.handleError));
   }
+  getCourseDetails(id: string): Observable<any> {
+    let url = `${this.domain}/teacher/course/${id}`;
+    return this.http.get(url).pipe(catchError(this.handleError));
+  }
+  getSessionDetails(id: string): Observable<any> {
+    let url = `${this.domain}/teacher/session/${id}`;
+    return this.http.get(url).pipe(catchError(this.handleError));
+  }
+  createMeeting(id: string): Observable<any> {
+    let url = `${this.domain}/session/create-meeting/${id}`;
+    return this.http.get(url).pipe(catchError(this.handleError));
+  }
+
+
 }

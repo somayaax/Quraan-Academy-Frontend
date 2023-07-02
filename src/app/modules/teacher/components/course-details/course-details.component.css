@@ -1,0 +1,13 @@
+@import url(../../../../shared/recorded-deatails/recorded-deatails.component.css);
+
+.session{
+    background-color: #fff;
+    cursor: pointer;
+}
+.session h2{
+    color: #c3a668;
+}
+
+.bg-session{
+    background-image: url(../../../../../assets/bg/bg.jpg);
+}

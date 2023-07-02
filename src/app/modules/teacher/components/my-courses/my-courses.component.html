@@ -63,7 +63,7 @@
                         : course.countOfStudents + " " + "Enrolled Students"
                     }}
                   </p>
-                  <button class="enrollBtn btn">View Course</button>
+                  <button class="enrollBtn btn" [routerLink]="'/teacher/course/' + course._id">View Course</button>
                 </mat-card-actions>
               </div>
             </mat-card-content>

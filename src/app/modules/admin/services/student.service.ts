@@ -25,4 +25,16 @@ export class StudentService {
     }
     return this.http.get(url).pipe(catchError(this.handleError));
   }
+
+
+  updateStudentProfile(newData: any): Observable<any> {
+    const { _id, createdAt,updatedAt,__v, ...updatedData } = newData;
+    return this.http.patch(`${this.domain}/student/updateprofile`,updatedData);
+  }
+
+  getStudentProfile(): Observable<any> {
+    return this.http.get(`${this.domain}/student/profile`).pipe(catchError(this.handleError));
+  }
+ 
+
 }

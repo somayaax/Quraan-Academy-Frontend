@@ -25,8 +25,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { RecordedDeatailsComponent } from './shared/recorded-deatails/recorded-deatails.component';
+
 import { SessionsComponent } from './shared/sessions/sessions.component';
 import { SessionDetailsComponent } from './shared/session-details/session-details.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,8 +44,6 @@ import { SessionDetailsComponent } from './shared/session-details/session-detail
     RecordedCoursesComponent,
     CourseComponent,
     RecordedDeatailsComponent,
-    SessionsComponent,
-    SessionDetailsComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -60,6 +61,7 @@ import { SessionDetailsComponent } from './shared/session-details/session-detail
     MatTableModule,
     MatPaginatorModule,
     MatCardModule,
+    MatDatepickerModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

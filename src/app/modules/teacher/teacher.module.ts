@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TeacherRoutingModule } from './teacher-routing.module';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { TeacherCardComponent } from './components/teacher-card/teacher-card.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { QuestionsComponent } from './components/questions/questions.component';
 import { QuestionComponent } from './components/question/question.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,6 +18,9 @@ import { MyCoursesComponent } from './components/my-courses/my-courses.component
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { CourseDetailsComponent } from './components/course-details/course-details.component';
+import { SessionDetailsComponent } from './components/session-details/session-details.component';
+import { ProfileComponent } from './components/profile/profile.component';
 @NgModule({
   declarations: [
     ScheduleComponent,
@@ -25,6 +29,9 @@ import { MatCardModule } from '@angular/material/card';
     QuestionComponent,
     EditAnswerModalComponent,
     MyCoursesComponent,
+    CourseDetailsComponent,
+    SessionDetailsComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -36,11 +43,7 @@ import { MatCardModule } from '@angular/material/card';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatTableModule,
-    MatCardModule,
+
   ],
 })
-export class TeacherModule {}
+export class TeacherModule { }

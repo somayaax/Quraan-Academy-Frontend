@@ -11,11 +11,11 @@ export class QAService {
 
   constructor(private _httpClient: HttpClient) { }
 
-  getCategories(): Observable<any> {
-    return this._httpClient.get(
-      `${currentDomain}/question/category`
-    )
-  }
+  getCategoriesNotPaginated(): Observable<any> {
+    let type = 'question'
+    let url = `${currentDomain}/admin/category/allCategories?type=${type}`;
+    return this._httpClient.get(url);
+}
   getTeacherAnswers(page: number, limit: number, categoryID: string, teacherID: string): Observable<any> {
     return this._httpClient.get(
       `${currentDomain}/question?page=${page}&limit=${limit}&categoryID=${categoryID}&teacherID=${teacherID}`
