@@ -26,6 +26,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { SessionsComponent } from './shared/sessions/sessions.component';
 import { SessionDetailsComponent } from './shared/session-details/session-details.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +43,7 @@ import { SessionDetailsComponent } from './shared/session-details/session-detail
     CourseComponent,
     SessionsComponent,
     SessionDetailsComponent,
+    
   ],
   imports: [
     BrowserAnimationsModule,
@@ -58,6 +61,7 @@ import { SessionDetailsComponent } from './shared/session-details/session-detail
     MatTableModule,
     MatPaginatorModule,
     MatCardModule,
+    MatDatepickerModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

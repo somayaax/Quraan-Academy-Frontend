@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AskQuestionModalComponent } from './components/ask-question-modal/ask-question-modal.component';
 import { ChapterComponent } from './components/chapter/chapter.component';
 import { ChaptersComponent } from './components/chapters/chapters.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ChaptersComponent } from './components/chapters/chapters.component';
     RecourdedCoursesComponent,
     AskQuestionModalComponent,
     ChapterComponent,
-    ChaptersComponent
+    ChaptersComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

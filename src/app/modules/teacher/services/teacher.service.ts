@@ -25,4 +25,12 @@ export class TeacherService {
 
     return this.http.get(url).pipe(catchError(this.handleError));
   }
+  updateTeacherProfile(newData: any): Observable<any> {
+    const { _id, createdAt,updatedAt,__v, ...updatedData } = newData;
+    return this.http.patch(`${this.domain}/teacher/updateprofile`,updatedData);
+  }
+
+  getTeacherProfile(): Observable<any> {
+    return this.http.get(`${this.domain}/teacher/profile`).pipe(catchError(this.handleError));
+  }
 }
