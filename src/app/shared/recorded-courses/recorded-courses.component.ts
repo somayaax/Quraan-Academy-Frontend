@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RecordedCoursesService } from 'src/app/services/recorded-courses.service';
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: 'app-recorded-courses',
@@ -15,7 +16,7 @@ export class RecordedCoursesComponent {
   currentPage: number = 1;
   hasNextPage:boolean = false;
   hasPrevPage:boolean =false;
-  constructor(private _RecordedCoursesService:RecordedCoursesService){}
+  constructor(private _RecordedCoursesService:RecordedCoursesService,private toastr: ToastrService){}
 
   ngOnInit(){
     this.getRecordedCourses();
@@ -75,7 +76,7 @@ export class RecordedCoursesComponent {
         }
       },
       error: (err) => {
-        console.log(err);
+        this.toastr.error(`${err.error.error}`);
       }
     });
   }

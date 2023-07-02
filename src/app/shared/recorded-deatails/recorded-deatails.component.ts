@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RecordedCoursesService } from 'src/app/services/recorded-courses.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: 'app-recorded-deatails',
@@ -28,7 +29,7 @@ export class RecordedDeatailsComponent {
     numberOfChapters: 0,
     price: 0
   };
-    constructor(private _recordedDetalis:RecordedCoursesService, private route: ActivatedRoute){}
+    constructor(private _recordedDetalis:RecordedCoursesService, private route: ActivatedRoute,private toastr: ToastrService){}
 
   ngOnInit(){
     this.courseId =  this.route.snapshot.paramMap.get('id') ?? '';
@@ -40,9 +41,7 @@ export class RecordedDeatailsComponent {
     this._recordedDetalis.getChaptersOfRecordedCourse(this.courseId).subscribe({
       next: (res: any) => {
         if (res.status === 200) {
-          this.chapters = res.body;
-          console.log(this.chapters);
-          
+          this.chapters = res.body;          
         }
       },
       error: (err) => {
@@ -55,9 +54,7 @@ export class RecordedDeatailsComponent {
     this._recordedDetalis.getCourseById(this.courseId).subscribe({
       next: (res: any) => {
         if (res.status === 200) {
-          this.course = res.body;
-          console.log(this.course);
-          
+          this.course = res.body;          
         }
       },
       error: (err) => {
@@ -69,13 +66,11 @@ export class RecordedDeatailsComponent {
       this._recordedDetalis.enrollCourse(id,'true').subscribe({
         next: (res: any) => {
           if (res.status === 200) {
-            console.log(res);
             window.location.href = res.body;
-            
           }
         },
         error: (err) => {
-          console.log(err);
+          this.toastr.error(`${err.error.error}`);
         }
       });
     }
