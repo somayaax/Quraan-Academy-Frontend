@@ -19,4 +19,12 @@ export class StudentService {
     let url = `${this.domain}/student/courses?page=${params.page}`;
     return this.http.get(url).pipe(catchError(this.handleError));
   }
-}
+
+  getCourseDetails(id: string): Observable<any> {
+    let url = `${this.domain}/student/course/${id}`;
+    return this.http.get(url).pipe(catchError(this.handleError));
+  }
+  getSessionDetails(id: string): Observable<any> {
+    let url = `${this.domain}/student/session/${id}`;
+    return this.http.get(url).pipe(catchError(this.handleError));
+  }}
