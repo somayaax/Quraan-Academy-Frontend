@@ -1,14 +1,8 @@
 <div class="container mt-3">
   <h1>Profile</h1>
-  <div *ngIf="teacherData">
-    <p><strong>First Name:</strong> {{ teacherData.firstName }}</p>
-    <p><strong>Last Name:</strong> {{ teacherData.lastName }}</p>
-    <p><strong>Email:</strong> {{ teacherData.email }}</p>
-    <p><strong>Gender:</strong> {{ teacherData.gender }}</p>
-    <p><strong>DOB:</strong> {{ teacherData.DOB }}</p>
-  </div>
+
   <hr>
-  <h2>Update Profile</h2>
+
   <form (ngSubmit)="updateTeacher()" #updateForm="ngForm">
     <div class="form-group">
       <label for="name">First Name:</label>
