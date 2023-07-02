@@ -1,23 +1,25 @@
 .course-container {
-    width: 50%;
+  width: 100%;
 }
 
 .course {
-    color: #af9068;
-    text-decoration: none;
+  color: #af9068;
+  text-decoration: none;
 }
 
 .card {
-    width: 100%;
-    background-image: url("../../../../../assets/bg/quraanCard.png");
-    background-size: cover;
-    background-repeat: no-repeat;
+  width: 100%;
+  background-image: url("../../../../../assets/bg/quraanCard.png");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
+
 .card-body {
-    width: 100%;
-    background-color: transparent;
+  width: 100%;
+  background-color: transparent;
 }
+
 .chapters {
-    color: #615334;
-    font-size: 1rem;
+  color: #615334;
+  font-size: 1rem;
 }
