@@ -79,9 +79,18 @@
                     </table>
                   </div>
                   <div class="pagination">
-                    <button id="prev-btn" (click)="prevPage()" [disabled]="page === 1"><i
-                        class="fas fa-chevron-left"></i> Previous</button>
-                    <button id="next-btn" (click)="nextPage()">Next <i class="fas fa-chevron-right"></i></button>
+                    <ul class="pagination justify-content-center mt-4">
+                      <li class="page-item">
+                        <a class="page-link" (click)="prevPage()" [ngClass]="{ disabled: !hasPrevPage }">
+                          Previous</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link">{{ page }}</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" (click)="nextPage()" [ngClass]="{ disabled: !hasNextPage }">Next</a>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>

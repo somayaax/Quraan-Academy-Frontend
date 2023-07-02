@@ -26,10 +26,10 @@
       <li class="admin-sidebar-item" id="profile-link">
         <a>
           <i class="fas fa-user-circle"></i>
-          <span class="admin-sidebar-admin-name">Admin Name</span>
+          <span class="admin-sidebar-admin-name">{{email}}</span>
         </a>
       </li>
-      <li class="admin-sidebar-item">
+      <li class="admin-sidebar-item" (click)="logOut()">
         <a>
           <i class="fas fa-sign-out-alt"></i>
           Logout

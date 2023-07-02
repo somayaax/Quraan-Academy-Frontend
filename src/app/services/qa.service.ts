@@ -18,7 +18,7 @@ export class QAService {
   }
   getCategoriesNotPaginated(params?: any): Observable<any> {
     params.type = params.type || ""
-    let url = `${currentDomain}/admin/category/allCategories?type=${params.type}`;
+    let url = `${currentDomain}/category/all?type=${params.type}`;
     return this._httpClient.get(url);
   }
   answerQuestion(id: string, data: any): Observable<any> {

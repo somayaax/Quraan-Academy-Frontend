@@ -32,7 +32,7 @@ export class QuestionsComponent implements OnInit {
     }
     this._QAService.getCategoriesNotPaginated(params).subscribe({
       next: (data) => {
-        this.categories = data;
+        this.categories = data.docs;
       },
       error: (error: any) => {
         let {
