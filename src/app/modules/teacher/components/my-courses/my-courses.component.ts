@@ -11,6 +11,8 @@ export class MyCoursesComponent {
   currentPage: number = 1;
   pageSize: number = 6;
   selectedLevel: string = 'All';
+  hasNextPage: boolean = false;
+  hasPrevPage: boolean = false;
   constructor(private teacher: TeacherService) {
     this.teacher.buttonClicked.subscribe(() => {
       this.getCourses();
@@ -29,15 +31,29 @@ export class MyCoursesComponent {
     };
     this.teacher.getTeacherCourses(params).subscribe({
       next: (data: any) => {
-        this.courses = data.map((course: any, index: number) => ({
+        this.courses = data.docs.map((course: any, index: number) => ({
           ...course,
           id: index + 1,
         }));
+        this.hasNextPage = data.hasNextPage;
+        this.hasPrevPage = data.hasPrevPage;
       },
     });
   }
   showBubble(course: courseElement) {
     course.showBubble = !course.showBubble;
+  }
+  nextPage() {
+    if (this.hasNextPage) {
+      this.currentPage++;
+      this.getCourses();
+    }
+  }
+  prevPage() {
+    if (this.hasPrevPage) {
+      this.currentPage--;
+      this.getCourses();
+    }
   }
 }
 export interface courseElement {

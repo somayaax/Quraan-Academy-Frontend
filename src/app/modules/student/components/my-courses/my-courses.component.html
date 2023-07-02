@@ -3,31 +3,14 @@
     <div class="divHeading">
       <h1 class="display-4">My Courses</h1>
     </div>
-    <div class="d-flex flex-wrap">
-      <div class="form-group mx-2">
-        <label for="level-dropdown">Level</label>
 
-        <select
-          class="form-control"
-          id="level-dropdown"
-          [(ngModel)]="selectedLevel"
-          (change)="getCourses()"
-        >
-          <option>All</option>
-          <option value="beginner">beginner</option>
-          <option value="intermediate">intermediate</option>
-          <option value="advanced">advanced</option>
-          // TODO => Add kids
-        </select>
-      </div>
-    </div>
     <ng-container>
       <div class="card-container d-flex flex-wrap">
         <div *ngFor="let course of courses" class="card">
-          <mat-card>
+          <mat-card [ngClass]="{ 'ended-course': hasCourseEnded(course) }">
             <mat-card-header class="card-header">
               <mat-card-title class="course-name">{{
-                course.name
+                course.courseId.name
               }}</mat-card-title>
             </mat-card-header>
 
@@ -35,35 +18,52 @@
               <div>
                 <p class="course-description">
                   {{
-                    course.description.split(" ").slice(0, 4).join(" ") + "..."
+                    course.courseId.description
+                      .split(" ")
+                      .slice(0, 4)
+                      .join(" ") + "..."
                   }}<a class="read-more" (click)="showBubble(course)"
                     >See more</a
                   >
                 </p>
 
                 <div class="bubble" *ngIf="course.showBubble">
-                  <p class="description-full">{{ course.description }}</p>
+                  <p class="description-full">
+                    {{ course.courseId.description }}
+                  </p>
                 </div>
                 <p>
                   <strong>Level:</strong>
-                  {{ course.level }}
+                  {{ course.courseId.level }}
                 </p>
                 <p>
                   <strong>Days:</strong>
-                  {{ course.daysOfWeek }}
+                  {{ course.courseId.daysOfWeek }}
+                </p>
+                <p>
+                  <strong>Teacher Comment :</strong>
+                  {{ course.teacherComment ? course.teacherComment : "None" }}
+                </p>
+                <p>
+                  <strong>
+                    {{
+                      hasCourseEnded(course)
+                        ? "Course Ended on:"
+                        : "Course will finish on:"
+                    }}</strong
+                  >
+                  {{ getDate(course.courseId.endDate) }}
                 </p>
               </div>
 
               <div>
                 <mat-card-actions class="card-actions">
-                  <p class="students mx-2">
-                    {{
-                      course.countOfStudents == 1
-                        ? course.countOfStudents + "Enrolled Student"
-                        : course.countOfStudents + " " + "Enrolled Students"
-                    }}
-                  </p>
-                  <button class="enrollBtn btn">View Course</button>
+                  <button
+                    class="enrollBtn btn"
+                    [disabled]="hasCourseEnded(course)"
+                  >
+                    View Course
+                  </button>
                 </mat-card-actions>
               </div>
             </mat-card-content>

@@ -14,6 +14,8 @@ export class CourseComponent implements OnInit {
   selectedLevel: string = 'All';
   currentPage: number = 1;
   pageSize: number = 6;
+  hasPrevPage: boolean = false;
+  hasNextPage: boolean = false;
 
   constructor(private course: CourseService) {
     this.course.buttonClicked.subscribe(() => {
@@ -40,10 +42,13 @@ export class CourseComponent implements OnInit {
     };
     this.course.getCourses(params).subscribe({
       next: (data: any) => {
-        this.courses = data.map((course: any, index: number) => ({
+        console.log(data);
+        this.courses = data.docs.map((course: any, index: number) => ({
           ...course,
           id: index + 1,
         }));
+        this.hasNextPage = data.hasNextPage;
+        this.hasPrevPage = data.hasPrevPage;
       },
     });
   }
@@ -68,8 +73,19 @@ export class CourseComponent implements OnInit {
   showBubble(course: courseElement) {
     course.showBubble = !course.showBubble;
   }
+  nextPage() {
+    if (this.hasNextPage) {
+      this.currentPage++;
+      this.getCourses();
+    }
+  }
+  prevPage() {
+    if (this.hasPrevPage) {
+      this.currentPage--;
+      this.getCourses();
+    }
+  }
 }
-
 export interface courseElement {
   id?: number;
   _id?: string;

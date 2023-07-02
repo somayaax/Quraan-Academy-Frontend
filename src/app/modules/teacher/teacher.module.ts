@@ -16,7 +16,6 @@ import { EditAnswerModalComponent } from './components/edit-answer-modal/edit-an
 import { MyCoursesComponent } from './components/my-courses/my-courses.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 @NgModule({
   declarations: [
@@ -41,7 +40,6 @@ import { MatCardModule } from '@angular/material/card';
     MatFormFieldModule,
     MatSelectModule,
     MatTableModule,
-    MatPaginatorModule,
     MatCardModule,
   ],
 })

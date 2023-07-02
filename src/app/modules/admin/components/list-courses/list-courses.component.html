@@ -5,15 +5,26 @@
       <div class="d-flex flex-wrap">
         <div class="form-group mr-2">
           <label for="teacher-dropdown">Teacher</label>
-          <select class="form-control" id="teacher-dropdown" [(ngModel)]="selectedTeacher" (change)="getCourses()">
+          <select
+            class="form-control"
+            id="teacher-dropdown"
+            [(ngModel)]="selectedTeacher"
+            (change)="getCourses()"
+          >
             <option value="">None</option>
-            <option *ngFor="let teacher of teachers" [value]="teacher._id">{{ teacher.firstName }} {{teacher.lastName}}
+            <option *ngFor="let teacher of teachers" [value]="teacher._id">
+              {{ teacher.firstName }} {{ teacher.lastName }}
             </option>
           </select>
         </div>
         <div class="form-group mx-2">
           <label for="level-dropdown">Level</label>
-          <select class="form-control" id="level-dropdown" [(ngModel)]="selectedLevel" (change)="getCourses()">
+          <select
+            class="form-control"
+            id="level-dropdown"
+            [(ngModel)]="selectedLevel"
+            (change)="getCourses()"
+          >
             <option>All</option>
             <option>Beginner</option>
             <option>Intermediate</option>
@@ -58,13 +69,14 @@
                       </thead>
                       <tbody>
                         <ng-container>
-                          <tr class="tr" *ngFor="
-                              let course of courses
-                            ">
+                          <tr class="tr" *ngFor="let course of courses">
                             <td>{{ course.id }}</td>
                             <td>{{ course.name }}</td>
                             <td>{{ course.level }}</td>
-                            <td>{{ course.teacher.firstName }} {{course.teacher.lastName}}</td>
+                            <td>
+                              {{ course.teacher.firstName }}
+                              {{ course.teacher.lastName }}
+                            </td>
                             <td>{{ course.startDate }}</td>
                             <td>{{ course.endDate }}</td>
                             <td>{{ course.startTime }}</td>
@@ -73,15 +85,31 @@
                             <td>{{ course.price }}</td>
                             <td>
                               <div class="action">
-                                <button mat-icon-button color="primary" (click)="openEditCourseModal(course._id)">
-                                  <mat-icon aria-label="Edit" class="material-icons-outlined">edit</mat-icon>
+                                <button
+                                  mat-icon-button
+                                  color="primary"
+                                  (click)="openEditCourseModal(course._id)"
+                                >
+                                  <mat-icon
+                                    aria-label="Edit"
+                                    class="material-icons-outlined"
+                                    >edit</mat-icon
+                                  >
                                 </button>
                               </div>
                             </td>
                             <td>
                               <div class="action">
-                                <button mat-icon-button color="warn" (click)="delCourse(course._id)">
-                                  <mat-icon aria-label="Delete" class="material-icons-outlined">delete</mat-icon>
+                                <button
+                                  mat-icon-button
+                                  color="warn"
+                                  (click)="delCourse(course._id)"
+                                >
+                                  <mat-icon
+                                    aria-label="Delete"
+                                    class="material-icons-outlined"
+                                    >delete</mat-icon
+                                  >
                                 </button>
                               </div>
                             </td>
@@ -91,9 +119,28 @@
                     </table>
                   </div>
                   <div class="pagination">
-                    <button id="prev-btn" (click)="prevPage()" [disabled]="page === 1"><i
-                        class="fas fa-chevron-left"></i> Previous</button>
-                    <button id="next-btn" (click)="nextPage()">Next <i class="fas fa-chevron-right"></i></button>
+                    <ul class="pagination justify-content-center mt-4">
+                      <li class="page-item">
+                        <a
+                          class="page-link"
+                          (click)="prevPage()"
+                          [ngClass]="{ disabled: !hasPrevPage }"
+                        >
+                          Previous</a
+                        >
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link">{{ page }}</a>
+                      </li>
+                      <li class="page-item">
+                        <a
+                          class="page-link"
+                          (click)="nextPage()"
+                          [ngClass]="{ disabled: !hasNextPage }"
+                          >Next</a
+                        >
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>

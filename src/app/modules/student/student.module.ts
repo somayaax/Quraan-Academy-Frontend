@@ -17,8 +17,9 @@ import { MatInputModule } from '@angular/material/input';
 import { AskQuestionModalComponent } from './components/ask-question-modal/ask-question-modal.component';
 import { ChapterComponent } from './components/chapter/chapter.component';
 import { ChaptersComponent } from './components/chapters/chapters.component';
-
-
+import { MyCoursesComponent } from './components/my-courses/my-courses.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
 @NgModule({
   declarations: [
     QuestionsComponent,
@@ -28,7 +29,9 @@ import { ChaptersComponent } from './components/chapters/chapters.component';
     RecourdedCoursesComponent,
     AskQuestionModalComponent,
     ChapterComponent,
-    ChaptersComponent
+    ChaptersComponent,
+    MyCoursesComponent,
+    MyCoursesComponent,
   ],
   imports: [
     CommonModule,
@@ -41,6 +44,8 @@ import { ChaptersComponent } from './components/chapters/chapters.component';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-  ]
+    MatTableModule,
+    MatCardModule,
+  ],
 })
-export class StudentModule { }
+export class StudentModule {}
