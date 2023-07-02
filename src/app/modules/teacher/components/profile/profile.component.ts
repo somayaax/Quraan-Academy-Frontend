@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TeacherService } from '../../services/teacher.service';
 import { DatePipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({ 
   selector: 'app-profile',
@@ -11,7 +12,7 @@ import { DatePipe } from '@angular/common';
 export class ProfileComponent implements OnInit{
   teacherData: any = {};
 
-  constructor(private teacherService: TeacherService) { }
+  constructor(private teacherService: TeacherService,private toastr: ToastrService) { }
 
   ngOnInit() {
     this.getTeacherData();
@@ -32,6 +33,7 @@ export class ProfileComponent implements OnInit{
     this.teacherService.updateTeacherProfile(this.teacherData).subscribe(
       data => {
         this.teacherData = data;
+        this.toastr.success(`Data updated successfully`, 'Success');
       },
       error => {
         console.error(error);
