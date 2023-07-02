@@ -24,7 +24,7 @@ export class CourseDetailsComponent implements OnInit {
     // console.log(this.course);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   getCourseDetails() {
     this._teacherService.getCourseDetails(this.id).subscribe({
@@ -51,9 +51,11 @@ export class CourseDetailsComponent implements OnInit {
     return formattedDate;
   }
   hasSessionEnded(session: any): boolean {
-    const targetDateTime = new Date(
-      session.date.toDateString() + ' ' + session.time
-    );
-    return targetDateTime < new Date();
+    const sessionDate = new Date(session.date);
+    const sessionTime = session.startTime;
+    sessionDate.setHours(Number(sessionTime.split(':')[0]));
+    sessionDate.setMinutes(Number(sessionTime.split(':')[1]));
+    const today = new Date()
+    return (today > sessionDate);
   }
 }

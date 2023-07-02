@@ -1,1 +1,5 @@
 @import url(../../../teacher/components/course-details/course-details.component.css);
+
+.ended-session{
+    text-decoration: line-through;
+}

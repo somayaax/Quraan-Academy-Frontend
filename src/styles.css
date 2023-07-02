@@ -9,3 +9,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     cursor          : pointer;
     color: #000;
 }
+
+app-root{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
