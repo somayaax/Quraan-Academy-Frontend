@@ -11,11 +11,27 @@ export class RecordedDeatailsComponent {
 
   chapters= [];
   courseId:string='';
-  constructor(private _recordedDetalis:RecordedCoursesService, private route: ActivatedRoute){}
+  course: {
+    name: string;
+    category: {
+      name: string;
+    };
+    numberOfChapters: number;
+    price: number;
+  } = {
+    name: '',
+    category: {
+      name: ''
+    },
+    numberOfChapters: 0,
+    price: 0
+  };
+    constructor(private _recordedDetalis:RecordedCoursesService, private route: ActivatedRoute){}
 
   ngOnInit(){
     this.courseId =  this.route.snapshot.paramMap.get('id') ?? '';
     this.getRecordedCourses();
+    this.getCourseById(this.courseId);
   }
 
   getRecordedCourses():void{
@@ -24,6 +40,21 @@ export class RecordedDeatailsComponent {
         if (res.status === 200) {
           this.chapters = res.body;
           console.log(this.chapters);
+          
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  getCourseById(id:string){
+    this._recordedDetalis.getCourseById(this.courseId).subscribe({
+      next: (res: any) => {
+        if (res.status === 200) {
+          this.course = res.body;
+          console.log(this.course);
           
         }
       },
