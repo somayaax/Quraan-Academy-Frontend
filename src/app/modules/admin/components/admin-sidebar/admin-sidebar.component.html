@@ -1,37 +1,42 @@
-<nav class="admin-sidebar pt-lg-5">
-      <ul class="admin-sidebar-list">
-            <li class="admin-sidebar-item" routerLinkActive="active"><a [routerLink]="['/admin/courses/list']"><i
-                              class="fas fa-book-quran"></i>Courses</a></li>
-            <li class="admin-sidebar-item" routerLinkActive="active"><a [routerLink]="['/admin/students/list']"><i
-                              class="fas fa-user-graduate"></i>Students</a></li>
-            <li class="admin-sidebar-item" routerLinkActive="active"><a [routerLink]="['/admin/teachers/list']"><i
-                              class="fas fa-chalkboard-teacher"></i>Teachers</a></li>
-            <li class="admin-sidebar-item" routerLinkActive="active"><a [routerLink]="['/admin/sessions/list']"><i
-                              class="fas fa-calendar-alt"></i>Sessions</a></li>
-            <li class="admin-sidebar-item" routerLinkActive="active"><a
-                        [routerLink]="['/admin/recordedCourses/list']"><i class="fas fa-book"></i>Recorded courses</a>
-            </li>
-            <li class="admin-sidebar-item" routerLinkActive="active"><a [routerLink]="['/admin/chapters/list']"><i
-                              class="fas fa-book-open-reader"></i>Chapters</a></li>
-            <li class="admin-sidebar-item" routerLinkActive="active"><a [routerLink]="['/admin/questions/list']"><i
-                              class="fas fa-question"></i>Questions</a></li>
-            <li class="admin-sidebar-item" routerLinkActive="active"><a
-                        [routerLink]="['/admin/RecordedCourseCategories/list']"><i
-                              class="fas fa-sticky-note"></i>Categories</a></li>
-            <div class="admin-sidebar-separator"></div>
-      </ul>
-      <ul class="admin-sidebar-list">
-            <li class="admin-sidebar-item" id="profile-link">
-                  <a>
-                        <i class="fas fa-user-circle"></i>
-                        <span class="admin-sidebar-admin-name">Admin Name</span>
-                  </a>
-            </li>
-            <li class="admin-sidebar-item">
-                  <a>
-                        <i class="fas fa-sign-out-alt"></i>
-                        Logout
-                  </a>
-            </li>
-      </ul>
+<button class="hamburger-menu" (click)="toggleMenu()">
+  <i class="fas fa-bars"></i>
+</button>
+<nav class="admin-sidebar pt-lg-3">
+  <ul class="admin-sidebar-list">
+    <div>
+      <li class="admin-sidebar-item" routerLinkActive="active"><a [routerLink]="['/admin/courses/list']"><i
+            class="fas fa-book-quran"></i>Courses</a></li>
+      <li class="admin-sidebar-item" routerLinkActive="active"><a [routerLink]="['/admin/students/list']"><i
+            class="fas fa-user-graduate"></i>Students</a></li>
+      <li class="admin-sidebar-item" routerLinkActive="active"><a [routerLink]="['/admin/teachers/list']"><i
+            class="fas fa-chalkboard-teacher"></i>Teachers</a></li>
+      <li class="admin-sidebar-item" routerLinkActive="active"><a [routerLink]="['/admin/sessions/list']"><i
+            class="fas fa-calendar-alt"></i>Sessions</a></li>
+      <li class="admin-sidebar-item" routerLinkActive="active"><a [routerLink]="['/admin/recordedCourses/list']"><i
+            class="fas fa-book"></i>Recorded courses</a>
+      </li>
+      <li class="admin-sidebar-item" routerLinkActive="active"><a [routerLink]="['/admin/chapters/list']"><i
+            class="fas fa-book-open-reader"></i>Chapters</a></li>
+      <li class="admin-sidebar-item" routerLinkActive="active"><a [routerLink]="['/admin/questions/list']"><i
+            class="fas fa-question"></i>Questions</a></li>
+      <li class="admin-sidebar-item" routerLinkActive="active"><a
+          [routerLink]="['/admin/RecordedCourseCategories/list']"><i class="fas fa-sticky-note"></i>Categories</a></li>
+    </div>
+    <div>
+      <li class="admin-sidebar-item" id="profile-link">
+        <a>
+          <i class="fas fa-user-circle"></i>
+          <span class="admin-sidebar-admin-name">Admin Name</span>
+        </a>
+      </li>
+      <li class="admin-sidebar-item">
+        <a>
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </a>
+      </li>
+    </div>
+
+  </ul>
+
 </nav>

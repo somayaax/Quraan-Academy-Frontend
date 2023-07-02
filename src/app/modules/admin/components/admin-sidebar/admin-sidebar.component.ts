@@ -7,14 +7,20 @@ import { Component } from '@angular/core';
 })
 export class AdminSidebarComponent {
   toggleMenu() {
-    const sidebarList = document.querySelector('.chapter-sidebar-list');
-  
-    if (sidebarList) {
+    const sidebar = document.querySelector('.admin-sidebar');
+    if (sidebar?.classList.contains('active')) {
+      sidebar?.classList.remove('active');
+    } else {
+      sidebar?.classList.add('active');
+    }
+    const sidebarLists = document.querySelectorAll('.admin-sidebar-list');
+
+    sidebarLists.forEach(sidebarList => {
       if (sidebarList.classList.contains('active')) {
         sidebarList.classList.remove('active');
       } else {
         sidebarList.classList.add('active');
       }
-    }
+    });
   }
 }
