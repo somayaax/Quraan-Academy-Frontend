@@ -10,7 +10,7 @@
             <dt>price</dt>
             <dd>{{ course.price }} LE</dd>
         </dl>
-        <button class="custom-button">Enroll Now</button>
+        <button class="custom-button" (click)="enrollCourse(course['_id'])">Enroll Now</button>
     </div>
 
 </div>

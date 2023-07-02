@@ -37,4 +37,10 @@ export class RecordedCoursesService {
       `${currentDomain}/recordedCourses/${id}/details`,
       this.requestOptions)
   }
+
+  enrollCourse(id:string,recorded:string=''){
+    return this._httpClient.get(
+      `${currentDomain}/student/checkout-course/${id}?recorded=${recorded}`,
+      this.requestOptions)
+  }
 }

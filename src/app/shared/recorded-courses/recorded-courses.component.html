@@ -43,7 +43,7 @@
               <hr />
               <mat-card-actions class="card-actions">
                 <p class="price">{{ course['price'] + " " + "LE" }}</p>
-                <button [routerLink]="['/dddddddddddd']" class="enrollBtn btn">Enroll Now</button>
+                <button (click)="enrollCourse($event,course['_id'])" class="enrollBtn btn">Enroll Now</button>
               </mat-card-actions>
             </mat-card-content>
           </mat-card>
