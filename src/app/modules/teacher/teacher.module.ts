@@ -43,7 +43,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-
+    MatCardModule
   ],
 })
 export class TeacherModule { }
