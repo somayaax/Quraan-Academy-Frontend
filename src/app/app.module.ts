@@ -25,6 +25,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { RecordedDeatailsComponent } from './shared/recorded-deatails/recorded-deatails.component';
+
 import { SessionsComponent } from './shared/sessions/sessions.component';
 import { SessionDetailsComponent } from './shared/session-details/session-details.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -43,9 +44,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     RecordedCoursesComponent,
     CourseComponent,
     RecordedDeatailsComponent,
-    SessionsComponent,
-    SessionDetailsComponent,
-    
   ],
   imports: [
     BrowserAnimationsModule,

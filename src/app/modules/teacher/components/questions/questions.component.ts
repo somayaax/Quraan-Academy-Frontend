@@ -34,11 +34,9 @@ export class QuestionsComponent implements OnInit {
   ngOnInit() {
     this.teacherID = this._authService.getDecodedToken().id;
     this.getQuestions()
-    this._QAService.getCategories().subscribe({
+    this._QAService.getCategoriesNotPaginated().subscribe({
       next: (res: any) => {
-        if (res.message === 'success') {
-          this.categories = res.data;
-        }
+        this.categories = res;
       },
       error: (err) => {
         console.log(err);

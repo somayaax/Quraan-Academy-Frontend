@@ -15,10 +15,29 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { EditAnswerModalComponent } from './components/edit-answer-modal/edit-answer-modal.component';
 import { MyCoursesComponent } from './components/my-courses/my-courses.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+import { CourseDetailsComponent } from './components/course-details/course-details.component';
+import { SessionDetailsComponent } from './components/session-details/session-details.component';
 import { ProfileComponent } from './components/profile/profile.component';
 @NgModule({
-  declarations: [ScheduleComponent, TeacherCardComponent, QuestionsComponent, QuestionComponent, EditAnswerModalComponent, MyCoursesComponent,ProfileComponent],
-  imports: [CommonModule,  FormsModule,TeacherRoutingModule, MatIconModule,
+  declarations: [
+    ScheduleComponent,
+    TeacherCardComponent,
+    QuestionsComponent,
+    QuestionComponent,
+    EditAnswerModalComponent,
+    MyCoursesComponent,
+    CourseDetailsComponent,
+    SessionDetailsComponent,
+    ProfileComponent,
+  ],
+  imports: [
+    CommonModule,
+    TeacherRoutingModule,
+    FormsModule,
+    MatIconModule,
     MatDialogModule,
     MatButtonModule,
     MatFormFieldModule,

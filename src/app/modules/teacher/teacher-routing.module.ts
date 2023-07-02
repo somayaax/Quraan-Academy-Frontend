@@ -4,6 +4,8 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { QuestionsComponent } from './components/questions/questions.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MyCoursesComponent } from './components/my-courses/my-courses.component';
+import { CourseDetailsComponent } from './components/course-details/course-details.component';
+import { SessionDetailsComponent } from './components/session-details/session-details.component';
 
 const routes: Routes = [
   { path: 'schedule', component: ScheduleComponent },
@@ -11,6 +13,8 @@ const routes: Routes = [
   { path: 'courses', component: MyCoursesComponent },
   { path: 'profile', component: ProfileComponent },
   
+  { path: 'course/:id', component: CourseDetailsComponent },
+  { path: 'session/:id', component: SessionDetailsComponent },
 ];
 
 @NgModule({
