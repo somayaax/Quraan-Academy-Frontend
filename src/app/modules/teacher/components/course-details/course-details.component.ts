@@ -6,52 +6,54 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-course-details',
   templateUrl: './course-details.component.html',
-  styleUrls: ['./course-details.component.css']
+  styleUrls: ['./course-details.component.css'],
 })
-
 export class CourseDetailsComponent implements OnInit {
   id: string = '';
   course: any;
   isLoading: boolean = true;
 
-  constructor(private _activatedRoute: ActivatedRoute,
+  constructor(
+    private _activatedRoute: ActivatedRoute,
     private _teacherService: TeacherService,
     private toastr: ToastrService,
-    private _Router: Router) {
+    private _Router: Router
+  ) {
     this.id = this._activatedRoute.snapshot.params['id'];
     this.getCourseDetails();
     // console.log(this.course);
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   getCourseDetails() {
     this._teacherService.getCourseDetails(this.id).subscribe({
       next: (data) => {
         this.course = data;
         this.isLoading = false;
-        console.log(data);        
+        console.log(data);
       },
       error: (error: any) => {
         if (error.status === 404) {
-          this.toastr.error(`${error.error.error}`, "Error");
-          this._Router.navigate(['/teacher/courses'])
+          this.toastr.error(`${error.error.error}`, 'Error');
+          this._Router.navigate(['/teacher/courses']);
+        } else {
+          this.toastr.error('Cannot get course details', 'Error');
         }
-        else {
-          this.toastr.error('Cannot get course details', "Error");
-        }
-        this.isLoading = false
+        this.isLoading = false;
       },
-    })
+    });
   }
-  formatDate(dateStr:string){
-    const date = new Date(dateStr);    
+  formatDate(dateStr: string) {
+    const date = new Date(dateStr);
     // const formattedDate = new Intl.DateTimeFormat("ar-EG").format(date);
-    const formattedDate = new Intl.DateTimeFormat("en-GB").format(date);
+    const formattedDate = new Intl.DateTimeFormat('en-GB').format(date);
     return formattedDate;
-    
+  }
+  hasSessionEnded(session: any): boolean {
+    const targetDateTime = new Date(
+      session.date.toDateString() + ' ' + session.time
+    );
+    return targetDateTime < new Date();
   }
 }
-
