@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   role: string = '';
@@ -18,14 +18,17 @@ export class LoginComponent implements OnInit {
 
   loginForm = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
-    password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
+    password: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(8),
+    ]),
   });
 
   constructor(
     private _Router: Router,
     private _authService: AuthService,
     private _ActivatedRoute: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this._ActivatedRoute.params.subscribe((params) => {
@@ -47,7 +50,7 @@ export class LoginComponent implements OnInit {
       this.header = 'Admin Panel';
     } else if (this.param === 'user') {
       this.role = 'student';
-      this.imgSrc = 'assets/bg/admin.jpg';
+      this.imgSrc = 'assets/bg/register.jpg';
       this.header = 'Login';
     }
   }
@@ -60,22 +63,22 @@ export class LoginComponent implements OnInit {
         console.log(res);
         if (res.token) {
           localStorage.setItem('token', res.token);
-          this._authService.currentUser.next(this._authService.getDecodedToken());
-          if(this.role === 'admin') {
+          this._authService.currentUser.next(
+            this._authService.getDecodedToken()
+          );
+          if (this.role === 'admin') {
             this._Router.navigate(['/admin/courses/list']);
-          }else{
+          } else {
             this._Router.navigate(['/home']);
           }
           this.isLoading = false;
-
         }
       },
       error: (err) => {
         console.log(err);
         this.error = err.error.error;
         this.isLoading = false;
-
-      }
+      },
     });
   }
 }

@@ -12,22 +12,18 @@ export class RecourdedCoursesComponent implements OnInit {
     constructor(
         private recordedCourse: RecordedCourseService,
         private toastr: ToastrService
-    ) {
-        this.getRecordedCourses();
-    }
+    ) { }
 
     getRecordedCourses(): void {
         this.recordedCourse.getStudentRecordedCourses().subscribe({
             next: (data) => {
                 this.recordedCourses = data;
-                console.log(data);
             },
             error: (error: any) => {
                 let {
                     error: { message },
                 } = error;
                 if (!message) message = error.error.error;
-                console.log(message);
                 this.toastr.error(`${message}`, "Error");
             },
         });

@@ -22,7 +22,7 @@ export class RecordedCoursesComponent {
     this._RecordedCoursesService.getAllRecordedCourseCategory().subscribe({
       next: (res: any) => {
         if (res.status === 200) {
-          this.categories = res.body;
+          this.categories = res.body.docs;
         }
         
       },

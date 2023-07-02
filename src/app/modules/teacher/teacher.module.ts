@@ -14,11 +14,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { EditAnswerModalComponent } from './components/edit-answer-modal/edit-answer-modal.component';
-import { MyCoursesComponent } from './my-courses/my-courses.component';
+import { MyCoursesComponent } from './components/my-courses/my-courses.component';
 import { ProfileComponent } from './components/profile/profile.component';
-
 @NgModule({
-  declarations: [ScheduleComponent, TeacherCardComponent, QuestionsComponent, QuestionComponent, EditAnswerModalComponent, MyCoursesComponent,ProfileComponent ],
+  declarations: [ScheduleComponent, TeacherCardComponent, QuestionsComponent, QuestionComponent, EditAnswerModalComponent, MyCoursesComponent,ProfileComponent],
   imports: [CommonModule,  FormsModule,TeacherRoutingModule, MatIconModule,
     MatDialogModule,
     MatButtonModule,

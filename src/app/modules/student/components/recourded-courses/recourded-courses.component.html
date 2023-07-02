@@ -5,9 +5,12 @@
     </div>
 
     <ng-container>
-      <div *ngFor="let course of recordedCourses" class="row py-4">
-        <div class="col-md-6 per-course">
-          <app-recourded-course [course]="course"></app-recourded-course>
+      <div class="row">
+        <div *ngFor="let course of recordedCourses" class="col-md-6 py-4">
+          <div class="per-course">
+            <a [routerLink]="['/student/chapters', course.courseID._id]" class="card-link"><app-recourded-course
+                [course]="course"></app-recourded-course></a>
+          </div>
         </div>
       </div>
     </ng-container>

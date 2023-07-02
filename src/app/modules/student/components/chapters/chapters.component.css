@@ -1,0 +1,138 @@
+.chapter-sidebar {
+  background-color: #c3a668;
+  color: #f4ede4;
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  min-height: 100vh;
+  width: 25rem;
+}
+
+.chapter-sidebar-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chapter-sidebar-item {
+  margin: 0;
+  padding: 1rem;
+  border-right: 1px solid #f4ede4;
+  border-bottom: 1px solid #f4ede4;
+  text-align: center;
+  flex: 1;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  &.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+  }
+}
+
+.chapter-sidebar-item:last-child {
+  border-right: none;
+}
+
+.chapter-sidebar-item a {
+  color: #f4ede4;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+
+  i {
+    font-size: 1.7rem;
+  }
+}
+
+
+.hamburger-menu {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: #c3a668;
+  color: #f4ede4;
+  border: none;
+  margin-left: 1rem;
+  cursor: pointer;
+  text-align: left;
+  padding: 0.5rem;
+  border-radius: 25%;
+}
+
+.hamburger-menu i {
+  font-size: 1.6rem;
+  color: #f4ede4;
+}
+
+.completed {
+  background-color: black;
+  opacity: 0.5;
+  text-decoration: line-through;
+  cursor: pointer;
+}
+.finished {
+  color: green;
+}
+
+@media screen and (max-width: 568px) {
+  .hamburger-menu {
+    display: block;
+    margin-top: 0.7rem;
+  }
+
+  .chapter-sidebar {
+    height: 0;
+    width: 0;
+  }
+
+  .chapter-sidebar-list {
+    display: none;
+    position: fixed;
+    width: 100%;
+    background-color: #c3a668;
+    z-index: 9999;
+    overflow-y: auto;
+  }
+
+  .chapter-sidebar-item {
+    padding: 0.3rem;
+    text-align: center;
+  }
+
+  .chapter-sidebar-list.active {
+    display: block;
+  }
+
+  .chapter-sidebar-item a {
+    color: #f4ede4;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    width: 100%;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    &.active {
+      background-color: rgba(255, 255, 255, 0.2);
+      font-weight: bold;
+    }
+
+    i {
+      font-size: 1.2rem;
+    }
+  }
+
+}

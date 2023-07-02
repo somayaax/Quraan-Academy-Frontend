@@ -1,48 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import currentDomain from 'src/app/utils/domainUrls';
-import { CourseService } from 'src/app/services/course.service';
+import { Component } from '@angular/core';
+import { TeacherService } from '../../services/teacher.service';
+
 @Component({
-  selector: 'app-course',
-  templateUrl: './course.component.html',
-  styleUrls: ['./course.component.css'],
+  selector: 'app-my-courses',
+  templateUrl: './my-courses.component.html',
+  styleUrls: ['./my-courses.component.css'],
 })
-export class CourseComponent implements OnInit {
+export class MyCoursesComponent {
   courses: courseElement[] = [];
-  teachers: any[] = [];
-  selectedTeacher: string = 'All';
-  selectedLevel: string = 'All';
   currentPage: number = 1;
   pageSize: number = 6;
-  hasPrevPage: boolean = false;
+  selectedLevel: string = 'All';
   hasNextPage: boolean = false;
-
-  constructor(private course: CourseService) {
-    this.course.buttonClicked.subscribe(() => {
+  hasPrevPage: boolean = false;
+  constructor(private teacher: TeacherService) {
+    this.teacher.buttonClicked.subscribe(() => {
       this.getCourses();
     });
   }
-
   ngOnInit(): void {
     this.getCourses();
-    this.getAllTeachers();
   }
-
   getCourses(): void {
     const params = {
       page: this.currentPage,
-      teacher:
-        this.selectedTeacher !== 'All'
-          ? this.selectedTeacher.toLocaleLowerCase()
-          : null,
       level:
         this.selectedLevel !== 'All'
           ? this.selectedLevel.toLocaleLowerCase()
           : null,
     };
-    this.course.getCourses(params).subscribe({
+    this.teacher.getTeacherCourses(params).subscribe({
       next: (data: any) => {
-        console.log(data);
         this.courses = data.docs.map((course: any, index: number) => ({
           ...course,
           id: index + 1,
@@ -51,24 +39,6 @@ export class CourseComponent implements OnInit {
         this.hasPrevPage = data.hasPrevPage;
       },
     });
-  }
-
-  getAllTeachers(): void {
-    this.course.getAllTeachers().subscribe({
-      next: (data: any) => {
-        this.teachers = data.map((teacher: any, index: number) => ({
-          ...teacher,
-          id: index + 1,
-          showBubble: false,
-        }));
-      },
-    });
-  }
-
-  onPageChanged(event: any) {
-    this.currentPage = event.pageIndex + 1;
-    this.pageSize = event.pageSize;
-    this.getCourses();
   }
   showBubble(course: courseElement) {
     course.showBubble = !course.showBubble;
@@ -103,4 +73,5 @@ export interface courseElement {
     lastName: string;
   };
   showBubble: boolean;
+  countOfStudents: number;
 }

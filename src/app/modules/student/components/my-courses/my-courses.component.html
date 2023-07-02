@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="m-2">
+    <div class="divHeading">
+      <h1 class="display-4">My Courses</h1>
+    </div>
+
+    <ng-container>
+      <div class="card-container d-flex flex-wrap">
+        <div *ngFor="let course of courses" class="card">
+          <mat-card [ngClass]="{ 'ended-course': hasCourseEnded(course) }">
+            <mat-card-header class="card-header">
+              <mat-card-title class="course-name">{{
+                course.courseId.name
+              }}</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content class="card-content">
+              <div>
+                <p class="course-description">
+                  {{
+                    course.courseId.description
+                      .split(" ")
+                      .slice(0, 4)
+                      .join(" ") + "..."
+                  }}<a class="read-more" (click)="showBubble(course)"
+                    >See more</a
+                  >
+                </p>
+
+                <div class="bubble" *ngIf="course.showBubble">
+                  <p class="description-full">
+                    {{ course.courseId.description }}
+                  </p>
+                </div>
+                <p>
+                  <strong>Level:</strong>
+                  {{ course.courseId.level }}
+                </p>
+                <p>
+                  <strong>Days:</strong>
+                  {{ course.courseId.daysOfWeek }}
+                </p>
+                <p>
+                  <strong>Teacher Comment :</strong>
+                  {{ course.teacherComment ? course.teacherComment : "None" }}
+                </p>
+                <p>
+                  <strong>
+                    {{
+                      hasCourseEnded(course)
+                        ? "Course Ended on:"
+                        : "Course will finish on:"
+                    }}</strong
+                  >
+                  {{ getDate(course.courseId.endDate) }}
+                </p>
+              </div>
+
+              <div>
+                <mat-card-actions class="card-actions">
+                  <button
+                    class="enrollBtn btn"
+                    [disabled]="hasCourseEnded(course)"
+                  >
+                    View Course
+                  </button>
+                </mat-card-actions>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      <nav aria-label="Page navigation example" *ngIf="courses.length">
+        <ul class="pagination justify-content-center mt-4">
+          <li class="page-item">
+            <a
+              class="page-link"
+              (click)="prevPage()"
+              [ngClass]="{ disabled: !hasPrevPage }"
+            >
+              Previous</a
+            >
+          </li>
+          <li class="page-item">
+            <a class="page-link">{{ currentPage }}</a>
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              (click)="nextPage()"
+              [ngClass]="{ disabled: !hasNextPage }"
+              >Next</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </ng-container>
+  </div>
+</div>

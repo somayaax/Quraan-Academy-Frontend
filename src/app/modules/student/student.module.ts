@@ -20,6 +20,9 @@ import { ChaptersComponent } from './components/chapters/chapters.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 
+import { MyCoursesComponent } from './components/my-courses/my-courses.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
 @NgModule({
   declarations: [
     QuestionsComponent,
@@ -30,7 +33,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     AskQuestionModalComponent,
     ChapterComponent,
     ChaptersComponent,
-    ProfileComponent
+    ProfileComponent,
+    MyCoursesComponent,
+    MyCoursesComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +48,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-  ]
+    MatTableModule,
+    MatCardModule,
+  ],
 })
-export class StudentModule { }
+export class StudentModule {}

@@ -77,21 +77,33 @@
             <a
               class="nav-link"
               aria-current="page"
-              routerLink="courses"
+              routerLink="/student/profile"
               routerLinkActive="active"
-            >
-              Courses</a
+              >Profile</a
             >
           </li>
-          <li class="nav-item">
+          <li class="nav-item dropdown">
             <a
-              class="nav-link"
-              aria-current="page"
-              routerLink="student/profile"
-              routerLinkActive="active"
+              class="nav-link dropdown-toggle"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
             >
-              Profile</a
-            >
+              Courses
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" routerLink="courses">All Courses</a>
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="student/courses"
+                  >My Courses</a
+                >
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+            </ul>
           </li>
           <li class="nav-item dropdown">
             <a
@@ -171,31 +183,35 @@
             <a
               class="nav-link"
               aria-current="page"
-              routerLink="courses"
-              routerLinkActive="active"
-              >Courses</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              aria-current="page"
               routerLink="/teacher/profile"
               routerLinkActive="active"
-            >
-              Profile</a
+              >Profile</a
             >
           </li>
-          <li class="nav-item">
+          <li class="nav-item dropdown">
             <a
-              class="nav-link"
-              aria-current="page"
-              routerLink="/teacher/courses"
-              routerLinkActive="active"
+              class="nav-link dropdown-toggle"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
             >
-              My Courses</a
-            >
+              Courses
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" routerLink="courses">All Courses</a>
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="teacher/courses"
+                  >My Courses</a
+                >
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+            </ul>
           </li>
+
           <li class="nav-item">
             <a
               class="nav-link"
