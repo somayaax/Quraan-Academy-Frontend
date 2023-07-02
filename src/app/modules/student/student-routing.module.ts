@@ -8,7 +8,7 @@ import { ChaptersComponent } from "./components/chapters/chapters.component";
 const routes: Routes = [
   { path: 'questions', component: QuestionsComponent },
   { path: 'recordedCourses', component: RecourdedCoursesComponent },
-  { path: "chapters/:recordedCourseId", component: ChaptersComponent }
+  { path: "chapters/:recordedCourseId", component: ChaptersComponent },
   { path: 'courses', component: MyCoursesComponent },
 ];
 
@@ -16,4 +16,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class StudentRoutingModule {}
+export class StudentRoutingModule { }
