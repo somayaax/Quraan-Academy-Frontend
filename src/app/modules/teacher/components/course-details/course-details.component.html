@@ -11,7 +11,7 @@
       <h3 class="header">{{ course.name }}</h3>
       <dl class="attributes">
         <dt>Description</dt>
-        <dd>{{ course.description }}</dd>
+        <dd style="line-height: 1.3;">{{ course.description }}</dd>
         <dt>Number Of Sessions</dt>
         <dd>{{ course.numberOfSessions }}</dd>
         <dt>Level</dt>
@@ -31,10 +31,10 @@
       >
         <div
           class="session p-4 shadow"
-          [ngClass]="{ 'session-ended': hasSessionEnded(session) }"
+          [ngClass]="{'ended-session': hasSessionEnded(session)}"
           [routerLink]="'/teacher/session/' + session._id"
           [queryParams]="{ sessionNum: i + 1 }"
-        >
+          >
           <h2 class="text-center fs-3">Session {{ i + 1 }}</h2>
 
           <h3 class="fw-bold">
