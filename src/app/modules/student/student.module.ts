@@ -18,6 +18,8 @@ import { AskQuestionModalComponent } from './components/ask-question-modal/ask-q
 import { ChapterComponent } from './components/chapter/chapter.component';
 import { ChaptersComponent } from './components/chapters/chapters.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from "@angular/material/core";
 
 
 import { MyCoursesComponent } from './components/my-courses/my-courses.component';
@@ -50,6 +52,10 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatTableModule,
     MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule 
+    
+
   ],
 })
 export class StudentModule {}

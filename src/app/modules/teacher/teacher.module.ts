@@ -21,6 +21,9 @@ import { MatCardModule } from '@angular/material/card';
 import { CourseDetailsComponent } from './components/course-details/course-details.component';
 import { SessionDetailsComponent } from './components/session-details/session-details.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from "@angular/material/core";
+
 @NgModule({
   declarations: [
     ScheduleComponent,
@@ -43,6 +46,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 
   ],
 })

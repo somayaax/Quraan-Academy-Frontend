@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TeacherService } from '../../services/teacher.service';
+import { DatePipe } from '@angular/common';
 
 @Component({ 
   selector: 'app-profile',
