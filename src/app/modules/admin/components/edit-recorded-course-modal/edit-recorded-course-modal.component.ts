@@ -52,7 +52,7 @@ export class EditRecordedCourseModalComponent implements OnInit {
     }
 
     getCategories(): void {
-        this.category.getRecordedCourseCategoriesNotPaginated().subscribe({
+        this.category.getRecordedCourseCategoriesNotPaginated({type: 'recordedCourse'}).subscribe({
             next: (data) => {
                 this.categories = data;
             },
