@@ -28,12 +28,12 @@ export class MyCoursesComponent {
         this.courses = data.docs;
         this.hasNextPage = data.hasNextPage;
         this.hasPrevPage = data.hasPrevPage;
+        this.courses.sort((a, b) => {
+          const endDateA = new Date(a.courseId.endDate);
+          const endDateB = new Date(b.courseId.endDate);
+          return endDateB.getTime() - endDateA.getTime();
+        });
       },
-    });
-    this.courses.sort((a, b) => {
-      const endDateA = new Date(a.courseId.endDate);
-      const endDateB = new Date(b.courseId.endDate);
-      return endDateA.getTime() - endDateB.getTime();
     });
   }
   ngOnInit(): void {
@@ -79,7 +79,7 @@ export interface courseElement {
   };
   teacherComment: string;
   courseId: {
-    _id:string;
+    _id: string;
     name: string;
     level: string;
     description: string;

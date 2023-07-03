@@ -44,7 +44,7 @@ export class ListSessionsComponent {
         this.sessions = data.map((session: any, index: number) => ({
           ...session,
           id: index + 1,
-          date: new Date(session.date),
+          date: new Date(session.date.split('T')[0]),
         }));
       },
     });
