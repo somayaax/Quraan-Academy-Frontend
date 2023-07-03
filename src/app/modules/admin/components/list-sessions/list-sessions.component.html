@@ -5,7 +5,12 @@
       <div class="d-flex flex-wrap">
         <div class="form-group mr-2">
           <label for="teacher-dropdown">Month</label>
-          <select class="form-control" id="teacher-dropdown" [(ngModel)]="selectedMonth" (change)="getSessions()">
+          <select
+            class="form-control"
+            id="teacher-dropdown"
+            [(ngModel)]="selectedMonth"
+            (change)="getSessions()"
+          >
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -23,7 +28,12 @@
         <div class="form-group mx-2">
           <label for="level-dropdown">Year</label>
 
-          <select class="form-control" id="level-dropdown" [(ngModel)]="selectedYear" (change)="getSessions()">
+          <select
+            class="form-control"
+            id="level-dropdown"
+            [(ngModel)]="selectedYear"
+            (change)="getSessions()"
+          >
             <option *ngFor="let year of years" [value]="year">
               {{ year }}
             </option>
@@ -43,7 +53,9 @@
               <div class="card-content">
                 <div class="card-body">
                   <div class="table-wrapper">
-                    <table class="table table-responsive-md table-striped text-center">
+                    <table
+                      class="table table-responsive-md table-striped text-center"
+                    >
                       <thead>
                         <tr>
                           <th>Day Of week</th>
@@ -60,7 +72,10 @@
                             <td>
                               <ng-container *ngFor="let session of sessions">
                                 <div class="sessionDiv">
-                                  <ng-container *ngIf="session.date.getDate() === day" class="sessionDiv">
+                                  <ng-container
+                                    *ngIf="session.date.getDate() === day"
+                                    class="sessionDiv"
+                                  >
                                     {{ session.courseID.name }}
 
                                     {{ session.startTime }}

@@ -128,10 +128,10 @@ export class CourseComponent implements OnInit {
       .padStart(2, '0')}`;
     return formattedDate;
   }
-  // hasCourseEnded(course: courseElement): boolean {
-  //   const endDate = new Date(course.endDate);
-  //   return endDate < new Date();
-  // }
+  hasCourseEnded(course: courseElement): boolean {
+    const endDate = new Date(course.endDate);
+    return endDate < new Date();
+  }
 }
 export interface courseElement {
   id?: number;
