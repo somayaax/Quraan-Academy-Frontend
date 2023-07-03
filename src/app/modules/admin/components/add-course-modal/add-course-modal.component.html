@@ -6,16 +6,20 @@
         <div class="col-md-6">
           <mat-form-field class="custom-field">
             <input matInput placeholder="Name" formControlName="name" />
-            <mat-error *ngIf="
+            <mat-error
+              *ngIf="
                 courseForm.controls['name'].touched &&
                 courseForm.get('name')?.hasError('required')
-              ">
+              "
+            >
               Name is required.
             </mat-error>
-            <mat-error *ngIf="
+            <mat-error
+              *ngIf="
                 courseForm.controls['name'].touched &&
                 courseForm.get('name')?.hasError('whitespace')
-              ">
+              "
+            >
               Name cannot be only whitespace characters.
             </mat-error>
           </mat-form-field>
@@ -24,6 +28,7 @@
           <mat-form-field class="custom-field">
             <mat-label>Level</mat-label>
             <mat-select formControlName="level">
+              <mat-option value="kids">Kids</mat-option>
               <mat-option value="beginner">Beginner</mat-option>
               <mat-option value="intermediate">Intermediate</mat-option>
               <mat-option value="advanced">Advanced</mat-option>
@@ -31,24 +36,36 @@
             <mat-error *ngIf="courseForm.get('level')?.hasError('required')">
               Level is required.
             </mat-error>
-            <mat-error *ngIf="courseForm.get('level')?.hasError('invalidLevel')">
+            <mat-error
+              *ngIf="courseForm.get('level')?.hasError('invalidLevel')"
+            >
               Invalid level.
             </mat-error>
           </mat-form-field>
         </div>
         <div class="col-md-12">
           <mat-form-field class="custom-field">
-            <input matInput placeholder="Description" formControlName="description" />
-            <mat-error *ngIf="courseForm.get('description')?.hasError('required')">
+            <input
+              matInput
+              placeholder="Description"
+              formControlName="description"
+            />
+            <mat-error
+              *ngIf="courseForm.get('description')?.hasError('required')"
+            >
               Description is required.
             </mat-error>
-            <mat-error *ngIf="courseForm.get('description')?.hasError('minlength')">
+            <mat-error
+              *ngIf="courseForm.get('description')?.hasError('minlength')"
+            >
               Description must be at least 10 characters long.
             </mat-error>
-            <mat-error *ngIf="
+            <mat-error
+              *ngIf="
                 courseForm.controls['description'].touched &&
                 courseForm.get('description')?.hasError('whitespace')
-              ">
+              "
+            >
               Description cannot be only whitespace characters.
             </mat-error>
           </mat-form-field>
@@ -57,8 +74,9 @@
           <mat-form-field class="custom-field">
             <mat-label>Teacher</mat-label>
             <mat-select formControlName="teacher" #teacherSelect>
-              <mat-option *ngFor="let teacher of teachers" [value]="teacher._id">{{ teacher.firstName }}
-                {{teacher.lastName}}</mat-option>
+              <mat-option *ngFor="let teacher of teachers" [value]="teacher._id"
+                >{{ teacher.firstName }} {{ teacher.lastName }}</mat-option
+              >
             </mat-select>
             <mat-error *ngIf="courseForm.get('teacher')?.hasError('required')">
               Teacher is required.
@@ -78,10 +96,14 @@
               <mat-option value="Friday">Friday</mat-option>
               <mat-option value="Saturday">Saturday</mat-option>
             </mat-select>
-            <mat-error *ngIf="courseForm.get('daysOfWeek')?.hasError('required')">
+            <mat-error
+              *ngIf="courseForm.get('daysOfWeek')?.hasError('required')"
+            >
               Days of week is required.
             </mat-error>
-            <mat-error *ngIf="courseForm.get('daysOfWeek')?.hasError('invalidDayOfWeek')">
+            <mat-error
+              *ngIf="courseForm.get('daysOfWeek')?.hasError('invalidDayOfWeek')"
+            >
               Invalid day of week.
             </mat-error>
           </mat-form-field>
@@ -89,10 +111,20 @@
 
         <div class="col-md-6">
           <mat-form-field class="custom-field">
-            <input matInput [matDatepicker]="startDatePicker" placeholder="Start Date" formControlName="startDate" />
-            <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+            <input
+              matInput
+              [matDatepicker]="startDatePicker"
+              placeholder="Start Date"
+              formControlName="startDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="startDatePicker"
+            ></mat-datepicker-toggle>
             <mat-datepicker #startDatePicker></mat-datepicker>
-            <mat-error *ngIf="courseForm.get('startDate')?.hasError('required')">
+            <mat-error
+              *ngIf="courseForm.get('startDate')?.hasError('required')"
+            >
               Start date is required.
             </mat-error>
           </mat-form-field>
@@ -100,8 +132,16 @@
 
         <div class="col-md-6">
           <mat-form-field class="custom-field">
-            <input matInput [matDatepicker]="endDatePicker" placeholder="End Date" formControlName="endDate" />
-            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+            <input
+              matInput
+              [matDatepicker]="endDatePicker"
+              placeholder="End Date"
+              formControlName="endDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="endDatePicker"
+            ></mat-datepicker-toggle>
             <mat-datepicker #endDatePicker></mat-datepicker>
             <mat-error *ngIf="courseForm.get('endDate')?.hasError('required')">
               End date is required.
@@ -111,15 +151,28 @@
 
         <div class="col-md-6">
           <mat-form-field class="custom-field">
-            <input matInput placeholder="Start Time" formControlName="startTime" />
-            <mat-error *ngIf="courseForm.get('startTime')?.hasError('required')">
+            <input
+              matInput
+              placeholder="Start Time"
+              formControlName="startTime"
+            />
+            <mat-error
+              *ngIf="courseForm.get('startTime')?.hasError('required')"
+            >
               Start time is required.
             </mat-error>
-            <mat-error *ngIf="
+            <mat-error
+              *ngIf="
                 courseForm.controls['startTime'].touched &&
                 courseForm.get('startTime')?.hasError('whitespace')
-              ">
+              "
+            >
               Start time cannot be only whitespace characters.
+            </mat-error>
+            <mat-error
+              *ngIf="courseForm.get('startTime')?.hasError('invalidTimeFormat')"
+            >
+              Please enter the time in 24-hour format (HH:mm).
             </mat-error>
           </mat-form-field>
         </div>
@@ -130,18 +183,30 @@
             <mat-error *ngIf="courseForm.get('endTime')?.hasError('required')">
               End time is required.
             </mat-error>
-            <mat-error *ngIf="
+            <mat-error
+              *ngIf="
                 courseForm.controls['endTime'].touched &&
                 courseForm.get('endTime')?.hasError('whitespace')
-              ">
+              "
+            >
               End time cannot be only whitespace characters.
+            </mat-error>
+            <mat-error
+              *ngIf="courseForm.get('endTime')?.hasError('invalidTimeFormat')"
+            >
+              Please enter the time in 24-hour format (HH:mm).
             </mat-error>
           </mat-form-field>
         </div>
 
         <div class="col-md-6">
           <mat-form-field class="custom-field">
-            <input matInput placeholder="Number of Sessions" formControlName="numberOfSessions" readonly="true" />
+            <input
+              matInput
+              placeholder="Number of Sessions"
+              formControlName="numberOfSessions"
+              readonly="true"
+            />
           </mat-form-field>
         </div>
 
@@ -151,13 +216,17 @@
             <mat-error *ngIf="courseForm.get('price')?.hasError('required')">
               Price is required.
             </mat-error>
-            <mat-error *ngIf="courseForm.get('price')?.hasError('notGreaterThanZero')">
+            <mat-error
+              *ngIf="courseForm.get('price')?.hasError('notGreaterThanZero')"
+            >
               Price must be greater than zero.
             </mat-error>
-            <mat-error *ngIf="
+            <mat-error
+              *ngIf="
                 courseForm.controls['price'].touched &&
                 courseForm.get('price')?.hasError('whitespace')
-              ">
+              "
+            >
               Price cannot be only whitespace characters.
             </mat-error>
           </mat-form-field>
@@ -165,7 +234,12 @@
       </div>
 
       <div class="modal-buttons">
-        <button mat-raised-button type="submit" [disabled]="courseForm.invalid" class="add-course-btn">
+        <button
+          mat-raised-button
+          type="submit"
+          [disabled]="courseForm.invalid"
+          class="add-course-btn"
+        >
           Add Course
         </button>
         <button mat-raised-button mat-dialog-close class="mx-2">Cancel</button>

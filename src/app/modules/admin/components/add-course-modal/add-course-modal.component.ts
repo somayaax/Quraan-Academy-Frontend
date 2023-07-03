@@ -1,15 +1,15 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { CourseService } from "../../services/course.service";
-import { MatDialog } from "@angular/material/dialog";
-import { ToastrService } from "ngx-toastr";
-import { TeacherService } from "../../services/teacher.service";
-import { teacherElement } from "../list-teachers/list-teachers.component";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CourseService } from '../../services/course.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { TeacherService } from '../../services/teacher.service';
+import { teacherElement } from '../list-teachers/list-teachers.component';
 
 @Component({
-  selector: "app-add-course-modal",
-  templateUrl: "./add-course-modal.component.html",
-  styleUrls: ["./add-course-modal.component.css"],
+  selector: 'app-add-course-modal',
+  templateUrl: './add-course-modal.component.html',
+  styleUrls: ['./add-course-modal.component.css'],
 })
 export class AddCourseModalComponent implements OnInit {
   courseForm: FormGroup;
@@ -23,41 +23,43 @@ export class AddCourseModalComponent implements OnInit {
     private teacher: TeacherService
   ) {
     this.courseForm = this.fb.group({
-      name: ["", [Validators.required, this.trimValidator]],
-      level: ["", [Validators.required, this.levelValidator]],
+      name: ['', [Validators.required, this.trimValidator]],
+      level: ['', [Validators.required, this.levelValidator]],
       description: [
-        "",
-        [
-          Validators.required,
-          this.trimValidator,
-          Validators.minLength(10),
-        ],
+        '',
+        [Validators.required, this.trimValidator, Validators.minLength(10)],
       ],
-      numberOfSessions: ["", [Validators.required]],
+      numberOfSessions: ['', [Validators.required]],
       price: [
-        "",
+        '',
         [
           Validators.required,
           this.trimValidator,
           this.greaterThanZeroValidator,
         ],
       ],
-      startDate: ["", [Validators.required]],
-      endDate: ["", [Validators.required]],
-      startTime: ["", [Validators.required, this.trimValidator]],
-      endTime: ["", [Validators.required, this.trimValidator]],
-      teacher: ["", [Validators.required, this.trimValidator]],
+      startDate: ['', [Validators.required]],
+      endDate: ['', [Validators.required]],
+      startTime: [
+        '',
+        [Validators.required, this.trimValidator, this.validTimeFormat],
+      ],
+      endTime: [
+        '',
+        [Validators.required, this.trimValidator, this.validTimeFormat],
+      ],
+      teacher: ['', [Validators.required, this.trimValidator]],
       daysOfWeek: [[], [Validators.required, this.daysOfWeekValidator]],
     });
 
     this.courseForm
-      .get("startDate")
+      .get('startDate')
       ?.valueChanges.subscribe(() => this.calculateSessions());
     this.courseForm
-      .get("endDate")
+      .get('endDate')
       ?.valueChanges.subscribe(() => this.calculateSessions());
     this.courseForm
-      .get("daysOfWeek")
+      .get('daysOfWeek')
       ?.valueChanges.subscribe(() => this.calculateSessions());
 
     this.getTeachers();
@@ -69,20 +71,18 @@ export class AddCourseModalComponent implements OnInit {
     return isWhitespace ? { whitespace: true } : null;
   }
   levelValidator(control: any) {
-    const validLevels = ["beginner", "intermediate", "advanced"];
-    return validLevels.includes(control.value)
-      ? null
-      : { invalidLevel: true };
+    const validLevels = ['beginner', 'intermediate', 'advanced', 'kids'];
+    return validLevels.includes(control.value) ? null : { invalidLevel: true };
   }
   daysOfWeekValidator(control: any) {
     const validDaysOfWeek = [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
     ];
     const daysOfWeek = control.value;
 
@@ -98,6 +98,15 @@ export class AddCourseModalComponent implements OnInit {
 
     return null;
   }
+  validTimeFormat(control: any) {
+    // Regular expression pattern for 24-hour time format (HH:mm)
+    const pattern = /^([01][0-9]|2[0-3]):[0-5][0-9]$/;
+    if (control.value && !pattern.test(control.value)) {
+      return { invalidTimeFormat: true };
+    }
+    return null;
+  }
+
   greaterThanZeroValidator(control: any) {
     return control.value > 0 ? null : { notGreaterThanZero: true };
   }
@@ -113,8 +122,8 @@ export class AddCourseModalComponent implements OnInit {
       while (currDate <= endDate) {
         if (
           daysOfWeek.includes(
-            currDate.toLocaleDateString("en-US", {
-              weekday: "long",
+            currDate.toLocaleDateString('en-US', {
+              weekday: 'long',
             })
           )
         ) {
@@ -127,9 +136,9 @@ export class AddCourseModalComponent implements OnInit {
   }
 
   calculateSessions() {
-    const startDate = this.courseForm.get("startDate")?.value as Date;
-    const endDate = this.courseForm.get("endDate")?.value as Date;
-    const daysOfWeek = this.courseForm.get("daysOfWeek")?.value as string[];
+    const startDate = this.courseForm.get('startDate')?.value as Date;
+    const endDate = this.courseForm.get('endDate')?.value as Date;
+    const daysOfWeek = this.courseForm.get('daysOfWeek')?.value as string[];
 
     const numSessions = this.calculateNumberOfSessions(
       startDate,
@@ -151,21 +160,20 @@ export class AddCourseModalComponent implements OnInit {
         } = error;
         if (!message) message = error.error.error;
         console.log(message);
-        this.toastr.error(`${message}`, "Error");
+        this.toastr.error(`${message}`, 'Error');
       },
     });
   }
 
-  correctTime(date: Date): Date {
-    let newDate= new Date(date);
-    newDate.setMinutes(newDate.getMinutes() + newDate.getTimezoneOffset());
-    return newDate;
-  }
-
-
-
   onSubmit() {
     this.calculateSessions();
+    this.courseForm.value.startDate = new Date(
+      this.courseForm.value.startDate.toISOString().split('T')[0]
+    );
+    this.courseForm.value.endDate = new Date(
+      this.courseForm.value.endDate.toISOString().split('T')[0]
+    );
+
     this.course.addNewCourse(this.courseForm.value).subscribe({
       next: () => {
         this.course.buttonClicked.emit();
@@ -177,9 +185,9 @@ export class AddCourseModalComponent implements OnInit {
         } = error;
         if (!message) message = error.error.error;
         console.log(message);
-        this.toastr.error(`${message}`, "Error");
+        this.toastr.error(`${message}`, 'Error');
       },
     });
   }
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 }

@@ -52,7 +52,7 @@
                         : "Course will finish on:"
                     }}</strong
                   >
-                  {{ getDate(course.courseId.endDate) }}
+                  {{ getDate(course.courseId.endDate.split("T")[0]) }}
                 </p>
               </div>
 
@@ -61,7 +61,7 @@
                   <button
                     class="enrollBtn btn"
                     [disabled]="hasCourseEnded(course)"
-                    [routerLink]="'/student/course/' +course.courseId._id "
+                    [routerLink]="'/student/course/' + course.courseId._id"
                   >
                     View Course
                   </button>
