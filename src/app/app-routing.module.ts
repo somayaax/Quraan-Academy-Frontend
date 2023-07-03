@@ -8,6 +8,8 @@ import { QuestionsComponent } from './shared/questions/questions.component';
 import { RecordedCoursesComponent } from './shared/recorded-courses/recorded-courses.component';
 import { CourseComponent } from './shared/course/course.component';
 import { RecordedDeatailsComponent } from './shared/recorded-deatails/recorded-deatails.component';
+import { TeacherGuard } from './guard/auth/teacher.guard';
+import { StudentGuard } from './guard/auth/student.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -16,12 +18,13 @@ const routes: Routes = [
   { path: 'questions', component: QuestionsComponent },
   { path: 'recordedCourses', component: RecordedCoursesComponent },
   { path: 'recordedCourses/:id', component:RecordedDeatailsComponent },
-  { path: 'courses', component: CourseComponent },  
+  { path: 'courses', component: CourseComponent },
 
   {
     path: 'student',
     loadChildren: () =>
       import('./modules/student/student.module').then((m) => m.StudentModule),
+      canActivate: [StudentGuard]
   },
   {
     path: 'home',
@@ -32,11 +35,13 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () =>
       import('./modules/admin/admin.module').then((m) => m.AdminModule),
+      canActivate: [AdminGuard]
   },
   {
     path: 'teacher',
     loadChildren: () =>
       import('./modules/teacher/teacher.module').then((m) => m.TeacherModule),
+      canActivate: [TeacherGuard]
   },
   { path: '**', component: NotfoundComponent },
 ];
