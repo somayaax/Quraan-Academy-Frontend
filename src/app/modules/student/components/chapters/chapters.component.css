@@ -4,9 +4,8 @@
   font-size: 1.5rem;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
-  min-height: 100vh;
-  width: 25rem;
+  min-height: 100%;
+  width: 22rem;
 }
 
 .chapter-sidebar-list {
@@ -75,22 +74,31 @@
 .completed {
   background-color: black;
   opacity: 0.5;
-  text-decoration: line-through;
   cursor: pointer;
 }
+
+.li-text {
+  text-decoration: line-through;
+}
+
 .finished {
   color: green;
 }
 
 @media screen and (max-width: 568px) {
+  .page {
+    flex-direction: column;
+  }
+
   .hamburger-menu {
+    width: 2.5rem;
     display: block;
     margin-top: 0.7rem;
   }
 
   .chapter-sidebar {
-    height: 0;
-    width: 0;
+    display: none;
+    width: 100%;
   }
 
   .chapter-sidebar-list {
@@ -107,6 +115,9 @@
     text-align: center;
   }
 
+  .chapter-sidebar.active {
+    display: block;
+  }
   .chapter-sidebar-list.active {
     display: block;
   }

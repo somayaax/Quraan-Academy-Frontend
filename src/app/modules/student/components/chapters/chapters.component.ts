@@ -68,6 +68,12 @@ export class ChaptersComponent implements OnInit {
   }
 
   toggleMenu() {
+    const sidebar = document.querySelector('.chapter-sidebar');
+    if (sidebar?.classList.contains('active')) {
+      sidebar?.classList.remove('active');
+    } else {
+      sidebar?.classList.add('active');
+    }
     const sidebarList = document.querySelector('.chapter-sidebar-list');
 
     if (sidebarList) {
