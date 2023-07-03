@@ -56,6 +56,4 @@ export class TeacherService {
     let url = `${this.domain}/session/create-meeting/${id}`;
     return this.http.get(url).pipe(catchError(this.handleError));
   }
-
-
 }

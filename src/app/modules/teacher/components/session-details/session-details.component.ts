@@ -12,19 +12,19 @@ export class SessionDetailsComponent {
   id: string = '';
   session: any;
   isLoading: boolean = true;
-  sessionNum:number=0;
+  sessionNum: number = 0;
 
   constructor(private _activatedRoute: ActivatedRoute,
     private _teacherService: TeacherService,
     private toastr: ToastrService,
     private _Router: Router) {
-    this.id = this._activatedRoute.snapshot.params['id'];      
+    this.id = this._activatedRoute.snapshot.params['id'];
     this.getSessionDetails();
   }
 
   ngOnInit(): void {
     this._activatedRoute.queryParamMap.subscribe(params => {
-      const sessionNum:any = params.get('sessionNum');
+      const sessionNum: any = params.get('sessionNum');
       this.sessionNum = sessionNum
     });
   }
@@ -49,25 +49,29 @@ export class SessionDetailsComponent {
   }
 
   createMeeting() {
-    this._teacherService.createMeeting(this.id).subscribe(
-      {
-        next: (data) => {
-          this.session.startUrl = data.startUrl;
-          this.session.joinUrl = data.joinUrl;
-          this.toastr.success('meeting link generated', "Success");
-        },
-        error: (error: any) => {
-          console.log(error);
-          this.toastr.error('Cannot generate meeting link', "Error");
-        },
-      }
-    )
+    if (new Date(this.session.date.split('T')[0]) > new Date()) {
+      this.toastr.error('Session expired', "Error");
+    } else {
+      this._teacherService.createMeeting(this.id).subscribe(
+        {
+          next: (data) => {
+            this.session.startUrl = data.startUrl;
+            this.session.joinUrl = data.joinUrl;
+            this.toastr.success('meeting link generated', "Success");
+          },
+          error: (error: any) => {
+            console.log(error);
+            this.toastr.error('Cannot generate meeting link', "Error");
+          },
+        }
+      )
+    }
   }
-  formatDate(dateStr:string){
-    const date = new Date(dateStr);    
+  formatDate(dateStr: string) {
+    const date = new Date(dateStr);
     // const formattedDate = new Intl.DateTimeFormat("ar-EG").format(date);
     const formattedDate = new Intl.DateTimeFormat("en-GB").format(date);
     return formattedDate;
-    
+
   }
 }

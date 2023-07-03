@@ -32,20 +32,28 @@
         <div
           class="session p-4 shadow"
           [ngClass]="{'ended-session': hasSessionEnded(session)}"
-          [routerLink]="'/teacher/session/' + session._id"
-          [queryParams]="{ sessionNum: i + 1 }"
           >
           <h2 class="text-center fs-3">Session {{ i + 1 }}</h2>
 
-          <h3 class="fw-bold">
-            Starts At <br />
-            {{ session.startTime }} {{ formatDate(session.date) }}
-          </h3>
+          <h3 class="fw-bold"> {{formatDate(session.date)}} <br>
+            <span class="time">
+
+                {{session.startTime}} 
+            </span>
+            Till
+            <span class="time">
+                {{session.endTime}}
+            </span>
+        </h3>
+                
           <p *ngIf="session.progressComment" class="">
             Comment: {{ session.progressComment }}
           </p>
           <div class="d-flex justify-content-end">
-            <button class="custom-button border border-1">View Details</button>
+            <button class="custom-button border border-1"
+            [routerLink]="'/teacher/session/' + session._id"
+            [queryParams]="{ sessionNum: i + 1 }"
+            >View Details</button>
           </div>
         </div>
       </div>

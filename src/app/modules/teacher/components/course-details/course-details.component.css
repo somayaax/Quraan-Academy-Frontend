@@ -2,16 +2,11 @@
 
 .session {
   background-color: #fff;
-  cursor: pointer;
 }
-.session h2 {
+.session h2, .time {
   color: #c3a668;
 }
 
 .bg-session {
   background-image: url(../../../../../assets/bg/bg.jpg);
-}
-
-.ended-session {
-  text-decoration: line-through;
 }

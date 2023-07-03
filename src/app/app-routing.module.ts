@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './shared/register/register.component';
-import { AdminGuard } from './guard/adminAuth/admin.guard';
+import { AdminGuard } from './guard/auth/admin.guard';
 import { LoginComponent } from './shared/login/login.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { QuestionsComponent } from './shared/questions/questions.component';

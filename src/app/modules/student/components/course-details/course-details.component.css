@@ -1,5 +1,22 @@
 @import url(../../../teacher/components/course-details/course-details.component.css);
 
-.ended-session{
-    text-decoration: line-through;
+.today-session{
+    border: 6px solid rgb(178, 137, 83);
+}
+
+.custom-button:disabled{
+    text-decoration: line-through;    
+} 
+
+.ended-session {
+    position: relative;
+  }
+.ended-session::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
 }

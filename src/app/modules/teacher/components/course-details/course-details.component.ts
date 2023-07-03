@@ -45,16 +45,20 @@ export class CourseDetailsComponent implements OnInit {
     });
   }
   formatDate(dateStr: string) {
-    const date = new Date(dateStr);
-    // const formattedDate = new Intl.DateTimeFormat("ar-EG").format(date);
-    const formattedDate = new Intl.DateTimeFormat('en-GB').format(date);
-    return formattedDate;
+    
+    return dateStr.split('T')[0];
+
   }
   hasSessionEnded(session: any): boolean {
     const sessionDate = new Date(session.date);
-    const sessionTime = session.startTime;
-    sessionDate.setHours(Number(sessionTime.split(':')[0]));
-    sessionDate.setMinutes(Number(sessionTime.split(':')[1]));
+    const sessionTime = session.endTime;
+    if (sessionTime.split(':')[1]) {      
+      sessionDate.setHours(Number(sessionTime.split(':')[0]));
+      sessionDate.setMinutes(Number(sessionTime.split(':')[1]));
+    } else {
+      sessionDate.setHours(Number(sessionTime));
+      sessionDate.setMinutes(Number('00'));
+    }
     const today = new Date()
     return (today > sessionDate);
   }
