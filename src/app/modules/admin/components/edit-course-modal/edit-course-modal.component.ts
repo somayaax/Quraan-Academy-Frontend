@@ -39,8 +39,8 @@ export class EditCourseModalComponent implements OnInit {
       price: ['', [this.greaterThanZeroValidator]],
       startDate: [''],
       endDate: [''],
-      startTime: [''],
-      endTime: [''],
+      startTime: ['', this.validTimeFormat],
+      endTime: ['', this.validTimeFormat],
       teacher: [''],
       daysOfWeek: [[], [this.daysOfWeekValidator]],
     });
@@ -54,30 +54,29 @@ export class EditCourseModalComponent implements OnInit {
     this.courseForm
       .get('daysOfWeek')
       ?.valueChanges.subscribe(() => this.calculateSessions());
-      this.getTeachers();
+    this.getTeachers();
   }
-
 
   getTeachers(): void {
     this.teacher.getTeachersNotPaginated().subscribe({
-        next: (data) => {
-            this.teachers = data;
-        },
-        error: (error: any) => {
-            let {
-                error: { message },
-            } = error;
-            if (!message) message = error.error.error;
-            console.log(message);
-            this.toastr.error(`${message}`, "Error");
-        },
+      next: (data) => {
+        this.teachers = data;
+      },
+      error: (error: any) => {
+        let {
+          error: { message },
+        } = error;
+        if (!message) message = error.error.error;
+        console.log(message);
+        this.toastr.error(`${message}`, 'Error');
+      },
     });
-}
-
-  levelValidator(control: any) {
-    const validLevels = ['beginner', 'intermediate', 'advanced'];
   }
 
+  levelValidator(control: any) {
+    const validLevels = ['beginner', 'intermediate', 'advanced', 'kids'];
+    return validLevels.includes(control.value) ? null : { invalidLevel: true };
+  }
   daysOfWeekValidator(control: any) {
     const validDaysOfWeek = [
       'Monday',
@@ -129,9 +128,12 @@ export class EditCourseModalComponent implements OnInit {
   }
 
   calculateSessions() {
-    const startDate = this.courseForm.get('startDate')?.value as Date;
-    const endDate = this.courseForm.get('endDate')?.value as Date;
+    const startDateStr = this.courseForm.get('startDate')?.value as string;
+    const endDateStr = this.courseForm.get('endDate')?.value as string;
     const daysOfWeek = this.courseForm.get('daysOfWeek')?.value as string[];
+
+    const startDate = new Date(startDateStr);
+    const endDate = new Date(endDateStr);
 
     const numSessions = this.calculateNumberOfSessions(
       startDate,
@@ -141,7 +143,14 @@ export class EditCourseModalComponent implements OnInit {
 
     this.courseForm.patchValue({ numberOfSessions: numSessions });
   }
-
+  validTimeFormat(control: any) {
+    // Regular expression pattern for 24-hour time format (HH:mm)
+    const pattern = /^([01][0-9]|2[0-3]):[0-5][0-9]$/;
+    if (control.value && !pattern.test(control.value)) {
+      return { invalidTimeFormat: true };
+    }
+    return null;
+  }
   ngOnInit(): void {
     this.courseId = this.data.courseId;
     this.course.getCourse(this.courseId).subscribe({
@@ -172,8 +181,14 @@ export class EditCourseModalComponent implements OnInit {
     });
   }
   onUpdate() {
-    this.courseForm.value.startDate =  this.courseForm.value.startDate.toLocaleDateString('en-US');
-    this.courseForm.value.endDate =  this.courseForm.value.endDate.toLocaleDateString('en-US');
+    this.calculateSessions();
+    this.courseForm.value.startDate = new Date(
+      this.courseForm.value.startDate
+    ).toLocaleDateString('en-US');
+    this.courseForm.value.endDate = new Date(
+      this.courseForm.value.endDate
+    ).toLocaleDateString('en-US');
+
     this.course.updateCourse(this.courseId, this.courseForm.value).subscribe({
       next: () => {
         this.course.buttonClicked.emit();

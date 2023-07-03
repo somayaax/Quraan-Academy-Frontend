@@ -38,7 +38,7 @@ export class AddCourseModalComponent implements OnInit {
           this.greaterThanZeroValidator,
         ],
       ],
-      startDate: ['', [Validators.required]],
+      startDate: ['', [Validators.required, this.startDateValidator]],
       endDate: ['', [Validators.required]],
       startTime: [
         '',
@@ -70,10 +70,18 @@ export class AddCourseModalComponent implements OnInit {
     const isWhitespace = value.trim().length === 0;
     return isWhitespace ? { whitespace: true } : null;
   }
+
   levelValidator(control: any) {
     const validLevels = ['beginner', 'intermediate', 'advanced', 'kids'];
     return validLevels.includes(control.value) ? null : { invalidLevel: true };
   }
+  startDateValidator(control: any) {
+    if (control.value) {
+      return control.value > Date.now() ? null : { invalidStartDate: true };
+    }
+    return null;
+  }
+
   daysOfWeekValidator(control: any) {
     const validDaysOfWeek = [
       'Monday',
@@ -165,11 +173,12 @@ export class AddCourseModalComponent implements OnInit {
     });
   }
 
-
   onSubmit() {
     this.calculateSessions();
-    this.courseForm.value.startDate =  this.courseForm.value.startDate.toLocaleDateString('en-US');
-    this.courseForm.value.endDate =  this.courseForm.value.endDate.toLocaleDateString('en-US');
+    this.courseForm.value.startDate =
+      this.courseForm.value.startDate.toLocaleDateString('en-US');
+    this.courseForm.value.endDate =
+      this.courseForm.value.endDate.toLocaleDateString('en-US');
 
     this.course.addNewCourse(this.courseForm.value).subscribe({
       next: () => {
