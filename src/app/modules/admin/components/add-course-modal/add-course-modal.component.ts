@@ -157,7 +157,7 @@ export class AddCourseModalComponent implements OnInit {
   }
 
   correctTime(date: Date): Date {
-    let newDate= new Date(date);
+    let newDate = new Date(date);
     newDate.setMinutes(newDate.getMinutes() + newDate.getTimezoneOffset());
     return newDate;
   }
@@ -166,6 +166,8 @@ export class AddCourseModalComponent implements OnInit {
 
   onSubmit() {
     this.calculateSessions();
+    this.courseForm.value.startDate =  this.courseForm.value.startDate.toLocaleDateString('en-US');
+    this.courseForm.value.endDate =  this.courseForm.value.endDate.toLocaleDateString('en-US');
     this.course.addNewCourse(this.courseForm.value).subscribe({
       next: () => {
         this.course.buttonClicked.emit();

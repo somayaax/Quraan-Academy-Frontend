@@ -172,6 +172,8 @@ export class EditCourseModalComponent implements OnInit {
     });
   }
   onUpdate() {
+    this.courseForm.value.startDate =  this.courseForm.value.startDate.toLocaleDateString('en-US');
+    this.courseForm.value.endDate =  this.courseForm.value.endDate.toLocaleDateString('en-US');
     this.course.updateCourse(this.courseId, this.courseForm.value).subscribe({
       next: () => {
         this.course.buttonClicked.emit();
