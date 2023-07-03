@@ -21,9 +21,6 @@ export class QAService {
       `${currentDomain}/question/student?page=${page}&limit=${limit}&categoryID=${categoryID}&teacherID=${teacherID}`
     );
   }
-  getCategories(): Observable<any> {
-    return this._httpClient.get(`${currentDomain}/question/category`);
-  }
   deleteQuestion(id: any): Observable<any> {
     return this._httpClient.delete(`${currentDomain}/question/${id}`);
   }
@@ -39,7 +36,7 @@ export class QAService {
   }
   getCategoriesNotPaginated(params?: any): Observable<any> {
     params.type = params.type || '';
-    let url = `${currentDomain}/admin/category/allCategories?type=${params.type}`;
+    let url = `${currentDomain}/category/allCategories?type=${params.type}`;
     return this._httpClient.get(url);
   }
 }

@@ -49,9 +49,9 @@ export class CourseDetailsComponent implements OnInit {
     return dateStr.split('T')[0];
   }
   hasSessionEnded(session: any): boolean {
-    const sessionDate = new Date(session.date);
+    const sessionDate = new Date(session.date.split('T')[0]);
     const sessionTime = session.endTime;
-    if (sessionTime.split(':')[1]) {
+    if (sessionTime.split(':')[1]) {      
       sessionDate.setHours(Number(sessionTime.split(':')[0]));
       sessionDate.setMinutes(Number(sessionTime.split(':')[1]));
     } else {
@@ -59,6 +59,7 @@ export class CourseDetailsComponent implements OnInit {
       sessionDate.setMinutes(Number('00'));
     }
     const today = new Date()
+    
     return (today > sessionDate);
   }
   sessionStartingSoon(session: any): boolean {
