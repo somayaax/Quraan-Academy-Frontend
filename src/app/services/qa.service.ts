@@ -11,10 +11,10 @@ export class QAService {
   buttonClicked = new EventEmitter();
 
   constructor(private _httpClient: HttpClient, private _Router: Router) { }
-  getAllQuestions(page: number, limit: number, categoryID: string, teacherID: string): Observable<any> {
-    return this._httpClient.get(
-      `${currentDomain}/question?page=${page}&limit=${limit}&categoryID=${categoryID}&teacherID=${teacherID}`
-    )
+  getAllQuestions(page: number, limit: number, categoryID: string, teacherID: string, answered?: boolean): Observable<any> {
+    let url = `${currentDomain}/question?page=${page}&limit=${limit}&categoryID=${categoryID}&teacherID=${teacherID}`
+    if (answered) url += `&answered=${answered}`
+    return this._httpClient.get(url)
   }
   getCategoriesNotPaginated(params?: any): Observable<any> {
     params.type = params.type || ""

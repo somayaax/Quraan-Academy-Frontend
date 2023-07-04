@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between page">
     <app-admin-sidebar></app-admin-sidebar>
     <div class="table-area container-fluid">
-        <div class="d-flex flex-wrap">
+        <div class="d-flex align-items-center">
             <div class="form-group m-2">
                 <label for="level-dropdown">Category</label>
                 <select class="form-control" id="level-dropdown" [(ngModel)]="categoryID" (change)="getQuestions()">
@@ -9,6 +9,12 @@
                     <option *ngFor="let cat of categories" [value]="cat._id">{{cat.name}}</option>                 
                 </select>
             </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="answered" (click)="answeredChange()"
+                  id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                  Answered Questions </label>
+          </div>
           </div>
         <ng-container>
         <div class="row text-left">

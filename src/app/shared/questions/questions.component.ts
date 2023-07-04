@@ -15,12 +15,14 @@ export class QuestionsComponent implements OnInit {
   categoryID = '';
   teacherID = '';
   currentPage: number = 1;
-
-  constructor(private _QAService: QAService , private toastr: ToastrService) {
+  answered = false;
+  isLoading = true;
+  constructor(private _QAService: QAService, private toastr: ToastrService) {
     this._QAService.buttonClicked.subscribe(() => {
       this.getQuestions();
     });
   }
+
 
   ngOnInit() {
     this.getQuestions()
@@ -46,17 +48,25 @@ export class QuestionsComponent implements OnInit {
   }
 
   getQuestions(): void {
-    this._QAService.getAllQuestions(this.currentPage, this.limit, this.categoryID, this.teacherID).subscribe({
+    this.isLoading = true;
+    this._QAService.getAllQuestions(this.currentPage, this.limit, this.categoryID, this.teacherID, this.answered).subscribe({
       next: (res: any) => {
         if (res.message === 'success') {
           this.questions = res.data.docs;
           this.pageInfo = res.data;
         }
+        this.isLoading = false;
       },
       error: (err) => {
         console.log(err);
+        this.isLoading = false;
       }
     });
+  }
+
+  answeredChange() {
+    this.answered = !this.answered;
+    this.getQuestions()
   }
 
   changeCategory() {
