@@ -15,6 +15,7 @@ export class ChaptersComponent implements OnInit {
   chapters: any[] = [];
   progress: any[] = [];
   selectedChapter: any;
+  isLoading: boolean = true;
 
   constructor(private route: ActivatedRoute, private toastr: ToastrService, private chapter: ChapterService, private recordedCourse: RecordedCourseService) { }
 
@@ -44,7 +45,16 @@ export class ChaptersComponent implements OnInit {
       next: (data) => {
         this.chapters = data;
         this.selectedChapter = this.chapters[0];
-      }
+        this.isLoading = false;
+      },
+      error: (error: any) => {
+        let {
+          error: { message },
+        } = error;
+        if (!message) message = error.error.error;
+        this.toastr.error(`${message}`, "Error");
+        this.isLoading = false
+      },
     })
   }
 

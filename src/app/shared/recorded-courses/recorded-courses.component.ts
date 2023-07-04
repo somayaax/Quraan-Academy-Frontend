@@ -14,18 +14,19 @@ export class RecordedCoursesComponent {
   category = '';
   limit = 6;
   currentPage: number = 1;
-  hasNextPage:boolean = false;
-  hasPrevPage:boolean =false;
-  constructor(private _RecordedCoursesService:RecordedCoursesService,private toastr: ToastrService){}
+  hasNextPage: boolean = false;
+  hasPrevPage: boolean = false;
+  isLoading: boolean = true;
+  constructor(private _RecordedCoursesService: RecordedCoursesService, private toastr: ToastrService) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getRecordedCourses();
     this._RecordedCoursesService.getAllRecordedCourseCategory().subscribe({
       next: (res: any) => {
         if (res.status === 200) {
           this.categories = res.body.docs;
         }
-        
+
       },
       error: (err) => {
         console.log(err);
@@ -33,18 +34,24 @@ export class RecordedCoursesComponent {
     })
   }
 
-  getRecordedCourses():void{
-    this._RecordedCoursesService.getAllRecordedCourses(this.currentPage,this.limit,this.category).subscribe({
+  getRecordedCourses(): void {
+    this._RecordedCoursesService.getAllRecordedCourses(this.currentPage, this.limit, this.category).subscribe({
       next: (res: any) => {
         if (res.status === 200) {
           this.recordedCourses = res.body.docs;
           this.hasNextPage = res.body.hasNextPage;
           this.hasPrevPage = res.body.hasPrevPage;
         }
+        this.isLoading = false;
       },
-      error: (err) => {
-        console.log(err);
-      }
+      error: (error: any) => {
+        let {
+          error: { message },
+        } = error;
+        if (!message) message = error.error.error;
+        this.toastr.error(`${message}`, "Error");
+        this.isLoading = false
+      },
     });
   }
   changeCategory() {
@@ -65,14 +72,14 @@ export class RecordedCoursesComponent {
     }
   }
 
-  enrollCourse(event: Event,id:string) {
+  enrollCourse(event: Event, id: string) {
     event.stopPropagation();
-    this._RecordedCoursesService.enrollCourse(id,'true').subscribe({
+    this._RecordedCoursesService.enrollCourse(id, 'true').subscribe({
       next: (res: any) => {
         if (res.status === 200) {
           console.log(res);
           window.location.href = res.body;
-          
+
         }
       },
       error: (err) => {
@@ -81,4 +88,3 @@ export class RecordedCoursesComponent {
     });
   }
 }
-

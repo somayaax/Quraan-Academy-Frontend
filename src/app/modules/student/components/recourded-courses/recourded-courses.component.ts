@@ -11,6 +11,7 @@ export class RecourdedCoursesComponent implements OnInit {
   recordedCourses: studentRecordedCoursesElement[] = [];
   filteredCourses: any[] = [];
   selectedCategory: any = "";
+  isLoading: boolean = true;
   constructor(
     private recordedCourse: RecordedCourseService,
     private toastr: ToastrService
@@ -21,6 +22,7 @@ export class RecourdedCoursesComponent implements OnInit {
       next: (data) => {
         this.recordedCourses = data;
         this.filteredCourses = this.recordedCourses;
+        this.isLoading = false;
       },
       error: (error: any) => {
         let {
@@ -28,6 +30,7 @@ export class RecourdedCoursesComponent implements OnInit {
         } = error;
         if (!message) message = error.error.error;
         this.toastr.error(`${message}`, "Error");
+        this.isLoading = false;
       },
     });
   }

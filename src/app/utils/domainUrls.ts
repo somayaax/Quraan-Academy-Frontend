@@ -1,4 +1,4 @@
 const devDomain: string = "http://localhost:3000";
-const prodDomain: string = "";
-const currentDomain: string = devDomain;
+const prodDomain: string = "https://quraan.onrender.com";
+const currentDomain: string = prodDomain;
 export default currentDomain;

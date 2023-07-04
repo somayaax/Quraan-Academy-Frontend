@@ -22,6 +22,14 @@
       </div>
     </div>
 
+    <ng-container *ngIf="isLoading">
+      <div class="d-flex justify-content-center align-items-center vh-100">
+          <div class="spinner-border" style="width: 6rem; height: 6rem;" role="status">
+              <span class="visually-hidden">Loading...</span>
+          </div>
+      </div>
+  </ng-container>
+
     <ng-container>
       <div class="card-container d-flex flex-wrap">
         <div *ngFor="let course of recordedCourses" class="card" [routerLink]="course['_id']">
@@ -65,4 +73,3 @@
 
   </div>
 </div >
-
