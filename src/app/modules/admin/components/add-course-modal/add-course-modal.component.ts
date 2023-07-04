@@ -38,7 +38,7 @@ export class AddCourseModalComponent implements OnInit {
           this.greaterThanZeroValidator,
         ],
       ],
-      startDate: ['', [Validators.required, this.startDateValidator]],
+      startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
       startTime: [
         '',
