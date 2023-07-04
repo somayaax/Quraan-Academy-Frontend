@@ -13,7 +13,6 @@ export class CourseDetailsComponent implements OnInit {
   id: string = '';
   course: any;
   isLoading: boolean = true;
-
   constructor(private _activatedRoute: ActivatedRoute,
     private _studentService: StudentService,
     private toastr: ToastrService,
@@ -51,7 +50,7 @@ export class CourseDetailsComponent implements OnInit {
   hasSessionEnded(session: any): boolean {
     const sessionDate = new Date(session.date.split('T')[0]);
     const sessionTime = session.endTime;
-    if (sessionTime.split(':')[1]) {      
+    if (sessionTime.split(':')[1]) {
       sessionDate.setHours(Number(sessionTime.split(':')[0]));
       sessionDate.setMinutes(Number(sessionTime.split(':')[1]));
     } else {
@@ -59,7 +58,7 @@ export class CourseDetailsComponent implements OnInit {
       sessionDate.setMinutes(Number('00'));
     }
     const today = new Date()
-    
+
     return (today > sessionDate);
   }
   sessionStartingSoon(session: any): boolean {
@@ -72,8 +71,15 @@ export class CourseDetailsComponent implements OnInit {
       sessionDateEnd.setHours(Number(sessionTimeEnd));
       sessionDateEnd.setMinutes(0);
     }
-    const today = new Date();  
+    const today = new Date();
     return (today < sessionDateEnd && today.toDateString() === sessionDateEnd.toDateString())
+  }
+
+  CommentDisplay(session:any) {
+    session.viewComment = true;
+  }
+  CommentHide(session:any) {
+    session.viewComment = false;
   }
 }
 

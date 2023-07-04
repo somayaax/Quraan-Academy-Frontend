@@ -9,7 +9,7 @@ import { SessionService } from '../../services/session.service';
 export class ListSessionsComponent {
   months: number[] = Array.from({ length: 12 }, (_, i) => i + 1);
   sessions: sessionElement[] = [];
-  selectedMonth: number = 1;
+  selectedMonth: number = new Date().getMonth()+1;
   selectedYear: number = new Date().getFullYear();
   date: string = `${this.selectedYear}-${this.selectedMonth}-01`;
   firstDay: number = new Date(this.date).getDay();

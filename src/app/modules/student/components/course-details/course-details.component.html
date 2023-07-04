@@ -26,16 +26,15 @@
     <div class="container">
         <h3 class="header">Course Sessions</h3>
         <div class="row">
-            <div class="col-md-4 my-2" *ngFor="let session of course.sessions; let i=index">
+            <div class="col-md-4 my-2 position-relative" *ngFor="let session of course.sessions; let i=index">
                 <div class="session p-4 shadow"
-                [ngClass]="{'ended-session': hasSessionEnded(session), 'today-session': sessionStartingSoon(session)}"
-               >
+                    [ngClass]="{'ended-session': hasSessionEnded(session), 'today-session': sessionStartingSoon(session)}">
                     <h2 class="text-center fs-3">
                         Session {{i+1}}
                     </h2>
                     <h3 class="fw-bold"> {{formatDate(session.date)}} <br>
                         <span class="time">
-                            {{session.startTime}} 
+                            {{session.startTime}}
                         </span>
                         Till
                         <span class="time">
@@ -43,17 +42,29 @@
                         </span>
                         <br>
                     </h3>
-                    <p *ngIf="session.progressComment" class="">
-                        Comment: {{ session.progressComment }}
-                      </p>
                     <div class="d-flex justify-content-end">
-                        <button class="custom-button border border-1"
-                        [disabled]="hasSessionEnded(session)"
-                        [routerLink]="'/student/session/' + session._id"
-                        [queryParams]="{ sessionNum: i+1 }">
-                        View Details</button>
+                        <button class="custom-button border border-1" [disabled]="hasSessionEnded(session)"
+                            *ngIf="!session.progressComment" [routerLink]="'/student/session/' + session._id"
+                            [queryParams]="{ sessionNum: i+1 }">
+                            View Details</button>
+                        <button class="btn progress-btn border border-1"
+                            *ngIf="hasSessionEnded(session) && session.progressComment"
+                            (click)="CommentDisplay(session)">Show Progress Comment</button>
                     </div>
 
+
+                    <div class="comment rounded shadow d-flex flex-column justify-content-between"
+                        *ngIf="hasSessionEnded(session) && session.progressComment && session.viewComment">
+                        <div>
+                            <br>
+                            <button class="btn text-white" (click)="CommentHide(session)">X</button>
+                            <h3>Teacher's Comment</h3>
+                            <p class="mb-0">
+
+                                {{ session.progressComment }}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

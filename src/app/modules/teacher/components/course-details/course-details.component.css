@@ -10,3 +10,22 @@
 .bg-session {
   background-image: url(../../../../../assets/bg/bg.jpg);
 }
+.today-session{
+    border: 6px solid rgb(178, 137, 83);
+}
+
+.progress-btn{
+    background-color: #5b2d1e;
+    color: #e1e1e1;
+    padding: 0.75rem 1.5rem;
+}
+
+.comment{
+    position: absolute;
+    background-color: #5b2d1e;
+    padding: 0.75rem 1.5rem;
+    color: #fff;
+    top: 0;
+    right:0;
+    height: 100%;
+}

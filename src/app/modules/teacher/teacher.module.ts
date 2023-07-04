@@ -23,6 +23,7 @@ import { SessionDetailsComponent } from './components/session-details/session-de
 import { ProfileComponent } from './components/profile/profile.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from "@angular/material/core";
+import { SessionCommentModalComponent } from './components/session-comment-modal/session-comment-modal.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { MatNativeDateModule } from "@angular/material/core";
     CourseDetailsComponent,
     SessionDetailsComponent,
     ProfileComponent,
+    SessionCommentModalComponent,
   ],
   imports: [
     CommonModule,

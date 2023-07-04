@@ -9,6 +9,7 @@ import currentDomain from 'src/app/utils/domainUrls';
 export class TeacherService {
   domain: string = currentDomain;
   buttonClicked = new EventEmitter();
+  sessionDetailsChange = new EventEmitter();
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
@@ -55,5 +56,9 @@ export class TeacherService {
   createMeeting(id: string): Observable<any> {
     let url = `${this.domain}/session/create-meeting/${id}`;
     return this.http.get(url).pipe(catchError(this.handleError));
+  }
+  addProgressComment(id: string, comment:any): Observable<any> {
+    let url = `${this.domain}/session/${id}/comment`;
+    return this.http.patch(url, {progressComment: comment},).pipe(catchError(this.handleError));
   }
 }

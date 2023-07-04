@@ -50,7 +50,7 @@ export class SessionDetailsComponent {
 
   createMeeting() {
     if (new Date(this.session.date.split('T')[0]) > new Date()) {
-      this.toastr.error('Session expired', "Error");
+      this.toastr.error('Session not available', "Error");
     } else {
       this._teacherService.createMeeting(this.id).subscribe(
         {

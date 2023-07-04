@@ -8,7 +8,7 @@ import { TeacherService } from '../../services/teacher.service';
 })
 export class ScheduleComponent {
   sessions: sessionElement[] = [];
-  selectedMonth: number = 1;
+  selectedMonth: number = new Date().getMonth()+1;
   selectedYear: number = new Date().getFullYear();
   date: string = `${this.selectedYear}-${this.selectedMonth}-01`;
   firstDay: number = new Date(this.date).getDay();
