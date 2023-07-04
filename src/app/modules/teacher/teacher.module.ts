@@ -24,6 +24,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from "@angular/material/core";
 import { SessionCommentModalComponent } from './components/session-comment-modal/session-comment-modal.component';
+import { StudentsEnrolledModalComponent } from './components/students-enrolled-modal/students-enrolled-modal.component';
+import { EnrolledstudentComponent } from './components/enrolledstudent/enrolledstudent.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { SessionCommentModalComponent } from './components/session-comment-modal
     SessionDetailsComponent,
     ProfileComponent,
     SessionCommentModalComponent,
+    StudentsEnrolledModalComponent,
+    EnrolledstudentComponent,
   ],
   imports: [
     CommonModule,
@@ -50,7 +54,6 @@ import { SessionCommentModalComponent } from './components/session-comment-modal
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-
     MatCardModule
   ],
 })

@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
@@ -10,6 +10,7 @@ export class TeacherService {
   domain: string = currentDomain;
   buttonClicked = new EventEmitter();
   sessionDetailsChange = new EventEmitter();
+  commentAdded = new EventEmitter();
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
@@ -28,13 +29,14 @@ export class TeacherService {
     return this.http.get(url).pipe(catchError(this.handleError));
   }
   updateTeacherProfile(newData: any): Observable<any> {
-    const { _id, createdAt,updatedAt,__v, ...updatedData } = newData;
-    return this.http.patch(`${this.domain}/teacher/updateprofile`,updatedData);
+    const { _id, createdAt, updatedAt, __v, ...updatedData } = newData;
+    return this.http.patch(`${this.domain}/teacher/updateprofile`, updatedData);
   }
 
   getTeacherProfile(): Observable<any> {
-    return this.http.get(`${this.domain}/teacher/profile`).pipe(catchError(this.handleError));}
-    
+    return this.http.get(`${this.domain}/teacher/profile`).pipe(catchError(this.handleError));
+  }
+
   getTeacherCourses(params?: any): Observable<any> {
     let url = `${this.domain}/course/?page=${params.page}`;
 
@@ -57,8 +59,17 @@ export class TeacherService {
     let url = `${this.domain}/session/create-meeting/${id}`;
     return this.http.get(url).pipe(catchError(this.handleError));
   }
-  addProgressComment(id: string, comment:any): Observable<any> {
+  addProgressComment(id: string, comment: any): Observable<any> {
     let url = `${this.domain}/session/${id}/comment`;
-    return this.http.patch(url, {progressComment: comment},).pipe(catchError(this.handleError));
+    return this.http.patch(url, { progressComment: comment },).pipe(catchError(this.handleError));
+  }
+
+  getEnrolledStudents(id: string): Observable<any> {
+    let url = `${this.domain}/course/${id}/students`;
+    return this.http.get(url).pipe(catchError(this.handleError));
+  }
+  addStudentComment(id: string, data: any): Observable<any> {
+    let url = `${this.domain}/course/${id}/studentComment`;
+    return this.http.patch(url, data, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).pipe(catchError(this.handleError));
   }
 }

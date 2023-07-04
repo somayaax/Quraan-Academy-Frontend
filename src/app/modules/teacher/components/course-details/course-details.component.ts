@@ -4,6 +4,7 @@ import { TeacherService } from '../../services/teacher.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SessionCommentModalComponent } from '../session-comment-modal/session-comment-modal.component';
+import { StudentsEnrolledModalComponent } from '../students-enrolled-modal/students-enrolled-modal.component';
 
 @Component({
   selector: 'app-course-details',
@@ -97,4 +98,13 @@ export class CourseDetailsComponent implements OnInit {
   CommentHide(session:any) {
     session.viewComment = false;
   }
+
+  viewStudents(){
+    this.dialogConfig.data = {
+      courseID: this.course._id
+    };
+    this.dialog.open(StudentsEnrolledModalComponent, this.dialogConfig);
+  }
+
 }
+

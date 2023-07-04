@@ -1,0 +1,24 @@
+section{
+    width: 50vw;
+    height: 70vh;
+    overflow: auto;
+}
+
+section h2{
+    color: #5b2d1e;
+}
+
+.text-color{
+    color: #c3a668;   
+    font-size: 1.2rem;   
+}
+
+.bg-add{
+    background-color: #5b2d1e;
+    color: #fff;
+    cursor: pointer;
+}
+
+.bg-students{
+    background-color: #c3a668;
+}
