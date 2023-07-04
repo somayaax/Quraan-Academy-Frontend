@@ -81,5 +81,6 @@ export class CourseDetailsComponent implements OnInit {
   CommentHide(session:any) {
     session.viewComment = false;
   }
+  
 }
 

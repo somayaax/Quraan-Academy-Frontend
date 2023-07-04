@@ -1,0 +1,10 @@
+<div class="ms-2">
+    <div class="text-color mb-2">{{student.studentId.firstName}} {{student.studentId.lastName}}</div>
+    <p *ngIf="student.teacherComment"><span class="fw-bold">Your Comment: </span>{{student.teacherComment}}
+    </p>
+    <form [formGroup]="commentForm" (ngSubmit)="onSubmit(student.courseId._id)" *ngIf="!student.teacherComment">
+        <textarea name="" id="" cols="" class="form-control" formControlName="comment">
+        </textarea>
+        <button class="btn bg-add mt-2">Add Comment</button>
+    </form>
+</div>
