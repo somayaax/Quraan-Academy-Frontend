@@ -17,6 +17,8 @@ export class ListQuestionsComponent implements OnInit {
   limit = 6;
   categoryID = '';
   currentPage: number = 1;
+  answered = false;
+
   constructor(private _QAService: QAService, private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -25,7 +27,7 @@ export class ListQuestionsComponent implements OnInit {
   }
 
   getQuestions(): void {
-    this._QAService.getAllQuestions(this.currentPage, this.limit, this.categoryID).subscribe({
+    this._QAService.getAllQuestions(this.currentPage, this.limit, this.categoryID, this.answered).subscribe({
       next: (res: any) => {
         if (res.message === 'success') {
           this.questions = res.data.docs;
@@ -60,6 +62,10 @@ export class ListQuestionsComponent implements OnInit {
     });
   }
 
+  answeredChange() {
+    this.answered = !this.answered;
+    this.getQuestions()
+  }
   nextPage() {
     if (this.pageInfo.hasNextPage) {
       this.currentPage++;

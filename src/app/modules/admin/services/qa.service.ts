@@ -8,10 +8,10 @@ import currentDomain from 'src/app/utils/domainUrls';
 })
 export class QAService {
   constructor(private _httpClient: HttpClient, private _Router: Router) { }
-  getAllQuestions(page: number, limit: number, categoryID: string): Observable<any> {
-    return this._httpClient.get(
-      `${currentDomain}/question?page=${page}&limit=${limit}&categoryID=${categoryID}`
-    )
+  getAllQuestions(page: number, limit: number, categoryID: string, answered?: boolean): Observable<any> {
+    let url = `${currentDomain}/question?page=${page}&limit=${limit}&categoryID=${categoryID}`
+    if (answered) url += `&answered=${answered}`
+    return this._httpClient.get(url)
   }
   deleteQuestion(id: string): Observable<any> {
     return this._httpClient.delete(

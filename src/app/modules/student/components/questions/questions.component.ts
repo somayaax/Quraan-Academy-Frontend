@@ -21,7 +21,7 @@ export class QuestionsComponent implements OnInit {
   teacherID = '';
   currentPage: number = 1;
   dialogConfig = new MatDialogConfig();
-
+  isLoading = true;
   constructor(private _QAService: QAService, private toastr: ToastrService, private dialog: MatDialog) {
     this._QAService.buttonClicked.subscribe(() => {
       this.getQuestions();
@@ -53,15 +53,18 @@ export class QuestionsComponent implements OnInit {
   }
 
   getQuestions(): void {
+    this.isLoading = true
     this._QAService.getStudentQuestions(this.currentPage, this.limit, this.categoryID, this.teacherID).subscribe({
       next: (res: any) => {
         if (res.message === 'success') {
           this.questions = res.data.docs;
           this.pageInfo = res.data;
         }
+        this.isLoading = false;
       },
       error: (err) => {
         console.log(err);
+        this.isLoading = false
       }
     });
   }

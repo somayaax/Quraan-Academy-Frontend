@@ -3,18 +3,25 @@
         <div class="divHeading">
             <!-- <mat-icon class="overflow-visible fs-3 me-3">question_answer</mat-icon> -->
             <h1 class="display-4">All Questions</h1>
-          </div>
-          <div class="d-flex">
-              <div>
-                  <label for="">Category</label>
-                  <select class="form-select w-75" aria-label="Default select example" [(ngModel)]="categoryID"
-                      (change)="changeCategory()">
-                      <option value="">All</option>
-                      <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
-                  </select>
-              </div>
-          </div>
-        <div class="row">
+        </div>
+        <div class="d-flex align-items-center">
+            <div>
+                <label for="">Category</label>
+                <select class="form-select w-75" aria-label="Default select example" [(ngModel)]="categoryID"
+                    (change)="changeCategory()">
+                    <option value="">All</option>
+                    <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
+                </select>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" [(ngModel)]="answered" (click)="answeredChange()"
+                    id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Answered Questions </label>
+            </div>
+        </div>
+        <ng-container *ngIf='isLoading'> <app-spinner></app-spinner> </ng-container>
+        <div class="row" *ngIf='!isLoading'>
             <div class="col-12">
                 <div *ngIf="!questions.length" class="p-5" style="height: 80vh;">
                     <h2>

@@ -20,6 +20,7 @@ export class CourseComponent implements OnInit {
   hasPrevPage: boolean = false;
   hasNextPage: boolean = false;
   role: string = 'none';
+  isLoading: boolean = true;
   // role = none -> Navigate to login
   // role = student -> Navigate to payment
   // role = teacher -> No button
@@ -43,6 +44,7 @@ export class CourseComponent implements OnInit {
   }
 
   getCourses(): void {
+    this.isLoading = true;
     const params = {
       page: this.currentPage,
       teacher:
@@ -63,6 +65,7 @@ export class CourseComponent implements OnInit {
 
         this.hasNextPage = data.hasNextPage;
         this.hasPrevPage = data.hasPrevPage;
+        this.isLoading = false;
       },
     });
   }

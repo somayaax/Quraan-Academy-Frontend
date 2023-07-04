@@ -36,8 +36,9 @@
         </select>
       </div>
     </div>
+    <ng-container *ngIf='isLoading'> <app-spinner></app-spinner> </ng-container>
 
-    <ng-container>
+    <ng-container *ngIf="!isLoading">
       <div class="card-container d-flex flex-wrap">
         <div *ngFor="let course of courses">
           <div class="card">
