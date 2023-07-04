@@ -5,13 +5,17 @@
       <div class="d-flex flex-wrap">
         <div class="form-group mx-2">
           <label for="gender-dropdown">Gender</label>
-          <select class="form-control" id="gender-dropdown" [(ngModel)]="selectedGender" (change)="getStudents()">
+          <select
+            class="form-control"
+            id="gender-dropdown"
+            [(ngModel)]="selectedGender"
+            (change)="getStudents()"
+          >
             <option>All</option>
             <option>Male</option>
             <option>Female</option>
           </select>
         </div>
-
       </div>
     </div>
     <ng-container>
@@ -25,7 +29,9 @@
               <div class="card-content">
                 <div class="card-body">
                   <div class="table-wrapper">
-                    <table class="table table-responsive-md table-striped text-center">
+                    <table
+                      class="table table-responsive-md table-striped text-center"
+                    >
                       <thead>
                         <tr>
                           <th>ID</th>
@@ -38,15 +44,13 @@
                       </thead>
                       <tbody>
                         <ng-container>
-                          <tr class="tr" *ngFor="
-                              let student of students
-                            ">
+                          <tr class="tr" *ngFor="let student of students">
                             <td>{{ student.id }}</td>
                             <td>{{ student.firstName }}</td>
                             <td>{{ student.lastName }}</td>
                             <td>{{ student.gender }}</td>
                             <td>{{ student.email }}</td>
-                            <td>{{ student.DOB }}</td>
+                            <td>{{ student.DOB.split("T")[0] }}</td>
                           </tr>
                         </ng-container>
                       </tbody>
@@ -54,9 +58,16 @@
                   </div>
                 </div>
                 <div class="pagination">
-                  <button id="prev-btn" (click)="prevPage()" [disabled]="page === 1"><i class="fas fa-chevron-left"></i>
-                    Previous</button>
-                  <button id="next-btn" (click)="nextPage()">Next <i class="fas fa-chevron-right"></i></button>
+                  <button
+                    id="prev-btn"
+                    (click)="prevPage()"
+                    [disabled]="page === 1"
+                  >
+                    <i class="fas fa-chevron-left"></i> Previous
+                  </button>
+                  <button id="next-btn" (click)="nextPage()">
+                    Next <i class="fas fa-chevron-right"></i>
+                  </button>
                 </div>
               </div>
             </div>

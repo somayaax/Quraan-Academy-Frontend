@@ -7,6 +7,7 @@ import { SessionService } from '../../services/session.service';
   styleUrls: ['./list-sessions.component.css'],
 })
 export class ListSessionsComponent {
+  months: number[] = Array.from({ length: 12 }, (_, i) => i + 1);
   sessions: sessionElement[] = [];
   selectedMonth: number = 1;
   selectedYear: number = new Date().getFullYear();
@@ -48,6 +49,13 @@ export class ListSessionsComponent {
         }));
       },
     });
+  }
+  getMonthName(monthNumber: number): string {
+    const date = new Date(2000, monthNumber, 1);
+
+    // Use the toLocaleString() method to get the month name
+    const monthName = date.toLocaleString('default', { month: 'long' });
+    return monthName;
   }
   ngOnInit(): void {
     this.getSessions();
